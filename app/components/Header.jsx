@@ -50,6 +50,45 @@ const divisions = [
   },
 ];
 
+const publicationsItems = [
+  {
+    title: "Blogs",
+    desc: "Political commentary, governance insights, public discourse, leadership reflections, and strategic perspectives.",
+    href: "/#publications",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Research Papers",
+    desc: "Evidence-based political research, governance analysis, policy studies, institutional assessments, and strategic recommendations.",
+    href: "/rpi#publications",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+      </svg>
+    ),
+  },
+  {
+    title: "Journal",
+    desc: "Academic publications, scholarly articles, peer-reviewed work, and advanced political praxis research.",
+    href: "/#publications",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+        <path d="M6 6h10" />
+        <path d="M6 10h10" />
+      </svg>
+    ),
+  },
+];
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null); // 'offers' | 'publications' | null
@@ -130,109 +169,23 @@ export default function Header() {
                 )}
 
                 {item.dropdownType === "publications" && (
-                  <div className={`mega-menu-wrapper publications-mega-menu ${isOpen ? "mega-menu-open" : ""}`}>
-                    <div className="mega-menu-inner publications-menu-inner">
-                      <div className="publications-overview-panel">
-                        <h3>Knowledge, Research &amp; Public Discourse</h3>
-                        <p>
-                          Athena Institute for Political Praxis publishes political insights, research studies, academic journals, policy analyses, and strategic commentary designed to advance political understanding and informed public engagement.
-                        </p>
-                        <div className="publications-stats-divider" />
-                        <div className="publications-stats-grid">
-                          <div className="pub-stat-item">
-                            <span className="pub-stat-number">120+</span>
-                            <span className="pub-stat-label">Publications</span>
+                  <div className={`mega-menu-wrapper ${isOpen ? "mega-menu-open" : ""}`}>
+                    <div className="mega-menu-inner">
+                      {publicationsItems.map((pub) => (
+                        <a key={pub.title} href={pub.href} className="mega-card">
+                          <span className="mega-card-icon">{pub.icon}</span>
+                          <div className="mega-card-content">
+                            <h3>{pub.title}</h3>
+                            <p>{pub.desc}</p>
                           </div>
-                          <div className="pub-stat-item">
-                            <span className="pub-stat-number">50+</span>
-                            <span className="pub-stat-label">Research Papers</span>
-                          </div>
-                          <div className="pub-stat-item">
-                            <span className="pub-stat-number">20+</span>
-                            <span className="pub-stat-label">Journal Issues</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="publications-cards-grid">
-                        <a href="/#publications" className="pub-card pub-card-blogs">
-                          <div className="pub-card-top">
-                            <span className="pub-card-label">Latest Insights</span>
-                            <span className="pub-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M12 20h9" />
-                                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
-                              </svg>
-                            </span>
-                          </div>
-                          <div className="pub-card-content">
-                            <h4>Blogs</h4>
-                            <p>Political commentary, governance insights, public discourse, leadership reflections, and strategic perspectives on contemporary political issues.</p>
-                          </div>
-                          <div className="pub-card-footer">
-                            <span className="pub-card-action">
-                              Explore Blogs
-                              <svg className="pub-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                                <polyline points="12 5 19 12 12 19" />
-                              </svg>
-                            </span>
-                          </div>
+                          <span className="mega-card-arrow" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <line x1="5" y1="12" x2="19" y2="12" />
+                              <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                          </span>
                         </a>
-
-                        <a href="/rpi#publications" className="pub-card pub-card-research">
-                          <div className="pub-card-top">
-                            <span className="pub-card-label">Policy &amp; Governance Research</span>
-                            <span className="pub-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                <polyline points="14 2 14 8 20 8" />
-                                <line x1="16" y1="13" x2="8" y2="13" />
-                                <line x1="16" y1="17" x2="8" y2="17" />
-                              </svg>
-                            </span>
-                          </div>
-                          <div className="pub-card-content">
-                            <h4>Research Papers</h4>
-                            <p>Evidence-based political research, governance analysis, policy studies, institutional assessments, and strategic recommendations.</p>
-                          </div>
-                          <div className="pub-card-footer">
-                            <span className="pub-card-action">
-                              Browse Papers
-                              <svg className="pub-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                                <polyline points="12 5 19 12 12 19" />
-                              </svg>
-                            </span>
-                          </div>
-                        </a>
-
-                        <a href="/#publications" className="pub-card pub-card-journal">
-                          <div className="pub-card-top">
-                            <span className="pub-card-label">Scholarly Publications</span>
-                            <span className="pub-card-icon">
-                              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
-                                <path d="M6 6h10" />
-                                <path d="M6 10h10" />
-                              </svg>
-                            </span>
-                          </div>
-                          <div className="pub-card-content">
-                            <h4>Journal</h4>
-                            <p>Academic publications, scholarly articles, peer-reviewed work, and advanced political praxis research.</p>
-                          </div>
-                          <div className="pub-card-footer">
-                            <span className="pub-card-action">
-                              Read Journal
-                              <svg className="pub-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                                <polyline points="12 5 19 12 12 19" />
-                              </svg>
-                            </span>
-                          </div>
-                        </a>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 )}
@@ -312,61 +265,23 @@ export default function Header() {
 
                   {item.dropdownType === "publications" && (
                     <div className={`mobile-accordion ${isMobileOpen ? "accordion-open" : ""}`}>
-                      <div className="mobile-publications-overview">
-                        <p>Athena Institute for Political Praxis publishes political insights, research studies, academic journals, policy analyses, and strategic commentary.</p>
-                        <div className="mobile-pub-stats">
-                          <span>120+ Pubs</span>
-                          <span>50+ Papers</span>
-                          <span>20+ Journals</span>
-                        </div>
-                      </div>
-
-                      <a href="/#publications" className="mobile-pub-card mobile-pub-blogs" onClick={() => setIsMobileMenuOpen(false)}>
-                        <div className="mobile-pub-card-header">
-                          <span className="mobile-pub-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M12 20h9" />
-                              <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
-                            </svg>
+                      {publicationsItems.map((pub) => (
+                        <a
+                          key={pub.title}
+                          href={pub.href}
+                          className="mobile-mega-card"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <div className="mobile-mega-card-header">
+                            <span className="mobile-mega-card-icon">{pub.icon}</span>
+                            <h4>{pub.title}</h4>
+                          </div>
+                          <p>{pub.desc}</p>
+                          <span className="mobile-mega-card-arrow">
+                            Explore Publication &rarr;
                           </span>
-                          <h4>Blogs</h4>
-                          <span className="mobile-pub-label">Latest Insights</span>
-                        </div>
-                        <p>Political commentary, governance insights, leadership reflections, and strategic perspectives.</p>
-                        <span className="mobile-pub-arrow">Explore Blogs &rarr;</span>
-                      </a>
-
-                      <a href="/rpi#publications" className="mobile-pub-card mobile-pub-research" onClick={() => setIsMobileMenuOpen(false)}>
-                        <div className="mobile-pub-card-header">
-                          <span className="mobile-pub-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                              <polyline points="14 2 14 8 20 8" />
-                              <line x1="16" y1="13" x2="8" y2="13" />
-                              <line x1="16" y1="17" x2="8" y2="17" />
-                            </svg>
-                          </span>
-                          <h4>Research Papers</h4>
-                          <span className="mobile-pub-label">Research</span>
-                        </div>
-                        <p>Evidence-based political research, governance analysis, and policy studies.</p>
-                        <span className="mobile-pub-arrow">Browse Papers &rarr;</span>
-                      </a>
-
-                      <a href="/#publications" className="mobile-pub-card mobile-pub-journal" onClick={() => setIsMobileMenuOpen(false)}>
-                        <div className="mobile-pub-card-header">
-                          <span className="mobile-pub-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
-                              <path d="M6 6h10" />
-                            </svg>
-                          </span>
-                          <h4>Journal</h4>
-                          <span className="mobile-pub-label">Scholarly</span>
-                        </div>
-                        <p>Academic publications, peer-reviewed work, and advanced political praxis research.</p>
-                        <span className="mobile-pub-arrow">Read Journal &rarr;</span>
-                      </a>
+                        </a>
+                      ))}
                     </div>
                   )}
                 </div>
