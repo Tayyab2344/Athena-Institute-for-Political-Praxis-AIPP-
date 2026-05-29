@@ -54,6 +54,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -140,7 +141,11 @@ export default function Header() {
         </a>
       </div>
 
-      <details className="mobile-menu">
+      <details
+        className="mobile-menu"
+        open={isMobileMenuOpen}
+        onToggle={(e) => setIsMobileMenuOpen(e.target.open)}
+      >
         <summary aria-label="Open menu">
           <span />
           <span />
@@ -163,7 +168,12 @@ export default function Header() {
                   </button>
                   <div className={`mobile-accordion ${isMobileDropdownOpen ? "accordion-open" : ""}`}>
                     {divisions.map((div) => (
-                      <a key={div.title} href={div.href} className="mobile-mega-card">
+                      <a
+                        key={div.title}
+                        href={div.href}
+                        className="mobile-mega-card"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
                         <div className="mobile-mega-card-header">
                           <span className="mobile-mega-card-icon">{div.icon}</span>
                           <h4>{div.title}</h4>
@@ -179,12 +189,18 @@ export default function Header() {
               );
             }
             return (
-              <a key={item.href} href={item.href}>
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 {item.label}
               </a>
             );
           })}
-          <a href="#join">Contact</a>
+          <a href="#join" onClick={() => setIsMobileMenuOpen(false)}>
+            Contact
+          </a>
         </nav>
       </details>
     </header>
