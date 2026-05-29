@@ -2001,6 +2001,319 @@ input {
 }
 
 /* ==========================================================================
+   Publications Premium Mega Dropdown Styles (Desktop)
+   ========================================================================== */
+
+/* Publications Mega Dropdown layout override */
+.publications-mega-menu {
+  width: min(95vw, 1140px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(12px) !important;
+}
+
+.publications-mega-menu.mega-menu-open {
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.publications-menu-inner {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 36px;
+  padding: 34px;
+  background: linear-gradient(135deg, rgba(8, 22, 42, 0.97) 0%, rgba(4, 12, 27, 0.93) 100%);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(226, 191, 115, 0.16);
+  border-radius: 16px;
+  box-shadow: 
+    0 30px 80px rgba(2, 11, 29, 0.6), 
+    0 0 50px rgba(226, 191, 115, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.publications-menu-inner::after {
+  background: radial-gradient(circle, rgba(226, 191, 115, 0.3) 0%, transparent 75%) !important;
+}
+
+/* Publications Left Overview Panel */
+.publications-overview-panel {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-right: 32px;
+  border-right: 1px solid rgba(226, 191, 115, 0.12);
+}
+
+.publications-overview-panel h3 {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--white);
+  margin: 0 0 14px 0;
+  letter-spacing: -0.01em;
+}
+
+.publications-overview-panel p {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 32px 0;
+}
+
+.publications-stats-divider {
+  width: 44px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 24px;
+}
+
+.publications-stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: auto;
+}
+
+.pub-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pub-stat-number {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--gold-2);
+  line-height: 1;
+}
+
+.pub-stat-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+/* Publications Cards Grid (Right Side) */
+.publications-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Base Publication Card */
+.pub-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px 24px;
+  background: rgba(255, 255, 255, 0.012);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: 
+    background 350ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 350ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 350ms cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 350ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.pub-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.pub-card-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold-2);
+  background: rgba(226, 191, 115, 0.08);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.pub-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--gold-2);
+  background: rgba(226, 191, 115, 0.06);
+  border: 1px solid rgba(226, 191, 115, 0.1);
+  transition: 
+    transform 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    background 300ms ease,
+    color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.pub-card-content {
+  text-align: left;
+  flex-grow: 1;
+}
+
+.pub-card-content h4 {
+  font-family: var(--serif);
+  font-size: 18.5px;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+}
+
+.pub-card-content p {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 24px 0;
+}
+
+.pub-card-footer {
+  margin-top: auto;
+}
+
+.pub-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  transition: color 250ms ease;
+}
+
+.pub-arrow {
+  color: var(--gold-2);
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* SECTION 2: BLOGS CARD CUSTOM ANIMATIONS */
+.pub-card-blogs::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--gold);
+  transition: width 350ms cubic-bezier(0.23, 1, 0.32, 1), left 350ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.pub-card-blogs:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(226, 191, 115, 0.25);
+  box-shadow: 
+    0 22px 48px rgba(6, 20, 43, 0.55), 
+    0 0 30px rgba(10, 29, 57, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.pub-card-blogs:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.pub-card-blogs:hover .pub-card-icon {
+  transform: scale(1.08);
+  background: rgba(226, 191, 115, 0.16);
+  color: #ffffff;
+}
+
+.pub-card-blogs:hover .pub-arrow {
+  transform: translateX(6px);
+}
+
+/* SECTION 3: RESEARCH PAPERS CARD CUSTOM ANIMATIONS */
+.pub-card-research::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0.3);
+  opacity: 0.4;
+  transition: transform 350ms cubic-bezier(0.23, 1, 0.32, 1), opacity 350ms ease;
+}
+
+.pub-card-research:hover {
+  transform: translateY(-6px);
+  background: linear-gradient(180deg, rgba(16, 35, 62, 0.45) 0%, rgba(8, 22, 42, 0.15) 100%);
+  border-color: rgba(226, 191, 115, 0.32);
+  box-shadow: 
+    0 22px 48px rgba(2, 11, 29, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.pub-card-research:hover::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.pub-card-research:hover .pub-card-icon {
+  transform: scale(1.08) rotate(-4deg);
+  background: rgba(226, 191, 115, 0.18);
+  color: #ffffff;
+}
+
+.pub-card-research:hover .pub-arrow {
+  transform: translateX(6px);
+}
+
+/* SECTION 4: JOURNAL CARD CUSTOM ANIMATIONS */
+.pub-card-journal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(226, 191, 115, 0.09) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 650ms ease;
+}
+
+.pub-card-journal:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 
+    0 22px 48px rgba(2, 11, 29, 0.5),
+    0 0 25px rgba(201, 154, 66, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.038);
+}
+
+.pub-card-journal:hover::before {
+  transform: translateX(100%);
+}
+
+.pub-card-journal:hover .pub-card-icon {
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(226, 191, 115, 0.22);
+  color: #ffffff;
+}
+
+.pub-card-journal:hover .pub-arrow {
+  transform: translateX(6px);
+}
+
+/* ==========================================================================
    Mobile Accordion Styles
    ========================================================================== */
 
@@ -2108,6 +2421,115 @@ input {
 }
 
 .mobile-mega-card-arrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  letter-spacing: 0.05em;
+}
+
+/* Mobile Publications Accordion Menu Styles */
+.mobile-publications-overview {
+  padding: 10px 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.mobile-publications-overview p {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 12px 0;
+}
+
+.mobile-pub-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mobile-pub-stats span {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  background: rgba(226, 191, 115, 0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.mobile-pub-card {
+  display: block;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  text-align: left;
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: background 220ms ease, border-color 220ms ease;
+}
+
+.mobile-pub-card:last-child {
+  margin-bottom: 4px;
+}
+
+.mobile-pub-card:hover,
+.mobile-pub-card:active {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(226, 191, 115, 0.25);
+}
+
+.mobile-pub-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.mobile-pub-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-2);
+}
+
+.mobile-pub-card h4 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 15.5px;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.mobile-pub-label {
+  margin-left: auto;
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--gold-2);
+  background: rgba(226, 191, 115, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.mobile-pub-card p {
+  margin: 0 0 12px 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.48;
+}
+
+.mobile-pub-arrow {
   display: block;
   font-family: var(--sans);
   font-size: 10px;
