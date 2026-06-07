@@ -5,6 +5,9 @@ export const metadata = {
   title: "Athena Institute for Political Praxis",
   description:
     "An international institute advancing women's political leadership, governance research, institutional reform, and strategic public policy.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {

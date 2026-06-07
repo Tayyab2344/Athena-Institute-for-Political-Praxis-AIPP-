@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "What We Offer", href: "#what-we-offer", isDropdown: true, dropdownType: "offers" },
   { label: "Publications", href: "/#publications", isDropdown: true, dropdownType: "publications" },
-  { label: "Partnerships", href: "/#partners" },
-  { label: "Join Us", href: "/#join" },
+  { label: "Partnerships", href: "/partnerships" },
+  { label: "Join Us", href: "/join" },
 ];
 
 const divisions = [
@@ -52,9 +53,9 @@ const divisions = [
 
 const publicationsItems = [
   {
-    title: "Blogs",
-    desc: "Political commentary, governance insights, public discourse, leadership reflections, and strategic perspectives.",
-    href: "/#publications",
+    title: "Blogs & Insights",
+    desc: "Policy blogs, governance insights, public discourse, leadership reflections, and strategic perspectives.",
+    href: "/writings",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 20h9" />
@@ -65,7 +66,7 @@ const publicationsItems = [
   {
     title: "Research Papers",
     desc: "Evidence-based political research, governance analysis, policy studies, institutional assessments, and strategic recommendations.",
-    href: "/rpi#publications",
+    href: "/research",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -78,7 +79,7 @@ const publicationsItems = [
   {
     title: "Journal",
     desc: "Academic publications, scholarly articles, peer-reviewed work, and advanced political praxis research.",
-    href: "/#publications",
+    href: "/archive",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
@@ -90,6 +91,7 @@ const publicationsItems = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null); // 'offers' | 'publications' | null
   const [isMobileOffersOpen, setIsMobileOffersOpen] = useState(false);
@@ -126,6 +128,9 @@ export default function Header() {
 
       <nav className="primary-nav" aria-label="Primary navigation">
         {navItems.map((item, index) => {
+          const isDropdownActive =
+            (item.dropdownType === "publications" && ["/writings", "/research"].includes(pathname)) ||
+            (item.dropdownType === "offers" && ["/sas", "/rpi", "/cpa"].includes(pathname));
           if (item.isDropdown) {
             const isOpen = activeDropdown === item.dropdownType;
             return (
@@ -137,7 +142,7 @@ export default function Header() {
               >
                 <button
                   type="button"
-                  className="nav-dropdown-trigger"
+                  className={`nav-dropdown-trigger ${isOpen ? "open" : ""} ${isDropdownActive ? "active" : ""}`}
                   aria-expanded={isOpen}
                 >
                   {item.label}
@@ -192,8 +197,9 @@ export default function Header() {
               </div>
             );
           }
+          const isActive = pathname === item.href;
           return (
-            <a key={item.href} href={item.href} className={index === navItems.length - 1 ? "has-caret" : ""}>
+            <a key={item.href} href={item.href} className={isActive ? "active" : ""}>
               {item.label}
             </a>
           );
@@ -201,7 +207,7 @@ export default function Header() {
       </nav>
 
       <div className="nav-actions">
-        <a className="contact-button" href="#join">
+        <a className="contact-button" href="/join">
           Contact Us
           <span aria-hidden="true">-&gt;</span>
         </a>
@@ -297,7 +303,7 @@ export default function Header() {
               </a>
             );
           })}
-          <a href="#join" onClick={() => setIsMobileMenuOpen(false)}>
+          <a href="/join" onClick={() => setIsMobileMenuOpen(false)}>
             Contact
           </a>
         </nav>
