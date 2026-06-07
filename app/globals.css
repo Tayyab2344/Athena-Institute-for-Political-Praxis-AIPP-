@@ -1076,7 +1076,7 @@ input {
     display: block;
   }
 
-  .mobile-menu summary {
+  .mobile-menu-trigger {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1085,19 +1085,23 @@ input {
     width: 38px;
     height: 38px;
     border: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
     opacity: 0.8;
     cursor: pointer;
-    list-style: none;
     position: relative;
     border-radius: 4px;
     padding: 0;
+    transition: opacity 200ms ease, border-color 200ms ease, color 200ms ease;
   }
 
-  .mobile-menu summary::-webkit-details-marker {
-    display: none;
+  .mobile-menu-trigger:hover {
+    opacity: 1;
+    border-color: var(--gold-2);
+    color: var(--gold-2);
   }
 
-  .mobile-menu summary span {
+  .mobile-menu-trigger span {
     display: block;
     width: 18px;
     height: 2px;
@@ -1105,11 +1109,11 @@ input {
     transition: transform 220ms ease, opacity 220ms ease;
   }
 
-  details[open].mobile-menu summary span:first-of-type {
+  .mobile-menu.open .mobile-menu-trigger span:first-of-type {
     transform: translateY(3.5px) rotate(45deg);
   }
 
-  details[open].mobile-menu summary span:last-of-type {
+  .mobile-menu.open .mobile-menu-trigger span:last-of-type {
     transform: translateY(-3.5px) rotate(-45deg);
   }
 
@@ -1121,14 +1125,165 @@ input {
     overflow-y: auto;
     padding: 12px 24px 24px;
     background: rgba(6, 20, 43, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 0 0 10px 10px;
-    border-bottom: 1px solid rgba(226, 191, 115, 0.3);
+    border: 1px solid rgba(226, 191, 115, 0.25);
+    border-top: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(226, 191, 115, 0.05);
+    
+    /* Animation Properties */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top center;
+    transition: 
+      opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 280ms ease;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .mobile-menu.open nav {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
   }
 
   .mobile-menu a {
     padding: 16px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-family: var(--sans);
+    transition: color 150ms ease;
+  }
+
+  .mobile-menu a.active {
+    color: var(--gold-2) !important;
+  }
+
+  /* Mobile Dropdown Styling */
+  .mobile-dropdown-container {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 0;
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+    transition: color 150ms ease;
+  }
+
+  .mobile-dropdown-trigger:hover,
+  .mobile-dropdown-trigger.active {
+    color: var(--gold-2);
+  }
+
+  .mobile-trigger-caret {
+    transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0.8;
+  }
+
+  .mobile-trigger-caret.caret-active {
+    transform: rotate(180deg);
+    color: var(--gold-2);
+  }
+
+  /* Accordion transition wrapper */
+  .mobile-accordion {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 12px;
+  }
+
+  .mobile-accordion.accordion-open {
+    max-height: 500px;
+    padding-bottom: 16px;
+  }
+
+  /* Mobile Mega Card */
+  .mobile-mega-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    border-bottom: none !important;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.015);
+    text-decoration: none;
+    transition: background 200ms ease, border-color 200ms ease !important;
+  }
+
+  .mobile-mega-card:hover,
+  .mobile-mega-card.active {
+    background: rgba(226, 191, 115, 0.05);
+    border-color: rgba(226, 191, 115, 0.2) !important;
+  }
+
+  .mobile-mega-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-mega-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: var(--gold-2);
+    background: rgba(226, 191, 115, 0.08);
+    border-radius: 50%;
+  }
+
+  .mobile-mega-card.active .mobile-mega-card-icon {
+    background: rgba(226, 191, 115, 0.16);
+    color: var(--white);
+  }
+
+  .mobile-mega-card-header h4 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .mobile-mega-card.active .mobile-mega-card-header h4 {
+    color: var(--gold-2);
+  }
+
+  .mobile-mega-card p {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.4;
+  }
+
+  .mobile-mega-card-arrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold-2);
+    opacity: 0.8;
   }
 
   .hero-section {
@@ -3940,13 +4095,16 @@ input {
    ========================================================================== */
 
 /* Active State for Header Navigation */
-.primary-nav a.active {
+.primary-nav a.active,
+.primary-nav .nav-dropdown-trigger.active {
   color: var(--gold-2) !important;
 }
-.site-header-scrolled .primary-nav a.active {
+.site-header-scrolled .primary-nav a.active,
+.site-header-scrolled .primary-nav .nav-dropdown-trigger.active {
   color: var(--gold) !important;
 }
-.primary-nav a.active::after {
+.primary-nav a.active::after,
+.primary-nav .nav-dropdown-trigger.active::after {
   content: "";
   position: absolute;
   bottom: 18px;
@@ -3956,6 +4114,24 @@ input {
   background: currentColor;
   box-shadow: 0 0 8px currentColor;
   animation: fadeIn 300ms ease;
+}
+
+/* Active State for Mega Dropdown Cards */
+.mega-card.active {
+  background: radial-gradient(circle at 10% 50%, rgba(226, 191, 115, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+  border-color: rgba(226, 191, 115, 0.25) !important;
+  box-shadow: 
+    0 12px 28px rgba(2, 11, 29, 0.25), 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+.mega-card.active .mega-card-icon {
+  transform: scale(1.08) !important;
+  background: rgba(226, 191, 115, 0.16) !important;
+  color: #ffffff !important;
+}
+.mega-card.active .mega-card-arrow {
+  transform: translateX(5px) !important;
+  color: var(--gold-2) !important;
 }
 
 /* Writings Hero Section */

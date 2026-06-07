@@ -119,6 +119,31 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Handle Escape key to close mobile menu
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    if (isMobileMenuOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
+
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header className={`site-header ${isScrolled ? "site-header-scrolled" : ""}`}>
       <a className="brand-mark" href="/" aria-label="AIPP home">
@@ -129,7 +154,7 @@ export default function Header() {
       <nav className="primary-nav" aria-label="Primary navigation">
         {navItems.map((item, index) => {
           const isDropdownActive =
-            (item.dropdownType === "publications" && ["/writings", "/research"].includes(pathname)) ||
+            (item.dropdownType === "publications" && ["/writings", "/research", "/archive"].includes(pathname)) ||
             (item.dropdownType === "offers" && ["/sas", "/rpi", "/cpa"].includes(pathname));
           if (item.isDropdown) {
             const isOpen = activeDropdown === item.dropdownType;
@@ -155,7 +180,7 @@ export default function Header() {
                   <div className={`mega-menu-wrapper ${isOpen ? "mega-menu-open" : ""}`}>
                     <div className="mega-menu-inner">
                       {divisions.map((div) => (
-                        <a key={div.title} href={div.href} className="mega-card">
+                        <a key={div.title} href={div.href} className={`mega-card ${pathname === div.href ? "active" : ""}`}>
                           <span className="mega-card-icon">{div.icon}</span>
                           <div className="mega-card-content">
                             <h3>{div.title}</h3>
@@ -177,7 +202,7 @@ export default function Header() {
                   <div className={`mega-menu-wrapper ${isOpen ? "mega-menu-open" : ""}`}>
                     <div className="mega-menu-inner">
                       {publicationsItems.map((pub) => (
-                        <a key={pub.title} href={pub.href} className="mega-card">
+                        <a key={pub.title} href={pub.href} className={`mega-card ${pathname === pub.href ? "active" : ""}`}>
                           <span className="mega-card-icon">{pub.icon}</span>
                           <div className="mega-card-content">
                             <h3>{pub.title}</h3>
@@ -213,17 +238,22 @@ export default function Header() {
         </a>
       </div>
 
-      <details
-        className="mobile-menu"
-        open={isMobileMenuOpen}
-        onToggle={(e) => setIsMobileMenuOpen(e.target.open)}
-      >
-        <summary aria-label="Open menu">
+      <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+        <button
+          className="mobile-menu-trigger"
+          type="button"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-expanded={isMobileMenuOpen}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+        >
           <span />
           <span />
-        </summary>
+        </button>
         <nav aria-label="Mobile navigation">
           {navItems.map((item) => {
+            const isDropdownActive =
+              (item.dropdownType === "publications" && ["/writings", "/research", "/archive"].includes(pathname)) ||
+              (item.dropdownType === "offers" && ["/sas", "/rpi", "/cpa"].includes(pathname));
             if (item.isDropdown) {
               const isMobileOpen = item.dropdownType === "offers" ? isMobileOffersOpen : isMobilePublicationsOpen;
               const toggleMobileDropdown = () => {
@@ -237,7 +267,7 @@ export default function Header() {
                 <div key={item.label} className="mobile-dropdown-container">
                   <button
                     type="button"
-                    className="mobile-dropdown-trigger"
+                    className={`mobile-dropdown-trigger ${isDropdownActive ? "active" : ""}`}
                     onClick={toggleMobileDropdown}
                     aria-expanded={isMobileOpen}
                   >
@@ -253,7 +283,7 @@ export default function Header() {
                         <a
                           key={div.title}
                           href={div.href}
-                          className="mobile-mega-card"
+                          className={`mobile-mega-card ${pathname === div.href ? "active" : ""}`}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           <div className="mobile-mega-card-header">
@@ -275,7 +305,7 @@ export default function Header() {
                         <a
                           key={pub.title}
                           href={pub.href}
-                          className="mobile-mega-card"
+                          className={`mobile-mega-card ${pathname === pub.href ? "active" : ""}`}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           <div className="mobile-mega-card-header">
@@ -293,21 +323,23 @@ export default function Header() {
                 </div>
               );
             }
+            const isActive = pathname === item.href;
             return (
               <a
                 key={item.href}
                 href={item.href}
+                className={isActive ? "active" : ""}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
               </a>
             );
           })}
-          <a href="/join" onClick={() => setIsMobileMenuOpen(false)}>
+          <a href="/join" className={pathname === "/join" ? "active" : ""} onClick={() => setIsMobileMenuOpen(false)}>
             Contact
           </a>
         </nav>
-      </details>
+      </div>
     </header>
   );
 }
