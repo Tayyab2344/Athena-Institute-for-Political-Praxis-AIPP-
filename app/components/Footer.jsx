@@ -1,15 +1,28 @@
 const columns = [
   {
     title: "Resources",
-    links: ["Research Archive", "Policy Papers", "Annual Report", "Digital Library"],
+    links: [
+      { label: "Research Archive", href: "/research" },
+      { label: "Policy Papers", href: "/archive" },
+      { label: "Annual Report", href: "/about" },
+      { label: "Digital Library", href: "/writings" },
+    ],
   },
   {
     title: "Institutional",
-    links: ["About AIPP", "Board of Directors", "Advisory Council", "Contact Us"],
+    links: [
+      { label: "About AIPP", href: "/about" },
+      { label: "Board of Directors", href: "/about" },
+      { label: "Advisory Council", href: "/about" },
+      { label: "Contact Us", href: "/contact" },
+    ],
   },
   {
     title: "Legal",
-    links: ["Privacy Policy", "Terms of Service"],
+    links: [
+      { label: "Privacy Policy", href: "#" },
+      { label: "Terms of Service", href: "#" },
+    ],
   },
 ];
 
@@ -29,8 +42,8 @@ export default function Footer() {
           <nav key={column.title} aria-label={column.title}>
             <h2>{column.title}</h2>
             {column.links.map((link) => (
-              <a key={link} href="#top">
-                {link}
+              <a key={link.label} href={link.href}>
+                {link.label}
               </a>
             ))}
           </nav>

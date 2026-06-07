@@ -232,7 +232,7 @@ export default function Header() {
       </nav>
 
       <div className="nav-actions">
-        <a className="contact-button" href="/join">
+        <a className="contact-button" href="/contact">
           Contact Us
           <span aria-hidden="true">-&gt;</span>
         </a>
@@ -335,7 +335,7 @@ export default function Header() {
               </a>
             );
           })}
-          <a href="/join" className={pathname === "/join" ? "active" : ""} onClick={() => setIsMobileMenuOpen(false)}>
+          <a href="/contact" className={pathname === "/contact" ? "active" : ""} onClick={() => setIsMobileMenuOpen(false)}>
             Contact
           </a>
         </nav>

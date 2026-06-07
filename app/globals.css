@@ -1373,18 +1373,20 @@ input {
    About Page Styles
    ========================================================================== */
 
-/* Header Override for Light Hero Pages (About, Journal, Partnerships, Join Us) */
+/* Header Override for Light Hero Pages (About, Journal, Partnerships, Join Us, Contact) */
 .about-page-container .site-header:not(.site-header-scrolled),
 .journal-page-container .site-header:not(.site-header-scrolled),
 .partnerships-page-container .site-header:not(.site-header-scrolled),
-.join-page-container .site-header:not(.site-header-scrolled) {
+.join-page-container .site-header:not(.site-header-scrolled),
+.contact-page-container .site-header:not(.site-header-scrolled) {
   color: var(--navy);
 }
 
 .about-page-container .site-header:not(.site-header-scrolled) .brand-mark span,
 .journal-page-container .site-header:not(.site-header-scrolled) .brand-mark span,
 .partnerships-page-container .site-header:not(.site-header-scrolled) .brand-mark span,
-.join-page-container .site-header:not(.site-header-scrolled) .brand-mark span {
+.join-page-container .site-header:not(.site-header-scrolled) .brand-mark span,
+.contact-page-container .site-header:not(.site-header-scrolled) .brand-mark span {
   background: rgba(10, 29, 57, 0.18);
 }
 
@@ -1392,10 +1394,12 @@ input {
 .journal-page-container .site-header:not(.site-header-scrolled) .primary-nav a,
 .partnerships-page-container .site-header:not(.site-header-scrolled) .primary-nav a,
 .join-page-container .site-header:not(.site-header-scrolled) .primary-nav a,
+.contact-page-container .site-header:not(.site-header-scrolled) .primary-nav a,
 .about-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger,
 .journal-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger,
 .partnerships-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger,
-.join-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger {
+.join-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger,
+.contact-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger {
   color: rgba(6, 20, 43, 0.78);
   text-shadow: none;
 }
@@ -1404,21 +1408,25 @@ input {
 .journal-page-container .site-header:not(.site-header-scrolled) .primary-nav a:hover,
 .partnerships-page-container .site-header:not(.site-header-scrolled) .primary-nav a:hover,
 .join-page-container .site-header:not(.site-header-scrolled) .primary-nav a:hover,
+.contact-page-container .site-header:not(.site-header-scrolled) .primary-nav a:hover,
 .about-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger:hover,
 .journal-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger:hover,
 .partnerships-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger:hover,
 .join-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger:hover,
+.contact-page-container .site-header:not(.site-header-scrolled) .primary-nav .nav-dropdown-trigger:hover,
 .about-page-container .site-header:not(.site-header-scrolled) .nav-dropdown-container:hover .nav-dropdown-trigger,
 .journal-page-container .site-header:not(.site-header-scrolled) .nav-dropdown-container:hover .nav-dropdown-trigger,
 .partnerships-page-container .site-header:not(.site-header-scrolled) .nav-dropdown-container:hover .nav-dropdown-trigger,
-.join-page-container .site-header:not(.site-header-scrolled) .nav-dropdown-container:hover .nav-dropdown-trigger {
+.join-page-container .site-header:not(.site-header-scrolled) .nav-dropdown-container:hover .nav-dropdown-trigger,
+.contact-page-container .site-header:not(.site-header-scrolled) .nav-dropdown-container:hover .nav-dropdown-trigger {
   color: var(--navy);
 }
 
 .about-page-container .site-header:not(.site-header-scrolled) .contact-button,
 .journal-page-container .site-header:not(.site-header-scrolled) .contact-button,
 .partnerships-page-container .site-header:not(.site-header-scrolled) .contact-button,
-.join-page-container .site-header:not(.site-header-scrolled) .contact-button {
+.join-page-container .site-header:not(.site-header-scrolled) .contact-button,
+.contact-page-container .site-header:not(.site-header-scrolled) .contact-button {
   color: var(--navy);
   background: rgba(255, 255, 255, 0.62);
   border-color: rgba(201, 154, 66, 0.92);
@@ -1427,7 +1435,8 @@ input {
 .about-page-container .site-header:not(.site-header-scrolled) .contact-button:hover,
 .journal-page-container .site-header:not(.site-header-scrolled) .contact-button:hover,
 .partnerships-page-container .site-header:not(.site-header-scrolled) .contact-button:hover,
-.join-page-container .site-header:not(.site-header-scrolled) .contact-button:hover {
+.join-page-container .site-header:not(.site-header-scrolled) .contact-button:hover,
+.contact-page-container .site-header:not(.site-header-scrolled) .contact-button:hover {
   color: var(--navy);
   background: var(--gold-2);
   border-color: var(--gold-2);
