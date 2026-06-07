@@ -15,71 +15,8 @@ export default function ContactPage() {
     message: ""
   });
 
-  // Clocks state
-  const [times, setTimes] = useState({
-    geneva: "",
-    london: "",
-    dc: ""
-  });
-
-  const [statuses, setStatuses] = useState({
-    geneva: false,
-    london: false,
-    dc: false
-  });
-
   // FAQ state
   const [activeFaq, setActiveFaq] = useState(null);
-
-  // Time Zones Clocks & Statuses Logic
-  useEffect(() => {
-    const updateClocks = () => {
-      const getFormattedTime = (timeZone) => {
-        return new Intl.DateTimeFormat("en-US", {
-          timeZone,
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true
-        }).format(new Date());
-      };
-
-      const checkOpenStatus = (timeZone) => {
-        const hourString = new Intl.DateTimeFormat("en-GB", {
-          timeZone,
-          hour: "numeric",
-          hour12: false
-        }).format(new Date());
-
-        const dayString = new Intl.DateTimeFormat("en-GB", {
-          timeZone,
-          weekday: "short"
-        }).format(new Date());
-
-        const hour = parseInt(hourString, 10);
-        const isWeekend = dayString === "Sat" || dayString === "Sun";
-        
-        // Open Mon-Fri, 9:00 AM - 5:00 PM (9:00 - 17:00)
-        return hour >= 9 && hour < 17 && !isWeekend;
-      };
-
-      setTimes({
-        geneva: getFormattedTime("Europe/Paris"),
-        london: getFormattedTime("Europe/London"),
-        dc: getFormattedTime("America/New_York")
-      });
-
-      setStatuses({
-        geneva: checkOpenStatus("Europe/Paris"),
-        london: checkOpenStatus("Europe/London"),
-        dc: checkOpenStatus("America/New_York")
-      });
-    };
-
-    updateClocks();
-    const interval = setInterval(updateClocks, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -253,13 +190,11 @@ export default function ContactPage() {
                 <div className="contact-office-card">
                   <div className="office-card-header">
                     <h3 className="office-title">Europe &amp; Multilateral Support</h3>
-                    <span className="office-status-badge" style={{ color: statuses.geneva ? "#2ec4b6" : "#e63946" }}>
-                      <span className={`status-dot ${statuses.geneva ? "open" : "closed"}`} />
-                      {statuses.geneva ? "Active" : "Offline (Auto)"}
+                    <span className="office-status-badge" style={{ color: "var(--gold)" }}>
+                      Response: Within 12–24 Hours
                     </span>
                   </div>
-                  <div className="office-time">{times.geneva || "Loading Desk Time..."}</div>
-                  <ul className="office-details-list">
+                  <ul className="office-details-list" style={{ marginTop: "12px" }}>
                     <li><strong>Scope:</strong> Multilateral alliances, European collaborations, and academic submissions.</li>
                     <li><strong>Response Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM CET</li>
                     <li><strong>Email:</strong> <a href="mailto:europe@aipp.org">europe@aipp.org</a></li>
@@ -270,13 +205,11 @@ export default function ContactPage() {
                 <div className="contact-office-card">
                   <div className="office-card-header">
                     <h3 className="office-title">UK &amp; Commonwealth Support</h3>
-                    <span className="office-status-badge" style={{ color: statuses.london ? "#2ec4b6" : "#e63946" }}>
-                      <span className={`status-dot ${statuses.london ? "open" : "closed"}`} />
-                      {statuses.london ? "Active" : "Offline (Auto)"}
+                    <span className="office-status-badge" style={{ color: "var(--gold)" }}>
+                      Response: Within 24 Hours
                     </span>
                   </div>
-                  <div className="office-time">{times.london || "Loading Desk Time..."}</div>
-                  <ul className="office-details-list">
+                  <ul className="office-details-list" style={{ marginTop: "12px" }}>
                     <li><strong>Scope:</strong> Parliamentary partnerships, UK policy research, and archive inquiries.</li>
                     <li><strong>Response Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM GMT</li>
                     <li><strong>Email:</strong> <a href="mailto:london@aipp.org">london@aipp.org</a></li>
@@ -287,13 +220,11 @@ export default function ContactPage() {
                 <div className="contact-office-card">
                   <div className="office-card-header">
                     <h3 className="office-title">Americas &amp; Legislative Support</h3>
-                    <span className="office-status-badge" style={{ color: statuses.dc ? "#2ec4b6" : "#e63946" }}>
-                      <span className={`status-dot ${statuses.dc ? "open" : "closed"}`} />
-                      {statuses.dc ? "Active" : "Offline (Auto)"}
+                    <span className="office-status-badge" style={{ color: "var(--gold)" }}>
+                      Response: Within 12 Hours
                     </span>
                   </div>
-                  <div className="office-time">{times.dc || "Loading Desk Time..."}</div>
-                  <ul className="office-details-list">
+                  <ul className="office-details-list" style={{ marginTop: "12px" }}>
                     <li><strong>Scope:</strong> Advocacy campaigns, Western Hemisphere outreach, and simulation planning.</li>
                     <li><strong>Response Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM EST</li>
                     <li><strong>Email:</strong> <a href="mailto:dc@aipp.org">dc@aipp.org</a></li>
