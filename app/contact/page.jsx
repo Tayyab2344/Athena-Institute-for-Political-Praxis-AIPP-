@@ -246,39 +246,39 @@ export default function ContactPage() {
             
             {/* World Offices Hubs */}
             <div>
-              <h2 className="faq-section-title" style={{ marginTop: 0 }}>Global Office Hubs</h2>
+              <h2 className="faq-section-title" style={{ marginTop: 0 }}>Global Digital Desks</h2>
               <div style={{ display: "grid", gap: "20px" }}>
                 
                 {/* Hub 1: Geneva */}
                 <div className="contact-office-card">
                   <div className="office-card-header">
-                    <h3 className="office-title">Geneva Headquarters</h3>
+                    <h3 className="office-title">Europe &amp; Multilateral Support</h3>
                     <span className="office-status-badge" style={{ color: statuses.geneva ? "#2ec4b6" : "#e63946" }}>
                       <span className={`status-dot ${statuses.geneva ? "open" : "closed"}`} />
-                      {statuses.geneva ? "Open" : "Closed"}
+                      {statuses.geneva ? "Active" : "Offline (Auto)"}
                     </span>
                   </div>
-                  <div className="office-time">{times.geneva || "Loading Geneva Time..."}</div>
+                  <div className="office-time">{times.geneva || "Loading Desk Time..."}</div>
                   <ul className="office-details-list">
-                    <li><strong>Venue:</strong> Rue de la Paix 18, Geneva, Switzerland</li>
-                    <li><strong>Phone:</strong> +41 22 749 0100</li>
-                    <li><strong>Email:</strong> <a href="mailto:geneva@aipp.org">geneva@aipp.org</a></li>
+                    <li><strong>Scope:</strong> Multilateral alliances, European collaborations, and academic submissions.</li>
+                    <li><strong>Response Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM CET</li>
+                    <li><strong>Email:</strong> <a href="mailto:europe@aipp.org">europe@aipp.org</a></li>
                   </ul>
                 </div>
 
                 {/* Hub 2: London */}
                 <div className="contact-office-card">
                   <div className="office-card-header">
-                    <h3 className="office-title">London Policy Research</h3>
+                    <h3 className="office-title">UK &amp; Commonwealth Support</h3>
                     <span className="office-status-badge" style={{ color: statuses.london ? "#2ec4b6" : "#e63946" }}>
                       <span className={`status-dot ${statuses.london ? "open" : "closed"}`} />
-                      {statuses.london ? "Open" : "Closed"}
+                      {statuses.london ? "Active" : "Offline (Auto)"}
                     </span>
                   </div>
-                  <div className="office-time">{times.london || "Loading London Time..."}</div>
+                  <div className="office-time">{times.london || "Loading Desk Time..."}</div>
                   <ul className="office-details-list">
-                    <li><strong>Venue:</strong> Great Smith St, Westminster, London, UK</li>
-                    <li><strong>Phone:</strong> +44 20 7901 3000</li>
+                    <li><strong>Scope:</strong> Parliamentary partnerships, UK policy research, and archive inquiries.</li>
+                    <li><strong>Response Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM GMT</li>
                     <li><strong>Email:</strong> <a href="mailto:london@aipp.org">london@aipp.org</a></li>
                   </ul>
                 </div>
@@ -286,16 +286,16 @@ export default function ContactPage() {
                 {/* Hub 3: Washington D.C. */}
                 <div className="contact-office-card">
                   <div className="office-card-header">
-                    <h3 className="office-title">Washington D.C. Advocacy</h3>
+                    <h3 className="office-title">Americas &amp; Legislative Support</h3>
                     <span className="office-status-badge" style={{ color: statuses.dc ? "#2ec4b6" : "#e63946" }}>
                       <span className={`status-dot ${statuses.dc ? "open" : "closed"}`} />
-                      {statuses.dc ? "Open" : "Closed"}
+                      {statuses.dc ? "Active" : "Offline (Auto)"}
                     </span>
                   </div>
-                  <div className="office-time">{times.dc || "Loading Washington D.C. Time..."}</div>
+                  <div className="office-time">{times.dc || "Loading Desk Time..."}</div>
                   <ul className="office-details-list">
-                    <li><strong>Venue:</strong> Constitution Ave NW, Washington, D.C., USA</li>
-                    <li><strong>Phone:</strong> +1 202 546 1200</li>
+                    <li><strong>Scope:</strong> Advocacy campaigns, Western Hemisphere outreach, and simulation planning.</li>
+                    <li><strong>Response Hours:</strong> Mon - Fri, 9:00 AM - 5:00 PM EST</li>
                     <li><strong>Email:</strong> <a href="mailto:dc@aipp.org">dc@aipp.org</a></li>
                   </ul>
                 </div>
