@@ -269,7 +269,7 @@ export default function Home() {
             <li>Invitations to closed-door seminars</li>
             <li>Strategic networking platform</li>
           </ul>
-          <a href="mailto:contact@aipp.org">Join the Network</a>
+          <a href="/join#member">Join the Network</a>
         </aside>
       </section>
 

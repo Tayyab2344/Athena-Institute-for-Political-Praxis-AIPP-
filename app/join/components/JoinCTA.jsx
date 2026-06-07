@@ -1,4 +1,14 @@
+"use client";
+
 export default function JoinCTA() {
+  const handleButtonClick = (hash) => {
+    if (window.location.hash === `#${hash}`) {
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    } else {
+      window.location.hash = hash;
+    }
+  };
+
   return (
     <section className="join-cta-section" aria-labelledby="join-cta-title">
       <div className="join-cta-container">
@@ -10,10 +20,18 @@ export default function JoinCTA() {
           requires praxis.
         </p>
         <div className="join-cta-actions">
-          <button type="button" className="join-cta-btn solid">
+          <button 
+            type="button" 
+            className="join-cta-btn solid"
+            onClick={() => handleButtonClick("member")}
+          >
             APPLY FOR MEMBERSHIP
           </button>
-          <button type="button" className="join-cta-btn outline">
+          <button 
+            type="button" 
+            className="join-cta-btn outline"
+            onClick={() => handleButtonClick("volunteer")}
+          >
             REGISTER AS VOLUNTEER
           </button>
         </div>
