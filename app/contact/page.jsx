@@ -121,7 +121,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <main id="top" className="contact-page-container">
+    <main id="top" className="contact-page-wrapper">
       <Header />
       
       {/* Contact Hero - Dark, Premium style matching SAS/RPI */}
