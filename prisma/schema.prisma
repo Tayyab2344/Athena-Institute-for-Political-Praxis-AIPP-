@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PublicationType {
+  RESEARCH_PAPER
+  JOURNAL
+  POLICY_BRIEF
+  REPORT
+}
+
+enum PublicationStatus {
+  DRAFT
+  UNDER_REVIEW
+  APPROVED
+  PUBLISHED
+  ARCHIVED
+}
+
+model Publication {
+  id              String            @id @default(cuid())
+  title           String
+  slug            String            @unique
+  abstract        String            @db.Text
+  description     String?           @db.Text
+  type            PublicationType
+  status          PublicationStatus @default(DRAFT)
+  publicationDate DateTime?
+  year            Int?
+  coverImageUrl   String?
+  pdfUrl          String?
+  pdfFileName     String?
+  pdfFileSize     Int?
+  pdfMimeType     String?
+  doi             String?
+  downloadCount   Int               @default(0)
+  
+  categoryId      String?
+  category        Category?         @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  
+  journalIssueId  String?
+  journalIssue    JournalIssue?     @relation(fields: [journalIssueId], references: [id], onDelete: SetNull)
+
+  authors         PublicationAuthor[]
+  tags            PublicationTag[]
+
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  publishedAt     DateTime?
+}
+
+model Author {
+  id           String              @id @default(cuid())
+  name         String
+  slug         String              @unique
+  biography    String?             @db.Text
+  affiliation  String?
+  position     String?
+  photoUrl     String?
+  email        String?
+  publications PublicationAuthor[]
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+}
+
+model PublicationAuthor {
+  publicationId String
+  authorId      String
+  order         Int         @default(0)
+
+  publication   Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+  author        Author      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@id([publicationId, authorId])
+}
+
+model Category {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  slug         String        @unique
+  description  String?       @db.Text
+  publications Publication[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Tag {
+  id           String           @id @default(cuid())
+  name         String           @unique
+  slug         String           @unique
+  publications PublicationTag[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model PublicationTag {
+  publicationId String
+  tagId         String
+
+  publication   Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+  tag           Tag         @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([publicationId, tagId])
+}
+
+model Journal {
+  id            String         @id @default(cuid())
+  title         String
+  slug          String         @unique
+  description   String?        @db.Text
+  coverImageUrl String?
+  issues        JournalIssue[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model JournalIssue {
+  id            String        @id @default(cuid())
+  journalId     String
+  journal       Journal       @relation(fields: [journalId], references: [id], onDelete: Cascade)
+  volume        Int
+  issue         Int
+  title         String
+  description   String?       @db.Text
+  coverImageUrl String?
+  pdfUrl        String?
+  publishedAt   DateTime?
+  publications  Publication[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@unique([journalId, volume, issue])
+}
