@@ -204,35 +204,35 @@ export default function PublicResearchLibraryPage() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-[11px] font-sans">
                       <span className="px-3 py-1 rounded-full bg-[#4A121A]/10 text-[#4A121A] font-semibold uppercase tracking-wider">
-                        {pub.type.replace("_", " ")}
+                        {pub.type ? pub.type.replace("_", " ") : (pub.category && typeof pub.category === 'string' ? pub.category : "Research")}
                       </span>
                       <span className="text-[#5C5755]">
-                        {pub.publicationDate ? new Date(pub.publicationDate).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : pub.year}
+                        {pub.publicationDate ? new Date(pub.publicationDate).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : (pub.year || pub.date)}
                       </span>
                     </div>
 
-                    <Link href={`/research/${pub.slug}`}>
+                    <Link href={`/research/${pub.slug || pub.id}`}>
                       <h3 className="font-serif text-2xl text-[#1A1817] group-hover:text-[#4A121A] transition-colors leading-tight line-clamp-2">
                         {pub.title}
                       </h3>
                     </Link>
 
                     <div className="text-xs font-sans text-[#4A121A] font-medium">
-                      By {pub.authors.map((a) => a.name).join(", ") || "AIPP Fellow"}
+                      By {pub.authors?.map((a: any) => a.name).join(", ") || pub.author || "AIPP Fellow"}
                     </div>
 
                     <p className="text-xs font-sans text-[#5C5755] line-clamp-3 font-light leading-relaxed">
-                      {pub.abstract}
+                      {pub.abstract || pub.excerpt}
                     </p>
                   </div>
 
                   <div className="mt-8 pt-4 border-t border-[#4A121A]/10 flex items-center justify-between">
                     <span className="text-[11px] font-sans text-[#5C5755]">
-                      {pub.category?.name || "Diplomacy Praxis"}
+                      {typeof pub.category === 'object' ? pub.category?.name : (pub.category || "Diplomacy Praxis")}
                     </span>
 
                     <Link
-                      href={`/research/${pub.slug}`}
+                      href={`/research/${pub.slug || pub.id}`}
                       className="px-5 py-2 rounded-full bg-[#4A121A] text-[#FAF8F5] text-xs font-sans font-semibold hover:bg-[#6A1B27] transition-colors flex items-center gap-2"
                     >
                       <span>Read</span>

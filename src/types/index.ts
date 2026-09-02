@@ -1,17 +1,33 @@
 export interface Publication {
   id: string;
   title: string;
-  category: "Research Paper" | "Policy Brief" | "Journal" | "Report";
-  author: string;
-  role: string;
-  date: string;
-  excerpt: string;
-  pages: number;
-  coverImage: string;
-  pdfUrl: string;
+  category?: any;
+  author?: string;
+  role?: string;
+  date?: string;
+  excerpt?: string;
+  pages?: number;
+  coverImage?: string;
+  pdfUrl?: string | null;
   featured?: boolean;
-  doi?: string;
+  doi?: string | null;
   downloadCount?: number;
+
+  slug?: string;
+  abstract?: string;
+  description?: string | null;
+  type?: string;
+  status?: string;
+  publicationDate?: string | null;
+  publishedAt?: string | null;
+  year?: number | null;
+  coverImageUrl?: string | null;
+  pdfFileName?: string | null;
+  pdfFileSize?: number | null;
+  pdfMimeType?: string | null;
+  journalIssue?: any;
+  authors?: Array<{ id?: string; name: string; slug?: string; photoUrl?: string }>;
+  tags?: Array<{ id?: string; name: string; slug?: string }>;
 }
 
 export interface Insight {

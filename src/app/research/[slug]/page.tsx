@@ -34,7 +34,7 @@ export default function ResearchDetailPage({ params }: { params: Promise<{ slug:
 
   const copyCitation = () => {
     if (!publication) return;
-    const authorNames = publication.authors.map((a) => a.name).join(", ");
+    const authorNames = publication.authors?.map((a: any) => a.name).join(", ") || publication.author || "";
     const text = `${authorNames} (${publication.year || 2026}). "${publication.title}". Athena Institute for Political Praxis (AIPP). DOI: ${publication.doi || "10.1080/aipp.2026"}.`;
     navigator.clipboard.writeText(text);
     setCopiedCitation(true);
@@ -69,6 +69,8 @@ export default function ResearchDetailPage({ params }: { params: Promise<{ slug:
     );
   }
 
+  const categoryName = typeof publication.category === "object" ? publication.category?.name : publication.category;
+
   return (
     <main className="min-h-screen bg-[#FAF8F5] text-[#1A1817] flex flex-col font-sans">
       <Navbar onOpenContact={() => setIsContactOpen(true)} />
@@ -85,15 +87,17 @@ export default function ResearchDetailPage({ params }: { params: Promise<{ slug:
 
           <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="px-3.5 py-1 rounded-full bg-[#4A121A] text-[#FAF8F5] text-[10px] font-sans uppercase tracking-widest font-semibold">
-                {publication.type.replace("_", " ")}
-              </span>
+              {publication.type && (
+                <span className="px-3.5 py-1 rounded-full bg-[#4A121A] text-[#FAF8F5] text-[10px] font-sans uppercase tracking-widest font-semibold">
+                  {publication.type.replace("_", " ")}
+                </span>
+              )}
               <span className="text-xs font-sans text-[#5C5755]">
-                {publication.publicationDate ? new Date(publication.publicationDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : publication.year}
+                {publication.publicationDate ? new Date(publication.publicationDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : (publication.year || publication.date)}
               </span>
-              {publication.category && (
+              {categoryName && (
                 <span className="px-3 py-1 rounded-full bg-[#FAF8F5] text-[#4A121A] text-[10px] font-sans font-semibold border border-[#4A121A]/10">
-                  {publication.category.name}
+                  {categoryName}
                 </span>
               )}
             </div>
@@ -106,7 +110,7 @@ export default function ResearchDetailPage({ params }: { params: Promise<{ slug:
               <div>
                 <span className="text-[#5C5755] block text-[10px] uppercase font-semibold">Author(s)</span>
                 <span className="text-[#1A1817] font-semibold text-sm">
-                  {publication.authors.map((a) => a.name).join(", ")}
+                  {publication.authors?.map((a: any) => a.name).join(", ") || publication.author}
                 </span>
               </div>
               {publication.doi && (

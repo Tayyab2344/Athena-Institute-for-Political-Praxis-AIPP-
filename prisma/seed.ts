@@ -1,4 +1,4 @@
-import { PrismaClient, PublicationType, PublicationStatus } from "@prisma/client";
+import { PrismaClient, PublicationType, PublicationStatus, Category } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -12,7 +12,7 @@ async function main() {
   await prisma.category.deleteMany();
   await prisma.tag.deleteMany();
 
-  const categories = await Promise.all([
+  const categories: Category[] = await Promise.all([
     prisma.category.create({
       data: {
         name: "Diplomacy",
@@ -64,7 +64,7 @@ async function main() {
     })
   ]);
 
-  const categoryMap = new Map(categories.map((c) => [c.slug, c]));
+  const categoryMap = new Map<string, Category>(categories.map((c: Category) => [c.slug, c]));
 
   const tags = await Promise.all([
     prisma.tag.create({ data: { name: "Women", slug: "women" } }),

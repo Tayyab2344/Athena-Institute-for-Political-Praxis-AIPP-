@@ -96,7 +96,7 @@ export async function GET(request: Request) {
       prisma.publication.count({ where })
     ]);
 
-    const formatted = publications.map((pub) => ({
+    const formatted = publications.map((pub: any) => ({
       id: pub.id,
       title: pub.title,
       slug: pub.slug,
@@ -116,8 +116,8 @@ export async function GET(request: Request) {
       downloadCount: pub.downloadCount,
       category: pub.category,
       journalIssue: pub.journalIssue,
-      authors: pub.authors.map((a) => a.author),
-      tags: pub.tags.map((t) => t.tag)
+      authors: pub.authors.map((a: any) => a.author),
+      tags: pub.tags.map((t: any) => t.tag)
     }));
 
     return NextResponse.json({

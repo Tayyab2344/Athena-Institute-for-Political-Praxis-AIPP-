@@ -52,8 +52,8 @@ export async function GET(
 
     return NextResponse.json({
       ...publication,
-      authors: publication.authors.map((a) => a.author),
-      tags: publication.tags.map((t) => t.tag)
+      authors: publication.authors.map((a: any) => a.author),
+      tags: publication.tags.map((t: any) => t.tag)
     });
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch publication" }, { status: 500 });
