@@ -1,133 +1,250 @@
 "use client";
 
-import { ArrowUpRight, Globe, Mail, Share2, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowUp, ArrowUpRight, Sparkles } from "lucide-react";
+import Container from "@/components/ui/Container";
+
+/* ─────────────────────────────────────────────────────────────
+   Final Footer — "An Editorial Institutional Signature"
+   Deep Navy Canvas (#06101E)
+   - Large low-contrast AIPP watermark in background
+   - Thin muted-gold divider
+   - Verified navigation & offering pillars
+   - Smooth Back-to-Top interaction
+   ───────────────────────────────────────────────────────────── */
 
 interface FooterProps {
   onOpenContact: (pathway?: string) => void;
 }
 
+const QUICK_NAV = [
+  { label: "Home", href: "/" },
+  { label: "About AIPP", href: "/about" },
+  { label: "What We Offer", href: "/what-we-offer" },
+  { label: "Research Archive", href: "/research" },
+  { label: "Policy Journals", href: "/journals" },
+  { label: "Strategic Programs", href: "/#programs" },
+  { label: "Voices & Perspectives", href: "/#perspectives" },
+  { label: "Connect", href: "/#contact" },
+];
+
+const OFFERING_PILLARS = [
+  {
+    number: "01",
+    label: "Research & Policy Innovation",
+    href: "/what-we-offer/research-policy-innovation",
+    desc: "Evidence, policy research & knowledge development"
+  },
+  {
+    number: "02",
+    label: "Strategic Action & Simulation",
+    href: "/what-we-offer/strategic-action-simulation",
+    desc: "Scenario planning, decision-making & strategic exercises"
+  },
+  {
+    number: "03",
+    label: "Communications & Public Advocacy",
+    href: "/what-we-offer/communications-public-advocacy",
+    desc: "Public dialogue, storytelling & advocacy"
+  },
+];
+
 export default function Footer({ onOpenContact }: FooterProps) {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="bg-[#1A1817] text-[#FAF8F5] pt-20 pb-12 border-t border-[#FAF8F5]/10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#FAF8F5]/10">
-          
-          <div className="lg:col-span-4 space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#4A121A] text-[#FAF8F5] flex items-center justify-center font-serif font-bold text-xs">
+    <footer
+      id="footer"
+      className="relative w-full max-w-full bg-[#06101E] text-white pt-16 sm:pt-24 pb-12 overflow-hidden overflow-x-clip border-t border-white/10"
+      aria-label="AIPP Footer"
+    >
+      {/* ═══ Giant Subtle Background Watermark Wordmark ═══ */}
+      <div
+        className="absolute bottom-0 right-0 left-0 w-full max-w-full flex justify-center pointer-events-none select-none opacity-[0.03] overflow-hidden leading-none z-0"
+        aria-hidden="true"
+      >
+        <span
+          className="text-[16vw] font-bold tracking-tighter uppercase whitespace-nowrap"
+          style={{ fontFamily: "var(--font-hero-serif)" }}
+        >
+          ATHENA PRAXIS
+        </span>
+      </div>
+
+      <Container wide className="relative z-10">
+        {/* ═══ Top Editorial Header Bar in Footer ═══ */}
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between pb-16 border-b border-white/10 gap-8">
+          <div className="space-y-4 max-w-xl">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B09C4B]"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#B09C4B] font-serif text-base font-bold text-[#081D2E]">
                 A
-              </div>
-              <span className="font-serif text-2xl font-bold tracking-tight text-[#FAF8F5]">
-                AIPP
               </span>
-            </div>
+              <div className="flex flex-col">
+                <span
+                  className="font-serif text-2xl font-bold tracking-wide text-white leading-none"
+                  style={{ fontFamily: "var(--font-hero-serif)" }}
+                >
+                  AIPP
+                </span>
+                <span
+                  className="text-[10px] uppercase tracking-[0.2em] text-[#B09C4B] font-medium pt-1"
+                  style={{ fontFamily: "var(--font-hero-sans)" }}
+                >
+                  Athena Institute for Political Praxis
+                </span>
+              </div>
+            </Link>
 
-            <p className="text-xs font-sans text-[#FAF8F5]/70 font-light leading-relaxed max-w-sm">
-              The Athena Institute for Political Praxis is a non-partisan international policy institute elevating women in diplomacy, research, strategic action, and public advocacy.
+            <p
+              className="text-xs sm:text-sm text-white/70 font-light leading-relaxed max-w-md"
+              style={{ fontFamily: "var(--font-hero-sans)" }}
+            >
+              A non-partisan international policy institute elevating women in diplomacy,
+              geopolitical research, strategic action, and public leadership worldwide.
             </p>
+          </div>
 
-            <div className="flex items-center gap-3 text-xs font-sans text-[#FAF8F5]/60 pt-2">
-              <a
-                href="#"
-                className="p-2.5 rounded-full border border-[#FAF8F5]/20 hover:border-[#FAF8F5] hover:text-[#FAF8F5] transition-colors"
-                aria-label="X / Twitter"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="p-2.5 rounded-full border border-[#FAF8F5]/20 hover:border-[#FAF8F5] hover:text-[#FAF8F5] transition-colors"
-                aria-label="LinkedIn"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="p-2.5 rounded-full border border-[#FAF8F5]/20 hover:border-[#FAF8F5] hover:text-[#FAF8F5] transition-colors"
-                aria-label="Website"
-              >
-                <Globe className="w-3.5 h-3.5" />
-              </a>
-              <button
-                onClick={() => onOpenContact("General Inquiry")}
-                className="p-2.5 rounded-full border border-[#FAF8F5]/20 hover:border-[#FAF8F5] hover:text-[#FAF8F5] transition-colors"
-                aria-label="Email Contact"
-              >
-                <Mail className="w-3.5 h-3.5" />
-              </button>
+          {/* Back to Top Restrained Button */}
+          <button
+            onClick={scrollToTop}
+            className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white text-xs font-medium tracking-wider transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B09C4B]"
+            style={{ fontFamily: "var(--font-hero-sans)" }}
+            aria-label="Back to top"
+          >
+            <span>Back to Top</span>
+            <ArrowUp className="w-3.5 h-3.5 text-[#B09C4B] transition-transform duration-300 group-hover:-translate-y-0.5" />
+          </button>
+        </div>
+
+        {/* ═══ Footer Columns Grid ═══ */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-16 border-b border-white/10">
+          
+          {/* Col 1: What We Offer (Pillars) */}
+          <div className="lg:col-span-5 space-y-5">
+            <span
+              className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#B09C4B] block"
+              style={{ fontFamily: "var(--font-hero-sans)" }}
+            >
+              Offering Pillars
+            </span>
+            <div className="space-y-4">
+              {OFFERING_PILLARS.map((pillar) => (
+                <Link
+                  key={pillar.number}
+                  href={pillar.href}
+                  className="group block p-3 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-[#B09C4B]/30 transition-all duration-300"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono font-semibold text-[#B09C4B]">
+                      {pillar.number}
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-white/40 group-hover:text-[#B09C4B] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                  <h4
+                    className="text-sm font-medium text-white group-hover:text-[#B09C4B] transition-colors mt-1"
+                    style={{ fontFamily: "var(--font-hero-serif)" }}
+                  >
+                    {pillar.label}
+                  </h4>
+                  <p className="text-[11px] text-white/50 font-light mt-0.5">
+                    {pillar.desc}
+                  </p>
+                </Link>
+              ))}
             </div>
           </div>
 
-          <div className="lg:col-span-2 space-y-4">
-            <h4 className="font-serif text-sm font-semibold uppercase tracking-wider text-[#A8656C]">
-              Explore
-            </h4>
-            <ul className="space-y-2.5 text-xs font-sans text-[#FAF8F5]/80 font-light">
-              <li><a href="#about" className="hover:text-[#FAF8F5] transition-colors">About AIPP</a></li>
-              <li><a href="#pillars" className="hover:text-[#FAF8F5] transition-colors">What We Offer</a></li>
-              <li><a href="#research" className="hover:text-[#FAF8F5] transition-colors">Research Archive</a></li>
-              <li><a href="#programs" className="hover:text-[#FAF8F5] transition-colors">Strategic Programs</a></li>
-              <li><a href="#insights" className="hover:text-[#FAF8F5] transition-colors">Insights & Media</a></li>
+          {/* Col 2: Navigation Links */}
+          <div className="lg:col-span-4 lg:col-start-7 space-y-5">
+            <span
+              className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#B09C4B] block"
+              style={{ fontFamily: "var(--font-hero-sans)" }}
+            >
+              Institutional Navigation
+            </span>
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
+              {QUICK_NAV.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="text-xs text-white/70 hover:text-white transition-colors flex items-center gap-1 group font-light"
+                    style={{ fontFamily: "var(--font-hero-sans)" }}
+                  >
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="font-serif text-sm font-semibold uppercase tracking-wider text-[#A8656C]">
-              Get Involved
-            </h4>
-            <ul className="space-y-2.5 text-xs font-sans text-[#FAF8F5]/80 font-light">
+          {/* Col 3: Engagement & Inquiries */}
+          <div className="md:col-span-2 lg:col-span-2 space-y-5">
+            <span
+              className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#B09C4B] block"
+              style={{ fontFamily: "var(--font-hero-sans)" }}
+            >
+              Engagement
+            </span>
+            <ul className="space-y-3 text-xs text-white/70 font-light">
               <li>
-                <button onClick={() => onOpenContact("Volunteer")} className="hover:text-[#FAF8F5] transition-colors text-left">
+                <button
+                  type="button"
+                  onClick={() => onOpenContact("Volunteer")}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Volunteer Opportunities
                 </button>
               </li>
               <li>
-                <button onClick={() => onOpenContact("Contribute")} className="hover:text-[#FAF8F5] transition-colors text-left">
+                <button
+                  type="button"
+                  onClick={() => onOpenContact("Contribute")}
+                  className="hover:text-white transition-colors text-left"
+                >
                   Research Contributor
                 </button>
               </li>
               <li>
-                <button onClick={() => onOpenContact("Collaborate")} className="hover:text-[#FAF8F5] transition-colors text-left">
-                  Institutional Collaboration
+                <button
+                  type="button"
+                  onClick={() => onOpenContact("Collaborate")}
+                  className="hover:text-white transition-colors text-left"
+                >
+                  Institutional Partnership
                 </button>
               </li>
               <li>
-                <button onClick={() => onOpenContact("General Inquiry")} className="hover:text-[#FAF8F5] transition-colors text-left">
-                  Contact Taskforce
-                </button>
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center gap-1.5 text-[#B09C4B] hover:text-white transition-colors font-medium pt-1"
+                >
+                  <span>Connect With AIPP</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
               </li>
             </ul>
           </div>
-
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="font-serif text-sm font-semibold uppercase tracking-wider text-[#A8656C]">
-              Research & Policy
-            </h4>
-            <ul className="space-y-2.5 text-xs font-sans text-[#FAF8F5]/80 font-light">
-              <li><a href="#research" className="hover:text-[#FAF8F5] transition-colors">Peer-Reviewed Papers</a></li>
-              <li><a href="#research" className="hover:text-[#FAF8F5] transition-colors">Diplomatic Policy Briefs</a></li>
-              <li><a href="#research" className="hover:text-[#FAF8F5] transition-colors">AIPP Security Journals</a></li>
-              <li><a href="#research" className="hover:text-[#FAF8F5] transition-colors">Annual Institutional Reports</a></li>
-            </ul>
-          </div>
-
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-sans text-[#FAF8F5]/50 gap-4">
-          <p>© {new Date().getFullYear()} Athena Institute for Political Praxis (AIPP). All rights reserved.</p>
+        {/* ═══ Footer Bottom Copyright & Institutional Colophon ═══ */}
+        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[11px] text-white/50 font-light">
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-3 h-3 text-[#B09C4B] shrink-0" />
+            <span>
+              &copy; {new Date().getFullYear()} Athena Institute for Political Praxis. All rights reserved.
+            </span>
+          </div>
+
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-[#FAF8F5] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#FAF8F5] transition-colors">Terms of Governance</a>
-            <a href="#" className="hover:text-[#FAF8F5] transition-colors">Accessibility Statement</a>
+            <span className="text-white/40">Non-Partisan Diplomatic Policy Institute</span>
           </div>
         </div>
-
-      </div>
+      </Container>
     </footer>
   );
 }

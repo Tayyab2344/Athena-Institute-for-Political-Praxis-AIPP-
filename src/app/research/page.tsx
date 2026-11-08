@@ -76,30 +76,30 @@ export default function PublicResearchLibraryPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] text-[#1A1817] flex flex-col font-sans">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans">
       <Navbar onOpenContact={() => setIsContactOpen(true)} />
 
-      <section className="pt-36 pb-16 bg-[#EFECE6] border-b border-[#4A121A]/10 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <section className="pt-36 pb-16 surface-muted border-b border-border relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="max-w-3xl space-y-4">
-            <span className="text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-[#4A121A]">
+            <span className="text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-[#958772]">
               AIPP DIGITAL RESEARCH REPOSITORY
             </span>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1A1817]">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#0D1B2A]">
               Research & Publications
             </h1>
-            <p className="text-base font-sans text-[#5C5755] font-light leading-relaxed">
-              Empirical studies, policy briefs, institutional reports, and peer-reviewed journal papers informing women's leadership in global diplomacy.
+            <p className="text-sm sm:text-base font-sans text-[#5C6470] font-light leading-relaxed">
+              Empirical studies, policy briefs, institutional reports, and peer-reviewed journal papers informing women&apos;s leadership in global diplomacy.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="py-12 bg-[#FAF8F5] flex-grow">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-10">
+      <section className="py-12 bg-white flex-grow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-10">
           
           <div className="space-y-6">
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-[#4A121A]/10">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar touch-scroll pb-2 border-b border-[#0A192F]/10">
               {typeTabs.map((tab) => (
                 <button
                   key={tab.value}
@@ -107,10 +107,10 @@ export default function PublicResearchLibraryPage() {
                     setSelectedType(tab.value);
                     setPage(1);
                   }}
-                  className={`px-5 py-2.5 rounded-full text-xs font-sans font-medium transition-all duration-300 whitespace-nowrap ${
+                  className={`px-4 sm:px-5 py-2.5 rounded-full text-xs font-sans font-medium transition-all duration-300 whitespace-nowrap min-h-[40px] ${
                     selectedType === tab.value
-                      ? "bg-[#4A121A] text-[#FAF8F5] shadow-sm"
-                      : "bg-[#EFECE6] text-[#5C5755] hover:text-[#4A121A] hover:bg-[#EFECE6]/80"
+                      ? "bg-[#0A192F] text-white shadow-sm"
+                      : "bg-[#F7F6F2] text-[#5C6470] hover:text-[#0A192F] hover:bg-[#F7F6F2]/80"
                   }`}
                 >
                   {tab.label}
@@ -118,9 +118,9 @@ export default function PublicResearchLibraryPage() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-4">
               <div className="md:col-span-6 relative">
-                <Search className="w-4 h-4 text-[#5C5755] absolute left-4 top-3.5" />
+                <Search className="w-4 h-4 text-[#5C6470] absolute left-4 top-3.5" />
                 <input
                   type="text"
                   placeholder="Search by title, author, key topic, or abstract..."
@@ -129,7 +129,7 @@ export default function PublicResearchLibraryPage() {
                     setSearch(e.target.value);
                     setPage(1);
                   }}
-                  className="w-full pl-11 pr-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+                  className="w-full min-h-[44px] pl-11 pr-4 py-2.5 sm:py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A] focus:outline-none focus:border-[#0A192F]"
                 />
               </div>
 
@@ -140,7 +140,7 @@ export default function PublicResearchLibraryPage() {
                     setSelectedCategory(e.target.value);
                     setPage(1);
                   }}
-                  className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+                  className="w-full min-h-[44px] px-4 py-2.5 sm:py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A] focus:outline-none focus:border-[#0A192F]"
                 >
                   <option value="ALL">All Research Areas</option>
                   {categories.map((c) => (
@@ -158,7 +158,7 @@ export default function PublicResearchLibraryPage() {
                     setSelectedYear(e.target.value);
                     setPage(1);
                   }}
-                  className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+                  className="w-full min-h-[44px] px-4 py-2.5 sm:py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A] focus:outline-none focus:border-[#0A192F]"
                 >
                   <option value="ALL">All Years</option>
                   <option value="2026">2026</option>
@@ -169,19 +169,19 @@ export default function PublicResearchLibraryPage() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-xs font-sans text-[#5C5755] pt-2">
+          <div className="flex items-center justify-between text-xs font-sans text-[#5C6470] pt-2">
             <span>Showing {totalCount} published research documents</span>
             <span>Page {page} of {totalPages}</span>
           </div>
 
           {loading ? (
-            <div className="py-20 text-center text-xs font-sans text-[#5C5755]">
+            <div className="py-20 text-center text-xs font-sans text-[#5C6470]">
               Querying AIPP Digital Research Database...
             </div>
           ) : publications.length === 0 ? (
-            <div className="py-20 text-center bg-[#EFECE6] rounded-3xl border border-[#4A121A]/10 space-y-4">
-              <FileText className="w-10 h-10 text-[#4A121A]/30 mx-auto" />
-              <p className="font-serif text-xl text-[#1A1817]">No research publications match your search filter.</p>
+            <div className="py-20 text-center bg-[#F7F6F2] rounded-3xl border border-[#0A192F]/10 space-y-4">
+              <FileText className="w-10 h-10 text-[#0A192F]/30 mx-auto" />
+              <p className="font-serif text-xl text-[#0D1B2A]">No research publications match your search filter.</p>
               <button
                 onClick={() => {
                   setSearch("");
@@ -189,51 +189,51 @@ export default function PublicResearchLibraryPage() {
                   setSelectedCategory("ALL");
                   setSelectedYear("ALL");
                 }}
-                className="text-xs font-sans font-semibold text-[#4A121A] underline"
+                className="text-xs font-sans font-semibold text-[#0A192F] underline"
               >
                 Clear all filters
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {publications.map((pub) => (
                 <div
                   key={pub.id}
-                  className="bg-[#FAF8F5] rounded-3xl border border-[#4A121A]/10 p-8 shadow-sm hover:border-[#4A121A]/30 transition-all duration-300 flex flex-col justify-between group"
+                  className="bg-white rounded-3xl border border-[#0A192F]/10 p-5 sm:p-8 shadow-sm hover:border-[#0A192F]/30 hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-[11px] font-sans">
-                      <span className="px-3 py-1 rounded-full bg-[#4A121A]/10 text-[#4A121A] font-semibold uppercase tracking-wider">
+                      <span className="px-3 py-1 rounded-full bg-[#0A192F]/10 text-[#0A192F] font-semibold uppercase tracking-wider">
                         {pub.type ? pub.type.replace("_", " ") : (pub.category && typeof pub.category === 'string' ? pub.category : "Research")}
                       </span>
-                      <span className="text-[#5C5755]">
+                      <span className="text-[#5C6470]">
                         {pub.publicationDate ? new Date(pub.publicationDate).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : (pub.year || pub.date)}
                       </span>
                     </div>
 
                     <Link href={`/research/${pub.slug || pub.id}`}>
-                      <h3 className="font-serif text-2xl text-[#1A1817] group-hover:text-[#4A121A] transition-colors leading-tight line-clamp-2">
+                      <h3 className="font-serif text-2xl text-[#0D1B2A] group-hover:text-[#0A192F] transition-colors leading-tight line-clamp-2">
                         {pub.title}
                       </h3>
                     </Link>
 
-                    <div className="text-xs font-sans text-[#4A121A] font-medium">
+                    <div className="text-xs font-sans text-[#0A192F] font-medium">
                       By {pub.authors?.map((a: any) => a.name).join(", ") || pub.author || "AIPP Fellow"}
                     </div>
 
-                    <p className="text-xs font-sans text-[#5C5755] line-clamp-3 font-light leading-relaxed">
+                    <p className="text-xs font-sans text-[#5C6470] line-clamp-3 font-light leading-relaxed">
                       {pub.abstract || pub.excerpt}
                     </p>
                   </div>
 
-                  <div className="mt-8 pt-4 border-t border-[#4A121A]/10 flex items-center justify-between">
-                    <span className="text-[11px] font-sans text-[#5C5755]">
+                  <div className="mt-8 pt-4 border-t border-[#0A192F]/10 flex items-center justify-between">
+                    <span className="text-[11px] font-sans text-[#5C6470]">
                       {typeof pub.category === 'object' ? pub.category?.name : (pub.category || "Diplomacy Praxis")}
                     </span>
 
                     <Link
                       href={`/research/${pub.slug || pub.id}`}
-                      className="px-5 py-2 rounded-full bg-[#4A121A] text-[#FAF8F5] text-xs font-sans font-semibold hover:bg-[#6A1B27] transition-colors flex items-center gap-2"
+                      className="px-5 py-2 rounded-full bg-[#0A192F] text-white text-xs font-sans font-semibold hover:bg-[#172E54] transition-colors flex items-center gap-2"
                     >
                       <span>Read</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -245,21 +245,21 @@ export default function PublicResearchLibraryPage() {
           )}
 
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-4 pt-8 border-t border-[#4A121A]/10">
+            <div className="flex items-center justify-center gap-4 pt-8 border-t border-[#0A192F]/10">
               <button
                 disabled={page <= 1}
                 onClick={() => setPage(page - 1)}
-                className="p-3 rounded-full border border-[#4A121A]/20 text-[#4A121A] disabled:opacity-30 hover:bg-[#4A121A]/5 transition-colors"
+                className="p-3 rounded-full border border-[#0A192F]/20 text-[#0A192F] disabled:opacity-30 hover:bg-[#0A192F]/5 transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <span className="text-xs font-sans text-[#1A1817]">
+              <span className="text-xs font-sans text-[#0D1B2A]">
                 Page {page} of {totalPages}
               </span>
               <button
                 disabled={page >= totalPages}
                 onClick={() => setPage(page + 1)}
-                className="p-3 rounded-full border border-[#4A121A]/20 text-[#4A121A] disabled:opacity-30 hover:bg-[#4A121A]/5 transition-colors"
+                className="p-3 rounded-full border border-[#0A192F]/20 text-[#0A192F] disabled:opacity-30 hover:bg-[#0A192F]/5 transition-colors"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>

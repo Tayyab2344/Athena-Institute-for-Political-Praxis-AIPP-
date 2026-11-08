@@ -153,7 +153,7 @@ export const PROGRAMS_DATA: Program[] = [
     subtitle: "High-Stakes Crisis Simulation",
     description: "An intensive 4-day immersive multilateral simulation uniting 60 emerging female diplomats to resolve a simulated Indo-Pacific maritime escalation.",
     category: "Simulation",
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1400",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1400",
     location: "Geneva & Online Hybrid",
     dates: "October 14–18, 2026",
     participants: "60 Selected Fellows",
@@ -165,7 +165,7 @@ export const PROGRAMS_DATA: Program[] = [
     subtitle: "Masterclass in Mediation Strategy",
     description: "Advanced negotiation techniques led by veteran ambassadors, focusing on leverage building, deadlock breaking, and multi-party alignment.",
     category: "Workshop",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1400",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1400",
     location: "Vienna Policy Center",
     dates: "November 02–05, 2026",
     participants: "25 Executive Participants"
@@ -176,7 +176,7 @@ export const PROGRAMS_DATA: Program[] = [
     subtitle: "Annual Policy Leadership Forum",
     description: "A high-level dialogue co-hosted with international institutions, connecting mid-career diplomats with ministers of foreign affairs.",
     category: "Strategic Summit",
-    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=1400",
+    image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&q=80&w=1400",
     location: "Brussels Diplomatic Hub",
     dates: "December 08–10, 2026",
     participants: "120 International Delegates"
@@ -203,11 +203,11 @@ export const INSIGHTS_DATA: Insight[] = [
     category: "Expert Perspective",
     author: "Elena Rostova",
     role: "Head of Cyber Policy Studies",
-    avatar: "https://images.unsplash.com/photo-1580894732413-a75151b1424e?auto=format&fit=crop&q=80&w=200",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
     date: "August 18, 2026",
     readTime: "4 min read",
     excerpt: "How women cyber analysts and diplomats are shaping critical infrastructure defense norms away from aggressive deterrence models.",
-    image: "https://images.unsplash.com/photo-1580894732413-a75151b1424e?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1400"
   },
   {
     id: "ins-03",
@@ -219,15 +219,15 @@ export const INSIGHTS_DATA: Insight[] = [
     date: "August 10, 2026",
     readTime: "7 min read",
     excerpt: "Institutional credibility can only be restored when Southern voices are backed by actionable policy levers rather than regional quotas.",
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&q=80&w=1400"
   }
 ];
 
 export const NAV_LINKS = [
-  { name: "About", href: "#about" },
-  { name: "What We Offer", href: "#pillars" },
-  { name: "Research", href: "#research" },
-  { name: "Programs", href: "#programs" },
-  { name: "Insights", href: "#insights" },
-  { name: "Get Involved", href: "#get-involved" }
+  { name: "About", href: "/about" },
+  { name: "What We Offer", href: "/what-we-offer" },
+  { name: "Research", href: "/research" },
+  { name: "Programs", href: "/#programs" },
+  { name: "Insights", href: "/#insights" },
+  { name: "Get Involved", href: "/#get-involved" }
 ];

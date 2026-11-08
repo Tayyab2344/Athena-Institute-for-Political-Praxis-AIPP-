@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans, Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
+import PageTransition from "@/components/ui/PageTransition";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -11,6 +12,20 @@ const playfair = Playfair_Display({
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-hero-serif",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-hero-sans",
   display: "swap",
 });
 
@@ -57,9 +72,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${jakarta.variable} scroll-smooth`}>
-      <body className="bg-[#FAF8F5] text-[#1A1817] antialiased min-h-screen flex flex-col font-sans">
-        {children}
+    <html lang="en" className={`${playfair.variable} ${jakarta.variable} ${cormorant.variable} ${manrope.variable} scroll-smooth`}>
+      <body className="bg-background text-foreground antialiased min-h-screen flex flex-col font-sans">
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

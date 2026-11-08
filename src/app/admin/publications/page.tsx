@@ -90,36 +90,36 @@ export default function AdminPublicationsPage() {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#FAF8F5] p-8 rounded-2xl border border-[#4A121A]/10 shadow-sm">
+    <div className="space-y-6 sm:space-y-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-5 sm:p-8 rounded-2xl border border-[#0A192F]/10 shadow-sm">
         <div>
-          <h1 className="font-serif text-3xl text-[#1A1817] font-normal">
+          <h1 className="font-serif text-2xl sm:text-3xl text-[#0D1B2A] font-normal">
             Research Publications CMS
           </h1>
-          <p className="text-xs font-sans text-[#5C5755] mt-1 font-light">
+          <p className="text-xs font-sans text-[#5C6470] mt-1 font-light">
             Manage peer-reviewed papers, policy briefs, reports, and journal issues for AIPP.
           </p>
         </div>
 
         <Link
           href="/admin/publications/new"
-          className="px-6 py-3 rounded-full bg-[#4A121A] text-[#FAF8F5] text-xs font-sans font-semibold hover:bg-[#6A1B27] transition-colors flex items-center gap-2 shadow-md w-fit"
+          className="px-6 py-3 rounded-full bg-[#0A192F] text-white text-xs font-sans font-semibold hover:bg-[#172E54] transition-colors flex items-center justify-center gap-2 shadow-md w-full sm:w-fit"
         >
           <Plus className="w-4 h-4" />
           <span>New Publication</span>
         </Link>
       </div>
 
-      <div className="bg-[#FAF8F5] p-6 rounded-2xl border border-[#4A121A]/10 space-y-4 shadow-sm">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="bg-white p-4 sm:p-6 rounded-2xl border border-[#0A192F]/10 space-y-4 shadow-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           <div className="relative">
-            <Search className="w-4 h-4 text-[#5C5755] absolute left-3.5 top-3.5" />
+            <Search className="w-4 h-4 text-[#5C6470] absolute left-3.5 top-3.5" />
             <input
               type="text"
               placeholder="Search by title, author, abstract..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+              className="w-full min-h-[44px] pl-10 pr-4 py-2.5 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A] focus:outline-none focus:border-[#0A192F]"
             />
           </div>
 
@@ -127,7 +127,7 @@ export default function AdminPublicationsPage() {
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+              className="w-full min-h-[44px] px-4 py-2.5 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A] focus:outline-none focus:border-[#0A192F]"
             >
               <option value="ALL">All Publication Types</option>
               <option value="RESEARCH_PAPER">Research Paper</option>
@@ -141,7 +141,7 @@ export default function AdminPublicationsPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+              className="w-full min-h-[44px] px-4 py-2.5 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A] focus:outline-none focus:border-[#0A192F]"
             >
               <option value="ALL">All Statuses</option>
               <option value="PUBLISHED">Published Only</option>
@@ -153,18 +153,18 @@ export default function AdminPublicationsPage() {
         </div>
       </div>
 
-      <div className="bg-[#FAF8F5] rounded-2xl border border-[#4A121A]/10 overflow-hidden shadow-sm">
+      <div className="bg-white rounded-2xl border border-[#0A192F]/10 overflow-hidden shadow-sm">
         {loading ? (
-          <div className="p-12 text-center text-xs font-sans text-[#5C5755]">
+          <div className="p-12 text-center text-xs font-sans text-[#5C6470]">
             Loading publication records...
           </div>
         ) : publications.length === 0 ? (
           <div className="p-12 text-center space-y-4">
-            <FileText className="w-10 h-10 text-[#4A121A]/30 mx-auto" />
-            <p className="text-sm font-serif text-[#1A1817]">No publications found matching your filters.</p>
+            <FileText className="w-10 h-10 text-[#0A192F]/30 mx-auto" />
+            <p className="text-sm font-serif text-[#0D1B2A]">No publications found matching your filters.</p>
             <Link
               href="/admin/publications/new"
-              className="inline-flex items-center gap-2 text-xs font-sans font-semibold text-[#4A121A] hover:underline"
+              className="inline-flex items-center gap-2 text-xs font-sans font-semibold text-[#0A192F] hover:underline"
             >
               Create your first publication →
             </Link>
@@ -173,7 +173,7 @@ export default function AdminPublicationsPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-[#EFECE6] border-b border-[#4A121A]/10 text-[10px] font-sans uppercase tracking-wider text-[#4A121A]">
+                <tr className="bg-[#F7F6F2] border-b border-[#0A192F]/10 text-[10px] font-sans uppercase tracking-wider text-[#0A192F]">
                   <th className="p-4 pl-6">Title & Category</th>
                   <th className="p-4">Type</th>
                   <th className="p-4">Author(s)</th>
@@ -181,21 +181,21 @@ export default function AdminPublicationsPage() {
                   <th className="p-4 pr-6 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#4A121A]/10 text-xs font-sans">
+              <tbody className="divide-y divide-[#0A192F]/10 text-xs font-sans">
                 {publications.map((pub) => (
-                  <tr key={pub.id} className="hover:bg-[#EFECE6]/50 transition-colors">
+                  <tr key={pub.id} className="hover:bg-[#F7F6F2]/70 transition-colors">
                     <td className="p-4 pl-6 space-y-1">
-                      <span className="font-serif text-sm text-[#1A1817] font-semibold block line-clamp-1">
+                      <span className="font-serif text-sm text-[#0D1B2A] font-semibold block line-clamp-1">
                         {pub.title}
                       </span>
-                      <span className="text-[10px] font-sans text-[#5C5755] block">
+                      <span className="text-[10px] font-sans text-[#5C6470] block">
                         {pub.category?.name || "Uncategorized"}
                       </span>
                     </td>
-                    <td className="p-4 font-mono text-[11px] text-[#4A121A]">
+                    <td className="p-4 font-mono text-[11px] text-[#0A192F]">
                       {pub.type}
                     </td>
-                    <td className="p-4 text-[#5C5755]">
+                    <td className="p-4 text-[#5C6470]">
                       {pub.authors.map((a) => a.name).join(", ") || "No author"}
                     </td>
                     <td className="p-4">
@@ -207,7 +207,7 @@ export default function AdminPublicationsPage() {
                           <Link
                             href={`/research/${pub.slug}`}
                             target="_blank"
-                            className="p-2 rounded-lg hover:bg-[#4A121A]/10 text-[#4A121A]"
+                            className="p-2 rounded-lg hover:bg-[#0A192F]/10 text-[#0A192F]"
                             title="View Public Page"
                           >
                             <Eye className="w-4 h-4" />
@@ -215,7 +215,7 @@ export default function AdminPublicationsPage() {
                         )}
                         <Link
                           href={`/admin/publications/${pub.id}/edit`}
-                          className="p-2 rounded-lg hover:bg-[#4A121A]/10 text-[#4A121A]"
+                          className="p-2 rounded-lg hover:bg-[#0A192F]/10 text-[#0A192F]"
                           title="Edit Publication"
                         >
                           <Edit3 className="w-4 h-4" />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Send, CheckCircle2 } from "lucide-react";
 
 interface ContactModalProps {
@@ -19,6 +19,21 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
     message: ""
   });
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,21 +47,26 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A1817]/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#FAF8F5] border border-[#4A121A]/20 rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-surface-dark/70 p-2.5 sm:p-4 backdrop-blur-sm animate-in fade-in duration-200"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className="relative flex max-h-[92vh] w-full max-w-xl flex-col overflow-hidden rounded-[1.25rem] sm:rounded-[1.5rem] border border-border bg-surface shadow-[var(--shadow-deep)]">
         
-        <div className="p-6 md:p-8 bg-[#4A121A] text-[#FAF8F5] flex items-start justify-between">
-          <div>
+        <div className="flex items-start justify-between bg-primary p-4 sm:p-6 md:p-8 text-background">
+          <div className="pr-3">
             <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.2em] opacity-80 block mb-1">
               ATHENA INSTITUTE FOR POLITICAL PRAXIS
             </span>
-            <h3 className="font-serif text-2xl md:text-3xl font-normal">
+            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-normal leading-snug">
               Get Involved & Contact
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-[#FAF8F5]/10 text-[#FAF8F5] transition-colors"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-background transition-colors hover:bg-background/10 active:scale-95"
             aria-label="Close contact modal"
           >
             <X className="w-5 h-5" />
@@ -54,25 +74,25 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
         </div>
 
         {submitted ? (
-          <div className="p-10 text-center space-y-6 flex flex-col items-center justify-center my-auto">
-            <div className="w-16 h-16 rounded-full bg-[#4A121A]/10 border border-[#4A121A]/20 flex items-center justify-center text-[#4A121A]">
+          <div className="my-auto flex flex-col items-center justify-center space-y-6 p-10 text-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full border border-border bg-primary-soft text-primary">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h4 className="font-serif text-2xl text-[#1A1817]">Thank You for Reaching Out</h4>
-            <p className="text-sm font-sans text-[#5C5755] max-w-sm font-light">
+            <h4 className="type-h3 text-primary">Thank You for Reaching Out</h4>
+            <p className="type-body-small max-w-sm text-foreground-muted">
               Your inquiry has been logged with the AIPP External Affairs Taskforce. Our team will review your message promptly.
             </p>
             <button
               onClick={handleReset}
-              className="px-8 py-3 rounded-full bg-[#4A121A] text-[#FAF8F5] text-xs font-sans font-semibold hover:bg-[#6A1B27] transition-colors"
+              className="rounded-full bg-primary px-8 py-3 text-xs font-semibold text-background transition-colors hover:bg-primary-hover"
             >
               Close Window
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="p-6 md:p-8 overflow-y-auto space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 overflow-y-auto p-4 sm:p-6 md:p-8">
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="type-label mb-1.5 block">
                 Full Name
               </label>
               <input
@@ -81,13 +101,13 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Ambassador / Dr. / Ms. Full Name"
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+                className="w-full min-h-[44px] rounded-xl border border-border bg-background-muted px-4 py-2.5 sm:py-3 text-sm sm:text-xs text-foreground focus:border-primary focus:outline-none"
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
               <div>
-                <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+                <label className="type-label mb-1.5 block">
                   Email Address
                 </label>
                 <input
@@ -96,18 +116,18 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="name@institution.org"
-                  className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+                  className="w-full min-h-[44px] rounded-xl border border-border bg-background-muted px-4 py-2.5 sm:py-3 text-sm sm:text-xs text-foreground focus:border-primary focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+                <label className="type-label mb-1.5 block">
                   Pathway
                 </label>
                 <select
                   value={formData.pathway}
                   onChange={(e) => setFormData({ ...formData, pathway: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+                  className="w-full min-h-[44px] rounded-xl border border-border bg-background-muted px-4 py-2.5 sm:py-3 text-sm sm:text-xs text-foreground focus:border-primary focus:outline-none"
                 >
                   <option value="Volunteer">Volunteer</option>
                   <option value="Contribute">Contribute Research</option>
@@ -118,7 +138,7 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
             </div>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="type-label mb-1.5 block">
                 Organization / Affiliation
               </label>
               <input
@@ -126,12 +146,12 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
                 value={formData.organization}
                 onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                 placeholder="Ministry, Institute, University, or NGO"
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+                className="w-full min-h-[44px] rounded-xl border border-border bg-background-muted px-4 py-2.5 sm:py-3 text-sm sm:text-xs text-foreground focus:border-primary focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="type-label mb-1.5 block">
                 Message / Statement of Purpose
               </label>
               <textarea
@@ -140,14 +160,14 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Briefly describe how you wish to collaborate or contribute to AIPP..."
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817] focus:outline-none focus:border-[#4A121A]"
+                className="w-full rounded-xl border border-border bg-background-muted px-4 py-2.5 sm:py-3 text-sm sm:text-xs text-foreground focus:border-primary focus:outline-none"
               />
             </div>
 
             <div className="pt-2 flex justify-end">
               <button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#4A121A] text-[#FAF8F5] text-xs font-sans font-semibold tracking-wider hover:bg-[#6A1B27] transition-colors flex items-center justify-center gap-2"
+                className="flex w-full min-h-[44px] items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-background transition-colors hover:bg-primary-hover sm:w-auto"
               >
                 <span>Submit Inquiry</span>
                 <Send className="w-3.5 h-3.5" />

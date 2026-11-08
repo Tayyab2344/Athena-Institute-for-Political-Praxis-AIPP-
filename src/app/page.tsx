@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/sections/Hero";
-import IntroSection from "@/components/sections/IntroSection";
+import CinematicHero from "@/components/home/CinematicHero";
+import IdeasToInfluenceSection from "@/components/sections/IdeasToInfluenceSection";
 import PillarsSection from "@/components/sections/PillarsSection";
 import ResearchSection from "@/components/sections/ResearchSection";
-import StrategicActionSection from "@/components/sections/StrategicActionSection";
-import InsightsSection from "@/components/sections/InsightsSection";
+import ProgramsSection from "@/components/sections/ProgramsSection";
+import VoicesSection from "@/components/sections/VoicesSection";
 import GetInvolvedSection from "@/components/sections/GetInvolvedSection";
+import ConnectSection from "@/components/sections/ConnectSection";
 import Footer from "@/components/layout/Footer";
 import ContactModal from "@/components/ui/ContactModal";
 
@@ -26,15 +27,16 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F5] text-[#1A1817] flex flex-col font-sans selection:bg-[#4A121A] selection:text-[#FAF8F5]">
+    <main className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary selection:text-background">
       <Navbar onOpenContact={() => handleOpenContact("General Inquiry")} />
-      <Hero />
-      <IntroSection />
+      <CinematicHero />
+      <IdeasToInfluenceSection />
       <PillarsSection />
       <ResearchSection />
-      <StrategicActionSection />
-      <InsightsSection />
+      <ProgramsSection />
+      <VoicesSection />
       <GetInvolvedSection onOpenContact={handleOpenContact} />
+      <ConnectSection />
       <Footer onOpenContact={handleOpenContact} />
 
       <ContactModal

@@ -3,38 +3,48 @@ import { ArrowLeft, BookOpen, Layers, Users, FileText, Settings } from "lucide-r
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#F4EFEA] text-[#1A1817] flex flex-col font-sans">
-      <header className="bg-[#4A121A] text-[#FAF8F5] border-b border-[#FAF8F5]/10 px-6 py-4 sticky top-0 z-40 shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
+    <div className="min-h-screen bg-[#F7F6F2] text-[#0D1B2A] flex flex-col font-sans">
+      <header className="bg-[#0A192F] text-white border-b border-white/10 px-4 sm:px-6 py-3.5 sticky top-0 z-40 shadow-md">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+          <div className="flex items-center justify-between sm:justify-start gap-3 sm:gap-4">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <Link
+                href="/"
+                className="p-1.5 sm:p-2 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
+                title="Return to Public Website"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Link>
+              <div className="flex flex-col">
+                <span className="font-serif text-lg sm:text-xl font-bold tracking-tight text-white leading-tight">
+                  AIPP Admin CMS
+                </span>
+                <span className="text-[9px] font-sans uppercase tracking-[0.16em] text-[#D1C4AC]">
+                  Research &amp; Journals
+                </span>
+              </div>
+            </div>
+
             <Link
               href="/"
-              className="p-2 rounded-full hover:bg-[#FAF8F5]/10 text-[#FAF8F5]/80 hover:text-[#FAF8F5] transition-colors"
-              title="Return to Public Website"
+              target="_blank"
+              className="sm:hidden px-3 py-1 rounded-full border border-white/30 text-white hover:bg-white hover:text-[#0A192F] text-[11px] font-sans font-semibold transition-all"
             >
-              <ArrowLeft className="w-5 h-5" />
+              Public
             </Link>
-            <div className="flex flex-col">
-              <span className="font-serif text-xl font-bold tracking-tight text-[#FAF8F5]">
-                AIPP Admin CMS
-              </span>
-              <span className="text-[9px] font-sans uppercase tracking-[0.2em] text-[#A8656C]">
-                Research & Journals Management
-              </span>
-            </div>
           </div>
 
-          <nav className="flex items-center gap-2">
+          <nav className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar">
             <Link
               href="/admin/publications"
-              className="px-4 py-2 rounded-lg text-xs font-sans font-medium text-[#FAF8F5] hover:bg-[#FAF8F5]/15 transition-colors flex items-center gap-2"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-sans font-medium text-white hover:bg-white/15 transition-colors flex items-center gap-1.5 shrink-0"
             >
               <FileText className="w-4 h-4" />
               <span>Publications</span>
             </Link>
             <Link
               href="/admin/journals"
-              className="px-4 py-2 rounded-lg text-xs font-sans font-medium text-[#FAF8F5]/80 hover:text-[#FAF8F5] hover:bg-[#FAF8F5]/15 transition-colors flex items-center gap-2"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-sans font-medium text-white/80 hover:text-white hover:bg-white/15 transition-colors flex items-center gap-1.5 shrink-0"
             >
               <BookOpen className="w-4 h-4" />
               <span>Journals</span>
@@ -42,7 +52,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link
               href="/"
               target="_blank"
-              className="ml-4 px-4 py-2 rounded-full border border-[#FAF8F5]/30 text-[#FAF8F5] hover:bg-[#FAF8F5] hover:text-[#4A121A] text-xs font-sans font-semibold transition-all"
+              className="hidden sm:inline-flex ml-2 sm:ml-4 px-4 py-2 rounded-full border border-white/30 text-white hover:bg-white hover:text-[#0A192F] text-xs font-sans font-semibold transition-all shrink-0"
             >
               View Public Archive
             </Link>
@@ -50,11 +60,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </header>
 
-      <main className="flex-grow max-w-7xl mx-auto w-full px-6 py-10">
+      <main className="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-10">
         {children}
       </main>
 
-      <footer className="bg-[#EFECE6] border-t border-[#4A121A]/10 py-6 text-center text-xs font-sans text-[#5C5755]">
+      <footer className="bg-white border-t border-[#0A192F]/10 py-6 text-center text-xs font-sans text-[#5C6470]">
         AIPP Executive Research CMS · Internal Administration System
       </footer>
     </div>

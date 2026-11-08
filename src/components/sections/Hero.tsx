@@ -1,111 +1,82 @@
-"use client";
-
-import { HERO_DATA } from "@/data/mockData";
+import Link from "next/link";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
+import Badge from "@/components/ui/Badge";
+import Container from "@/components/ui/Container";
+import Heading from "@/components/ui/Heading";
+import { FadeIn, ImageReveal, Parallax } from "@/components/ui/Reveal";
+import { buttonStyles } from "@/components/ui/Button";
+import { HERO_DATA } from "@/data/mockData";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen pt-32 pb-20 md:pt-40 md:pb-28 bg-[#FAF8F5] flex flex-col justify-between overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/3 h-96 bg-[#4A121A]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-0 w-1/4 h-80 bg-[#A8656C]/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-between overflow-x-clip bg-background pt-28 pb-12 md:pt-32 md:pb-16">
+      <Container wide className="relative z-10 w-full">
+        <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+          <FadeIn className="flex flex-col items-start gap-7">
+            <Badge tone="light">
+              <span className="mr-2 h-1.5 w-1.5 rounded-full bg-primary" />
+              {HERO_DATA.eyebrow}
+            </Badge>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-          
-          <div className="lg:col-span-7 flex flex-col items-start space-y-8">
-            <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-[#4A121A]/20 bg-[#4A121A]/5">
-              <span className="w-2 h-2 rounded-full bg-[#4A121A] animate-pulse" />
-              <span className="text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-[#4A121A]">
-                {HERO_DATA.eyebrow}
-              </span>
-            </div>
+            <Heading level="h1" className="max-w-2xl text-foreground">
+              Women shaping the <span className="italic text-primary">conversations</span> that shape our world.
+            </Heading>
 
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal leading-[1.08] text-[#1A1817] tracking-tight">
-              Women shaping the <span className="italic font-serif text-[#4A121A]">conversations</span> that shape our world.
-            </h1>
+            <p className="type-body-large max-w-xl text-foreground-muted">{HERO_DATA.description}</p>
 
-            <p className="text-lg md:text-xl font-sans text-[#5C5755] font-light max-w-2xl leading-relaxed">
-              {HERO_DATA.description}
-            </p>
-
-            <div className="pt-4 flex flex-wrap items-center gap-4 sm:gap-6">
-              <a
-                href={HERO_DATA.primaryCta.href}
-                className="group px-7 py-4 rounded-full bg-[#4A121A] text-[#FAF8F5] text-sm font-sans font-semibold tracking-wider hover:bg-[#6A1B27] transition-all duration-300 flex items-center gap-3 shadow-lg shadow-[#4A121A]/15"
-              >
-                <span>{HERO_DATA.primaryCta.text}</span>
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <div className="flex flex-wrap items-center gap-4">
+              <a href={HERO_DATA.primaryCta.href} className={buttonStyles({ size: "lg" })}>
+                {HERO_DATA.primaryCta.text} <ArrowUpRight className="h-4 w-4" />
               </a>
-
-              <a
-                href={HERO_DATA.secondaryCta.href}
-                className="group px-7 py-4 rounded-full border border-[#1A1817]/20 text-[#1A1817] hover:border-[#4A121A] hover:text-[#4A121A] text-sm font-sans font-medium tracking-wider transition-all duration-300"
-              >
-                <span>{HERO_DATA.secondaryCta.text}</span>
-              </a>
+              <Link href="/about" className={buttonStyles({ variant: "outline", size: "lg" })}>
+                Learn about AIPP
+              </Link>
             </div>
 
-            <div className="pt-8 border-t border-[#4A121A]/10 w-full grid grid-cols-3 gap-6">
-              <div>
-                <span className="block font-serif text-2xl md:text-3xl text-[#4A121A]">01</span>
-                <span className="text-xs font-sans uppercase tracking-wider text-[#5C5755] font-medium">Research</span>
-              </div>
-              <div>
-                <span className="block font-serif text-2xl md:text-3xl text-[#4A121A]">02</span>
-                <span className="text-xs font-sans uppercase tracking-wider text-[#5C5755] font-medium">Strategy</span>
-              </div>
-              <div>
-                <span className="block font-serif text-2xl md:text-3xl text-[#4A121A]">03</span>
-                <span className="text-xs font-sans uppercase tracking-wider text-[#5C5755] font-medium">Advocacy</span>
+            <div className="grid w-full max-w-lg grid-cols-3 gap-5 border-t border-border pt-5">
+              {["Research", "Strategy", "Advocacy"].map((label, index) => (
+                <div key={label}>
+                  <span className="type-h3 text-primary">0{index + 1}</span>
+                  <span className="type-caption mt-2 block">{label}</span>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+
+          <ImageReveal className="group relative overflow-visible rounded-[1.75rem] bg-background-muted lg:ml-4">
+            <div className="relative aspect-[5/6] overflow-hidden rounded-[1.75rem] border border-border bg-background-muted shadow-soft">
+              <Parallax className="h-full w-full">
+                <img src={HERO_DATA.mainImage} alt="Women diplomats in session at international summit" loading="eager" className="h-[108%] w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+              </Parallax>
+              <div className="absolute inset-x-4 bottom-4 border border-background/30 bg-surface-dark/85 p-4 text-background backdrop-blur-sm md:inset-x-6 md:bottom-6 md:p-5">
+                <span className="type-label text-background/70">Institutional focus</span>
+                <p className="mt-2 font-serif text-base italic md:text-lg">Multilateral peacebuilding is strongest when women hold decision-making seats.</p>
               </div>
             </div>
-          </div>
-
-          <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#4A121A]/10 aspect-[4/5] group">
-              <img
-                src={HERO_DATA.mainImage}
-                alt="Women diplomats in session at international summit"
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1817]/70 via-transparent to-transparent opacity-80" />
-              
-              <div className="absolute bottom-6 left-6 right-6 p-5 rounded-xl bg-[#FAF8F5]/90 backdrop-blur-md border border-[#FAF8F5]/30">
-                <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.2em] text-[#4A121A] block mb-1">
-                  Institutional Focus
-                </span>
-                <p className="font-serif text-sm text-[#1A1817] italic">
-                  "Multilateral peace building is strongest when women hold decision-making seats."
-                </p>
+            <div className="absolute -bottom-8 -left-8 hidden w-36 overflow-hidden rounded-xl border-4 border-background bg-background shadow-soft sm:block md:w-44">
+              <div className="aspect-[4/3]">
+                <img src={HERO_DATA.secondaryImage} alt="Women gathered in a diplomatic working session" loading="eager" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+              </div>
+              <span className="block px-3 py-2 type-label text-foreground-muted">Shared intelligence</span>
+            </div>
+            <div className="absolute -right-5 top-10 hidden w-24 overflow-hidden rounded-lg border-4 border-background bg-background shadow-soft lg:block">
+              <div className="aspect-[3/4]">
+                <img src={HERO_DATA.tertiaryImage} alt="A woman leader speaking at a public forum" loading="eager" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
               </div>
             </div>
-
-            <div className="hidden sm:block absolute -bottom-8 -left-10 w-44 h-56 rounded-xl overflow-hidden shadow-xl border-2 border-[#FAF8F5]">
-              <img
-                src={HERO_DATA.secondaryImage}
-                alt="Diplomat addressing assembly"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
+          </ImageReveal>
         </div>
-      </div>
+      </Container>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-12 flex items-center justify-between text-xs text-[#5C5755]">
-        <div className="flex items-center gap-2 font-sans tracking-wider uppercase text-[10px]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#4A121A]" />
+      <Container wide className="flex w-full items-center justify-between pt-12 text-foreground-muted">
+        <div className="flex items-center gap-2 type-caption">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
           <span>Athena Institute for Political Praxis</span>
         </div>
-
-        <a
-          href="#about"
-          className="flex items-center gap-2 text-[#4A121A] hover:text-[#6A1B27] transition-colors group"
-        >
-          <span className="font-sans text-[11px] font-medium tracking-wider uppercase">Scroll to Explore</span>
-          <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+        <a href="#about" className="group flex items-center gap-2 type-label transition-colors hover:text-primary">
+          Scroll to explore <ArrowDown className="h-3.5 w-3.5 transition-transform group-hover:translate-y-1" />
         </a>
-      </div>
+      </Container>
     </section>
   );
 }

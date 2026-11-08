@@ -169,7 +169,7 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
   };
 
   if (loading) {
-    return <div className="p-12 text-center text-xs font-sans text-[#5C5755]">Loading publication details...</div>;
+    return <div className="p-12 text-center text-xs font-sans text-[#5C6470]">Loading publication details...</div>;
   }
 
   return (
@@ -177,34 +177,34 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
       <div className="flex items-center justify-between">
         <Link
           href="/admin/publications"
-          className="inline-flex items-center gap-2 text-xs font-sans text-[#4A121A] hover:underline"
+          className="inline-flex items-center gap-2 text-xs font-sans text-[#0A192F] hover:underline"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Publications</span>
         </Link>
       </div>
 
-      <div className="bg-[#FAF8F5] p-8 rounded-2xl border border-[#4A121A]/10 shadow-sm flex items-center justify-between">
+      <div className="bg-[#FFFFFF] p-5 sm:p-8 rounded-2xl border border-[#0A192F]/10 shadow-sm flex items-center justify-between">
         <div>
-          <h1 className="font-serif text-3xl text-[#1A1817] font-normal mb-1">
+          <h1 className="font-serif text-2xl sm:text-3xl text-[#0D1B2A] font-normal mb-1">
             Edit Publication
           </h1>
-          <p className="text-xs font-sans text-[#5C5755] font-light">
+          <p className="text-xs font-sans text-[#5C6470] font-light">
             Update metadata, PDF files, category tags, or publication status.
           </p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
         
         <div className="lg:col-span-8 space-y-6">
-          <div className="p-6 bg-[#FAF8F5] rounded-2xl border border-[#4A121A]/10 space-y-5 shadow-sm">
-            <h2 className="font-serif text-lg text-[#1A1817] border-b border-[#4A121A]/10 pb-3 font-semibold">
+          <div className="p-4 sm:p-6 bg-[#FFFFFF] rounded-2xl border border-[#0A192F]/10 space-y-5 shadow-sm">
+            <h2 className="font-serif text-lg text-[#0D1B2A] border-b border-[#0A192F]/10 pb-3 font-semibold">
               Publication Content & Metadata
             </h2>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#0A192F] mb-1.5">
                 Publication Title *
               </label>
               <input
@@ -212,12 +212,12 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
                 required
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817]"
+                className="w-full min-h-[44px] px-4 py-2.5 sm:py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#0A192F] mb-1.5">
                 Executive Abstract *
               </label>
               <textarea
@@ -225,35 +225,35 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
                 required
                 value={formData.abstract}
                 onChange={(e) => setFormData({ ...formData, abstract: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817]"
+                className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#0A192F] mb-1.5">
                 Detailed Research Description
               </label>
               <textarea
                 rows={6}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817]"
+                className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-sm sm:text-xs font-sans text-[#0D1B2A]"
               />
             </div>
           </div>
 
-          <div className="p-6 bg-[#FAF8F5] rounded-2xl border border-[#4A121A]/10 space-y-5 shadow-sm">
-            <h2 className="font-serif text-lg text-[#1A1817] border-b border-[#4A121A]/10 pb-3 font-semibold">
+          <div className="p-4 sm:p-6 bg-[#FFFFFF] rounded-2xl border border-[#0A192F]/10 space-y-5 shadow-sm">
+            <h2 className="font-serif text-lg text-[#0D1B2A] border-b border-[#0A192F]/10 pb-3 font-semibold">
               PDF & Cover Files
             </h2>
 
-            <div className="border-2 border-dashed border-[#4A121A]/20 rounded-2xl p-6 text-center space-y-3 bg-[#EFECE6]">
-              <FileText className="w-8 h-8 text-[#4A121A] mx-auto opacity-70" />
+            <div className="border-2 border-dashed border-[#0A192F]/20 rounded-2xl p-6 text-center space-y-3 bg-[#F7F6F2]">
+              <FileText className="w-8 h-8 text-[#0A192F] mx-auto opacity-70" />
               <div>
-                <span className="block text-xs font-sans font-semibold text-[#1A1817]">
+                <span className="block text-xs font-sans font-semibold text-[#0D1B2A]">
                   {formData.pdfFileName ? formData.pdfFileName : "Upload PDF Publication Document"}
                 </span>
-                <span className="block text-[10px] font-sans text-[#5C5755] mt-1">
+                <span className="block text-[10px] font-sans text-[#5C6470] mt-1">
                   PDF format only · Max 25MB
                 </span>
               </div>
@@ -276,7 +276,7 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
                 />
                 <label
                   htmlFor="pdf-input-edit"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#4A121A] text-[#FAF8F5] text-xs font-sans font-semibold cursor-pointer hover:bg-[#6A1B27] transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0A192F] text-[#FFFFFF] text-xs font-sans font-semibold cursor-pointer hover:bg-[#172E54] transition-colors"
                 >
                   <Upload className="w-3.5 h-3.5" />
                   <span>{uploadingPdf ? "Uploading PDF..." : "Replace PDF File"}</span>
@@ -287,19 +287,19 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
         </div>
 
         <div className="lg:col-span-4 space-y-6">
-          <div className="p-6 bg-[#FAF8F5] rounded-2xl border border-[#4A121A]/10 space-y-5 shadow-sm">
-            <h2 className="font-serif text-lg text-[#1A1817] border-b border-[#4A121A]/10 pb-3 font-semibold">
+          <div className="p-6 bg-[#FFFFFF] rounded-2xl border border-[#0A192F]/10 space-y-5 shadow-sm">
+            <h2 className="font-serif text-lg text-[#0D1B2A] border-b border-[#0A192F]/10 pb-3 font-semibold">
               Publishing Settings
             </h2>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#0A192F] mb-1.5">
                 Publication Status *
               </label>
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans font-semibold text-[#4A121A]"
+                className="w-full px-4 py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-xs font-sans font-semibold text-[#0A192F]"
               >
                 <option value="DRAFT">DRAFT</option>
                 <option value="UNDER_REVIEW">UNDER REVIEW</option>
@@ -310,13 +310,13 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
             </div>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#0A192F] mb-1.5">
                 Publication Type *
               </label>
               <select
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817]"
+                className="w-full px-4 py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-xs font-sans text-[#0D1B2A]"
               >
                 <option value="RESEARCH_PAPER">RESEARCH PAPER</option>
                 <option value="POLICY_BRIEF">POLICY BRIEF</option>
@@ -326,13 +326,13 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
             </div>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#0A192F] mb-1.5">
                 Category *
               </label>
               <select
                 value={formData.categoryId}
                 onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10 text-xs font-sans text-[#1A1817]"
+                className="w-full px-4 py-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10 text-xs font-sans text-[#0D1B2A]"
               >
                 {categories.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -343,17 +343,17 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
             </div>
 
             <div>
-              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#4A121A] mb-1.5">
+              <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-[#0A192F] mb-1.5">
                 Author(s) *
               </label>
-              <div className="space-y-2 max-h-48 overflow-y-auto p-3 rounded-xl bg-[#EFECE6] border border-[#4A121A]/10">
+              <div className="space-y-2 max-h-48 overflow-y-auto p-3 rounded-xl bg-[#F7F6F2] border border-[#0A192F]/10">
                 {authors.map((auth) => (
-                  <label key={auth.id} className="flex items-center gap-2 text-xs font-sans text-[#1A1817] cursor-pointer">
+                  <label key={auth.id} className="flex items-center gap-2 text-xs font-sans text-[#0D1B2A] cursor-pointer">
                     <input
                       type="checkbox"
                       checked={formData.authorIds.includes(auth.id)}
                       onChange={() => toggleAuthor(auth.id)}
-                      className="rounded text-[#4A121A]"
+                      className="rounded text-[#0A192F]"
                     />
                     <span>{auth.name}</span>
                   </label>
@@ -361,11 +361,11 @@ export default function EditPublicationPage({ params }: { params: Promise<{ id: 
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#4A121A]/10">
+            <div className="pt-4 border-t border-[#0A192F]/10">
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-4 rounded-full bg-[#4A121A] text-[#FAF8F5] text-xs font-sans font-semibold tracking-wider hover:bg-[#6A1B27] transition-colors flex items-center justify-center gap-2 shadow-lg"
+                className="w-full py-4 rounded-full bg-[#0A192F] text-[#FFFFFF] text-xs font-sans font-semibold tracking-wider hover:bg-[#172E54] transition-colors flex items-center justify-center gap-2 shadow-lg"
               >
                 <Save className="w-4 h-4" />
                 <span>{submitting ? "Saving Changes..." : "Update Publication"}</span>
