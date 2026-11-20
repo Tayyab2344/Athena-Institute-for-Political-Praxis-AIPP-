@@ -23,11 +23,11 @@ export default function ResearchSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   const allPublications = PUBLICATIONS_DATA;
-  const categories = ["All", ...Array.from(new Set(allPublications.map((p) => p.category)))];
+  const categories = ["All", ...Array.from(new Set(allPublications.map((p) => typeof p.category === "object" && p.category !== null ? p.category.name : (p.category || ""))))];
 
   const filteredPublications = selectedCategory === "All"
     ? allPublications
-    : allPublications.filter((p) => p.category === selectedCategory);
+    : allPublications.filter((p) => (typeof p.category === "object" && p.category !== null ? p.category.name : p.category) === selectedCategory);
 
   // If selectedId isn't in filtered list, fallback to first in filtered
   const featured = filteredPublications.find((p) => p.id === selectedId) || filteredPublications[0] || allPublications[0];
@@ -66,7 +66,7 @@ export default function ResearchSection() {
   /* Handle category filter switch */
   const handleCategoryChange = (cat: string) => {
     setSelectedCategory(cat);
-    const firstInCat = cat === "All" ? allPublications[0] : allPublications.find((p) => p.category === cat);
+    const firstInCat = cat === "All" ? allPublications[0] : allPublications.find((p) => (typeof p.category === "object" && p.category !== null ? p.category.name : p.category) === cat);
     if (firstInCat) {
       setSelectedId(firstInCat.id);
     }
@@ -106,7 +106,7 @@ export default function ResearchSection() {
     <section
       id="research"
       ref={sectionRef}
-      className="relative w-full bg-[#FAF8F5] text-[#1B2D42] scroll-mt-24 overflow-hidden border-t border-[#E5DFD5]"
+      className="relative w-full bg-[#F7F7F7] text-[#081D2E] scroll-mt-24 overflow-hidden border-t border-[#D9DEE2]"
       aria-label="Research & Publications"
     >
       {/* ═══ Subtle Architectural Grid Texture (Light) ═══ */}
@@ -114,7 +114,7 @@ export default function ResearchSection() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(13, 44, 73, 0.06) 1px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(13, 44, 73, 0.05) 1px, transparent 0)`,
             backgroundSize: "32px 32px",
           }}
         />
@@ -123,40 +123,34 @@ export default function ResearchSection() {
         <div
           className="absolute top-0 right-1/4 w-[600px] h-[400px] rounded-full blur-[140px] pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(176, 156, 75, 0.1) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-10 left-10 w-[500px] h-[350px] rounded-full blur-[120px] pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(13, 44, 73, 0.04) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(176, 156, 75, 0.08) 0%, transparent 70%)",
           }}
         />
       </div>
 
       {/* ═══ Section Top Header Badge ═══ */}
-      <div className="relative z-20 pt-16 sm:pt-16 pb-4">
+      <div className="relative z-20 pt-16 sm:pt-20 pb-4">
         <Container wide>
-          <div className="flex items-center justify-between border-b border-[#E5DFD5] pb-4">
+          <div className="flex items-center justify-between border-b border-[#D9DEE2] pb-4">
             <div className="inline-flex items-center gap-2.5">
-              <span className="h-2 w-2 rounded-full bg-[#8C743E]" />
+              <span className="h-2 w-2 rounded-full bg-[#B09C4B]" />
               <span
-                className="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-[#8C743E]"
+                className="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-[#B09C4B]"
                 style={{ fontFamily: "var(--font-hero-sans)" }}
               >
-                04 / RESEARCH &amp; PUBLICATIONS
+                03 / RESEARCH &amp; PUBLICATIONS
               </span>
             </div>
             <div
-              className="hidden sm:flex items-center gap-3 text-xs text-[#64748B]"
+              className="hidden sm:flex items-center gap-3 text-xs text-[#64717C]"
               style={{ fontFamily: "var(--font-hero-sans)" }}
             >
               <span className="inline-flex items-center gap-1.5">
-                <Award className="w-3.5 h-3.5 text-[#8C743E]" />
-                Peer-Reviewed Index
+                <Award className="w-3.5 h-3.5 text-[#B09C4B]" />
+                Peer-Reviewed Empirical Index
               </span>
               <span>•</span>
-              <span>Quarterly Release</span>
+              <span>Quarterly Repository</span>
             </div>
           </div>
         </Container>
@@ -181,26 +175,26 @@ export default function ResearchSection() {
                   style={{ fontFamily: "var(--font-hero-serif)" }}
                 >
                   Ideas that inform{" "}
-                  <span className="italic font-medium text-[#8C743E] block sm:inline">
+                  <span className="italic font-medium text-[#B09C4B] block sm:inline">
                     the future.
                   </span>
                 </h2>
 
                 {/* Subtitle */}
                 <p
-                  className="text-base sm:text-lg text-[#475569] leading-relaxed font-light mb-6"
+                  className="text-base sm:text-lg text-[#64717C] leading-relaxed font-light mb-6"
                   style={{ fontFamily: "var(--font-hero-sans)" }}
                 >
                   Rigorous empirical studies, policy briefs, and strategic analysis from women leading at the highest levels of global diplomacy.
                 </p>
 
                 {/* Vertical accent divider line */}
-                <div className="w-12 h-[2px] bg-[#8C743E] mb-6" />
+                <div className="w-12 h-[2px] bg-[#B09C4B] mb-6" />
 
                 {/* Topic / Category Filter Buttons */}
                 <div className="mb-8">
                   <span
-                    className="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-[#64748B] block mb-3"
+                    className="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-[#64717C] block mb-3"
                     style={{ fontFamily: "var(--font-hero-sans)" }}
                   >
                     Filter by Disciplinary Focus:
@@ -213,7 +207,7 @@ export default function ResearchSection() {
                         className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                           selectedCategory === cat
                             ? "bg-[#0D2C49] text-white shadow-sm"
-                            : "bg-[#EDE9E1] text-[#475569] hover:bg-[#E2DDD3] hover:text-[#081D2E]"
+                            : "bg-white text-[#64717C] border border-[#D9DEE2] hover:bg-[#F0EEEA] hover:text-[#081D2E]"
                         }`}
                         style={{ fontFamily: "var(--font-hero-sans)" }}
                       >
@@ -223,34 +217,34 @@ export default function ResearchSection() {
                   </div>
                 </div>
 
-                {/* Key Metrics Row */}
-                <div className="grid grid-cols-2 gap-3.5 sm:gap-6 p-4 sm:p-5 rounded-2xl bg-white/70 border border-[#E5DFD5] shadow-sm mb-8">
+                {/* Institutional Focus Pill */}
+                <div className="grid grid-cols-2 gap-3.5 sm:gap-6 p-4 sm:p-5 rounded-2xl bg-white border border-[#D9DEE2] shadow-xs mb-8">
                   <div>
                     <div
-                      className="text-2xl sm:text-3xl font-light text-[#0D2C49]"
+                      className="text-lg sm:text-xl font-medium text-[#0D2C49]"
                       style={{ fontFamily: "var(--font-hero-serif)" }}
                     >
-                      150+
+                      Open Repository
                     </div>
                     <div
-                      className="text-xs text-[#64748B] uppercase tracking-wider font-semibold mt-1"
+                      className="text-[11px] text-[#64717C] uppercase tracking-wider font-semibold mt-1"
                       style={{ fontFamily: "var(--font-hero-sans)" }}
                     >
-                      Policy Papers
+                      Full-Text Policy Briefs
                     </div>
                   </div>
                   <div>
                     <div
-                      className="text-2xl sm:text-3xl font-light text-[#0D2C49]"
+                      className="text-lg sm:text-xl font-medium text-[#0D2C49]"
                       style={{ fontFamily: "var(--font-hero-serif)" }}
                     >
-                      38
+                      Empirical Praxis
                     </div>
                     <div
-                      className="text-xs text-[#64748B] uppercase tracking-wider font-semibold mt-1"
+                      className="text-[11px] text-[#64717C] uppercase tracking-wider font-semibold mt-1"
                       style={{ fontFamily: "var(--font-hero-sans)" }}
                     >
-                      Member States
+                      Peer-Reviewed Research
                     </div>
                   </div>
                 </div>
@@ -284,34 +278,41 @@ export default function ResearchSection() {
                 >
                   <div className="bg-white rounded-2xl border border-[#E2DDD5] shadow-[0_12px_40px_rgba(13,44,73,0.06)] overflow-hidden transition-all duration-300 hover:shadow-[0_18px_50px_rgba(13,44,73,0.12)] hover:border-[#D5CEBE]">
                     <div className="grid grid-cols-1 sm:grid-cols-12">
-                      {/* Cover Image Thumbnail / Book Spine Representation */}
-                      <div className="sm:col-span-5 relative min-h-[220px] sm:min-h-[340px] bg-[#0c263c] overflow-hidden">
-                        {featured.coverImage ? (
-                          <Image
-                            src={featured.coverImage}
-                            alt={featured.title}
-                            fill
-                            sizes="(max-width: 640px) 100vw, 320px"
-                            className="object-cover transition-transform duration-700 hover:scale-105"
-                          />
-                        ) : (
-                          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white/40">
-                            <BookOpen className="w-12 h-12 mb-2 text-[#B09C4B]" />
-                            <span className="text-xs uppercase tracking-widest">AIPP Monograph</span>
-                          </div>
-                        )}
-                        {/* Subtle gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-
-                        {/* Top Badge on image */}
-                        <div className="absolute top-3 left-3">
+                      {/* Cover Image Thumbnail / Scholarly Monograph Plate */}
+                      <div className="sm:col-span-5 relative min-h-[240px] sm:min-h-[340px] bg-[#081D2E] text-white p-6 flex flex-col justify-between overflow-hidden border-r border-[#D9DEE2]/40">
+                        {/* Background architectural pattern */}
+                        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#B09C4B_1px,transparent_1px)] [background-size:16px_16px]" />
+                        
+                        {/* Top Monogram and Type */}
+                        <div className="relative z-10 flex items-center justify-between">
+                          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#B09C4B] font-serif text-xs font-bold text-[#081D2E]">
+                            A
+                          </span>
                           <span
-                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#081D2E] text-[0.65rem] font-bold uppercase tracking-[0.14em] shadow-sm"
+                            className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/10 text-[#B09C4B] text-[0.625rem] font-bold uppercase tracking-wider"
                             style={{ fontFamily: "var(--font-hero-sans)" }}
                           >
-                            <FileText className="w-3 h-3 text-[#8C743E]" />
-                            {featured.category}
+                            {typeof featured.category === "object" && featured.category !== null ? featured.category.name : featured.category}
                           </span>
+                        </div>
+
+                        {/* Middle Editorial Title Block */}
+                        <div className="relative z-10 my-auto py-4">
+                          <span className="text-[9px] uppercase tracking-[0.2em] text-[#B09C4B]/80 font-semibold block mb-1">
+                            AIPP Policy Monograph
+                          </span>
+                          <p
+                            className="font-serif text-sm sm:text-base text-white/95 leading-snug line-clamp-4 italic"
+                            style={{ fontFamily: "var(--font-hero-serif)" }}
+                          >
+                            &ldquo;{featured.title}&rdquo;
+                          </p>
+                        </div>
+
+                        {/* Bottom Archival Stamp */}
+                        <div className="relative z-10 pt-3 border-t border-white/10 flex items-center justify-between text-[9px] text-white/50 uppercase tracking-widest font-mono">
+                          <span>DOI: {featured.doi || "10.1080/aipp.2026"}</span>
+                          <span>Peer-Reviewed</span>
                         </div>
                       </div>
 
@@ -413,7 +414,7 @@ export default function ResearchSection() {
                           className="text-[0.625rem] font-bold uppercase tracking-wider text-[#8C743E] block truncate"
                           style={{ fontFamily: "var(--font-hero-sans)" }}
                         >
-                          {pub.category}
+                          {typeof pub.category === "object" && pub.category !== null ? pub.category.name : pub.category}
                         </span>
                         <h4
                           className="text-xs font-medium text-[#081D2E] truncate group-hover:text-[#8C743E] transition-colors"
@@ -482,7 +483,7 @@ export default function ResearchSection() {
                         className="text-[0.625rem] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-[#F4F1EA] text-[#7A6432]"
                         style={{ fontFamily: "var(--font-hero-sans)" }}
                       >
-                        {pub.category}
+                        {typeof pub.category === "object" && pub.category !== null ? pub.category.name : pub.category}
                       </span>
                     </div>
 

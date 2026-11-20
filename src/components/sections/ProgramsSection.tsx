@@ -19,7 +19,7 @@ export default function ProgramsSection() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -29,13 +29,17 @@ export default function ProgramsSection() {
   const total = programs.length;
   const active = programs[activeIdx];
 
-  /* ── Detect prefers-reduced-motion ── */
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mq.matches);
+    const frame = requestAnimationFrame(() => {
+      setPrefersReducedMotion(mq.matches);
+    });
     const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    return () => {
+      cancelAnimationFrame(frame);
+      mq.removeEventListener("change", handler);
+    };
   }, []);
 
   /* ── IntersectionObserver for entrance animation ── */
@@ -87,25 +91,25 @@ export default function ProgramsSection() {
     <section
       id="programs"
       ref={sectionRef}
-      className="relative w-full bg-[#F4F2EE] scroll-mt-24 overflow-hidden"
+      className="relative w-full bg-[#F7F7F7] scroll-mt-24 overflow-hidden border-t border-[#D9DEE2]"
       aria-label="Programs & Initiatives"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* ═══ Architectural top divider — visual bridge from Research section ═══ */}
+      {/* ═══ Architectural top divider ═══ */}
       <div className="absolute inset-x-0 top-0 z-30 pointer-events-none">
         <div className="w-full h-px bg-gradient-to-r from-transparent via-[#B09C4B]/60 to-transparent" />
       </div>
 
-      {/* ═══ Section badge — floats above the split ═══ */}
-      <div className="relative z-20 pt-5 pb-0 px-6 sm:px-10 lg:px-14">
+      {/* ═══ Section badge ═══ */}
+      <div className="relative z-20 pt-16 sm:pt-20 pb-4 px-6 sm:px-10 lg:px-14">
         <div className="flex items-center gap-2.5">
           <span className="h-[1.5px] w-8 bg-[#B09C4B] flex-shrink-0" />
           <span
             className="text-[0.625rem] font-bold uppercase tracking-[0.22em] text-[#B09C4B]"
             style={{ fontFamily: "var(--font-hero-sans)" }}
           >
-            05 / Programs & Initiatives
+            04 / Programs &amp; Initiatives
           </span>
         </div>
       </div>

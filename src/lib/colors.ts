@@ -1,99 +1,110 @@
 /**
- * Centralized Color System for Athena Institute for Political Praxis (AIPP)
+ * Centralized Brand Color System for Athena Institute for Political Praxis (AIPP)
  * 
  * Palette:
- * - Primary: Dark Navy Blue (#0A192F)
- * - Accent: Golden Grey (#958772)
- * - Background: Pure White (#FFFFFF) & Golden Grey Wash (#F7F6F2)
- * - Dark Surface: Midnight Navy (#06101E)
- * - Text: Deep Navy Charcoal (#0D1B2A) & Muted Slate Grey (#5C6470)
+ * - Deep Navy: #0D2C49
+ * - Dark Navy: #081D2E
+ * - Slate Navy: #243748
+ * - Muted Gold: #B09C4B
+ * - Off-White: #F7F7F7
+ * - Pure White: #FFFFFF
+ * - Muted Text: #64717C
+ * - Border: #D9DEE2
  */
 
 export const COLORS = {
-  // Brand Primary - Dark Navy Blue
-  primary: {
-    DEFAULT: "#0A192F",
-    hover: "#172E54",
+  // Brand Primaries
+  navy: {
+    DEFAULT: "#0D2C49", // Deep Navy
+    dark: "#081D2E",   // Dark Navy
+    slate: "#243748",  // Slate Navy
+    hover: "#081D2E",
     soft: "#EBF1F8",
-    muted: "#1E355B",
+    contrastText: "#FFFFFF",
+  },
+  primary: {
+    DEFAULT: "#0D2C49",
+    hover: "#081D2E",
+    soft: "#EBF1F8",
+    muted: "#243748",
     contrastText: "#FFFFFF",
   },
 
-  // Brand Accent - Golden Grey
+  // Brand Accent - Muted Gold
+  gold: {
+    DEFAULT: "#B09C4B",
+    highlight: "#D4C278",
+    muted: "#8C7B38",
+    soft: "#F8F5E9",
+    contrastText: "#081D2E",
+  },
   accent: {
-    DEFAULT: "#958772",
-    highlight: "#D1C4AC", // Champagne highlight for dark surfaces
-    muted: "#7B6F5D",
-    soft: "#F3EFE9",
-    contrastText: "#FFFFFF",
+    DEFAULT: "#B09C4B",
+    highlight: "#D4C278",
+    muted: "#8C7B38",
+    soft: "#F8F5E9",
+    contrastText: "#081D2E",
   },
 
-  // Backgrounds & Canvas
+  // Backgrounds & Surfaces
   background: {
-    DEFAULT: "#FFFFFF", // Pure White canvas
-    muted: "#F7F6F2", // Golden Grey subtle wash for alternating sections
-    card: "#FFFFFF", // White card surface
-    overlay: "rgba(10, 25, 47, 0.60)", // Modal overlay backdrop
+    DEFAULT: "#FFFFFF",
+    muted: "#F7F7F7",
+    dark: "#081D2E",
+    card: "#FFFFFF",
+    overlay: "rgba(8, 29, 46, 0.70)",
   },
-
-  // Surfaces
   surface: {
     DEFAULT: "#FFFFFF",
-    muted: "#F7F6F2",
-    dark: "#06101E", // Midnight Navy (Footers, Dark Banners)
+    muted: "#F7F7F7",
+    dark: "#081D2E",
+    slate: "#243748",
   },
 
-  // Typography & Content
+  // Typography
   foreground: {
-    DEFAULT: "#0D1B2A", // Deep Navy Charcoal for headings & body
-    muted: "#5C6470", // Slate Grey for subtexts & metadata
-    light: "#8F96A3", // Captions & subtle dates
-    inverted: "#FFFFFF", // Light text on dark navy surfaces
-    invertedMuted: "rgba(255, 255, 255, 0.70)",
+    DEFAULT: "#081D2E",
+    muted: "#64717C",
+    light: "#9AA5AF",
+    inverted: "#FFFFFF",
+    invertedMuted: "rgba(255, 255, 255, 0.75)",
   },
 
   // Borders & Dividers
   border: {
-    DEFAULT: "rgba(10, 25, 47, 0.10)", // Soft navy hairline border
-    hover: "rgba(10, 25, 47, 0.25)",
-    dark: "rgba(255, 255, 255, 0.14)", // Translucent border for dark surfaces
+    DEFAULT: "#D9DEE2",
+    hover: "rgba(13, 44, 73, 0.25)",
+    dark: "rgba(255, 255, 255, 0.14)",
   },
 } as const;
 
 export type ColorPalette = typeof COLORS;
 
-/**
- * Standard Tailwind Utility Class Mappings
- * Use these helper constants when composing UI components for 100% consistency.
- */
 export const COLOR_CLASSES = {
   bg: {
-    white: "bg-background",
-    muted: "bg-background-muted",
-    primary: "bg-primary",
-    primaryHover: "hover:bg-primary-hover",
-    primarySoft: "bg-primary-soft",
-    accent: "bg-accent",
-    dark: "bg-surface-dark",
+    white: "bg-white",
+    muted: "bg-[#F7F7F7]",
+    primary: "bg-[#0D2C49]",
+    dark: "bg-[#081D2E]",
+    slate: "bg-[#243748]",
+    gold: "bg-[#B09C4B]",
   },
   text: {
-    foreground: "text-foreground",
-    muted: "text-foreground-muted",
-    primary: "text-primary",
-    accent: "text-accent",
-    inverted: "text-background",
-    invertedMuted: "text-background/70",
+    foreground: "text-[#081D2E]",
+    muted: "text-[#64717C]",
+    primary: "text-[#0D2C49]",
+    gold: "text-[#B09C4B]",
+    inverted: "text-white",
+    invertedMuted: "text-white/75",
   },
   border: {
-    default: "border-border",
-    dark: "border-border-dark",
-    primary: "border-primary",
+    default: "border-[#D9DEE2]",
+    dark: "border-white/10",
+    primary: "border-[#0D2C49]",
+    gold: "border-[#B09C4B]",
   },
 } as const;
 
-/**
- * Helper to get CSS variable string for inline styles or canvas/chart rendering
- */
 export function getCssVar(variableName: string): string {
   if (typeof window === "undefined") return "";
   return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();

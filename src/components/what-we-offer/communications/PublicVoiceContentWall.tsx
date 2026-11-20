@@ -11,12 +11,12 @@ export default function PublicVoiceContentWall() {
   const companions = INSIGHTS_DATA.slice(1, 3);
 
   return (
-    <section id="perspectives-wall" className="py-20 lg:py-28 bg-[#FAF9F6] border-b border-[var(--color-border)]" aria-label="Perspectives and Commentary Wall">
+    <section id="perspectives-wall" className="py-12 sm:py-16 lg:py-20 bg-[#FAF9F6] border-b border-[var(--color-border)]" aria-label="Perspectives and Commentary Wall">
       <Container>
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
           <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-3">
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-2">
               PUBLIC COMMENTARY & PERSPECTIVES
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[var(--hero-navy)] font-normal leading-tight">

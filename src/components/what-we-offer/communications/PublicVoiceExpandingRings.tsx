@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Container from "@/components/ui/Container";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Radio, Sparkles, MessageSquare, Volume2, Globe, Megaphone } from "lucide-react";
 
 interface VoiceTier {
@@ -85,22 +86,22 @@ export default function PublicVoiceExpandingRings() {
   return (
     <section
       id="public-voice"
-      className="py-20 lg:py-28 bg-white border-b border-[var(--color-border)] relative overflow-hidden"
+      className="py-12 sm:py-16 lg:py-20 bg-white border-b border-[var(--color-border)] relative overflow-hidden"
       aria-label="Public Voice Expanding Rings"
     >
       <Container>
         {/* Header */}
-        <div className="max-w-2xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-3">
+        <ScrollReveal variant="fade-up" className="max-w-2xl mb-10">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-2">
             THE ANATOMY OF INFLUENCE
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[var(--hero-navy)] font-normal leading-tight">
             The Public Voice: Expanding Concentric Rings.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[var(--hero-muted)] font-sans font-light">
+          <p className="mt-3 text-base sm:text-lg text-[var(--hero-muted)] font-sans font-light">
             Public influence does not happen in a vacuum. It radiates outwards from a single articulate proposition, propagating across stories, bilateral dialogue, global media, and statutory reform.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Interactive Radial Stage (Left 7 cols) + Live Tier Explanation Card (Right 5 cols) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

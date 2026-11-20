@@ -254,7 +254,7 @@ export function useIdeasScroll(sectionRef: React.RefObject<HTMLElement | null>) 
       frameRef.current = requestAnimationFrame(calculate);
     };
 
-    calculate();
+    frameRef.current = requestAnimationFrame(calculate);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
 

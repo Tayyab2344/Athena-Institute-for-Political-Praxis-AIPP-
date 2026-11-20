@@ -42,7 +42,7 @@ export default function PublicationModal({ publication, onClose }: PublicationMo
         <div className="flex items-start justify-between border-b border-border bg-background-muted p-4 sm:p-6 md:p-8">
           <div className="space-y-1.5 sm:space-y-2 pr-4 sm:pr-6">
             <span className="type-label inline-block rounded-full bg-primary px-3 py-1 text-background text-[0.625rem] sm:text-[0.6875rem]">
-              {publication.category}
+              {typeof publication.category === "object" && publication.category !== null ? publication.category.name : publication.category}
             </span>
             <h3 id="publication-modal-title" className="text-xl sm:text-2xl md:text-3xl font-serif text-foreground leading-snug">
               {publication.title}

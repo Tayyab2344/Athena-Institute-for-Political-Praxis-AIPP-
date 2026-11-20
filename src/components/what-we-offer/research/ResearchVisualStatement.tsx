@@ -9,10 +9,10 @@ export default function ResearchVisualStatement() {
       <div className="absolute inset-0 pointer-events-none overflow-hidden select-none opacity-40">
         {/* Subtle coordinate lines */}
         <div className="absolute top-12 left-10 text-[0.625rem] font-mono text-[var(--hero-gold)] tracking-widest">
-          COORD: 46.2044° N / 6.1432° E [PALAU DES NATIONS ARCHIVE]
+          SYSTEM: EMPIRICAL POLICY VAULT
         </div>
         <div className="absolute bottom-12 right-12 text-[0.625rem] font-mono text-slate-400 tracking-widest">
-          § 14.2 // EMPIRICAL DERIVATION REGRESSION N=142
+          STATISTICAL ANALYSIS & REGRESSION MATRIX
         </div>
 
         {/* Delicate golden geometric vectors */}

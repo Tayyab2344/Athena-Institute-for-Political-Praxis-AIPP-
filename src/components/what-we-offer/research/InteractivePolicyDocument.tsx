@@ -101,19 +101,19 @@ export default function InteractivePolicyDocument() {
   return (
     <section
       id="interactive-document"
-      className="py-20 lg:py-28 bg-[#F5F4F0] border-b border-[var(--color-border)] relative"
+      className="py-12 sm:py-16 lg:py-20 bg-[#F5F4F0] border-b border-[var(--color-border)] relative"
       aria-label="Interactive Research Document"
     >
       <Container>
         {/* Header */}
-        <div className="max-w-2xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-3">
+        <div className="max-w-2xl mb-10">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-2">
             INTERACTIVE DOCUMENT
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[var(--hero-navy)] font-normal leading-tight">
             Watching Research Become Insight.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[var(--hero-muted)] font-sans font-light">
+          <p className="mt-3 text-base sm:text-lg text-[var(--hero-muted)] font-sans font-light">
             Examine how an AIPP policy brief is constructed from raw evidentiary inquiry to statutory doctrine. Select any section to inspect the analytical transformation.
           </p>
         </div>
@@ -121,9 +121,9 @@ export default function InteractivePolicyDocument() {
         {/* Document Frame */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Section Table of Contents (Left 4 cols) */}
-          <div className="lg:col-span-4 bg-white border border-[var(--color-border)] p-5 rounded-sm shadow-sm space-y-2 sticky top-36">
+          <div className="lg:col-span-4 bg-white border border-[var(--color-border)] p-5 rounded-sm shadow-sm space-y-2 sticky top-28">
             <div className="pb-3 mb-2 border-b border-slate-100 flex items-center justify-between">
-              <span className="font-mono text-[0.625rem] font-bold uppercase tracking-wider text-[var(--hero-navy)]">
+              <span className="font-mono text-[0.6875rem] font-bold uppercase tracking-wider text-[var(--hero-navy)]">
                 DOCUMENT ANATOMY
               </span>
               <FileText className="h-4 w-4 text-[var(--hero-gold)]" />
@@ -186,7 +186,7 @@ export default function InteractivePolicyDocument() {
           </div>
 
           {/* Central Physical Policy Brief Document (Right 8 cols) */}
-          <div className="lg:col-span-8 paper-layer p-8 sm:p-14 bg-white border border-slate-300 rounded-sm relative shadow-2xl">
+          <div className="lg:col-span-8 paper-layer p-8 sm:p-12 bg-white border border-slate-300 rounded-sm relative shadow-md">
             {/* Watermark institutional seal */}
             <div className="absolute right-8 top-12 opacity-5 select-none pointer-events-none">
               <svg width="220" height="220" viewBox="0 0 100 100">
@@ -208,7 +208,7 @@ export default function InteractivePolicyDocument() {
                   Multilateral Ceasefire Longevity & Female Chief Negotiators
                 </h3>
                 <span className="font-mono text-xs text-slate-500 block mt-2">
-                  AUTHORS: Dr. Amara Sterling, Amb. Miriam Chen · PUBLISHED: AUGUST 2026
+                  ATHENA INSTITUTE FOR POLITICAL PRAXIS · POLICY BRIEF SERIES · AUGUST 2026
                 </span>
               </div>
               <div className="shrink-0 text-right">
@@ -219,7 +219,7 @@ export default function InteractivePolicyDocument() {
             </div>
 
             {/* Document Body with Dynamic Highlight */}
-            <div className="space-y-6 text-sm sm:text-base leading-relaxed text-slate-800 font-sans font-light">
+            <div className="space-y-6 text-base leading-relaxed text-slate-800 font-sans font-light">
               <div className="flex items-center gap-2 text-xs font-mono text-[var(--hero-gold)] font-semibold uppercase tracking-wider mb-2">
                 <CheckCircle2 className="h-4 w-4" />
                 <span>{current.tag}</span>
@@ -240,7 +240,7 @@ export default function InteractivePolicyDocument() {
                 EXECUTIVE ANALYST MARGINAL NOTE:
               </span>
               <p className="font-serif italic text-sm text-[var(--hero-navy)]">
-                "{current.marginalAnnotation}"
+                &ldquo;{current.marginalAnnotation}&rdquo;
               </p>
             </div>
 

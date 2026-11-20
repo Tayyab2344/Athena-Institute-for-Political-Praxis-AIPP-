@@ -10,6 +10,7 @@ import InteractiveScenarioSandbox from "@/components/what-we-offer/strategy/Inte
 import StrategyScrollJourney from "@/components/what-we-offer/strategy/StrategyScrollJourney";
 import StrategyCapabilitiesIndex from "@/components/what-we-offer/strategy/StrategyCapabilitiesIndex";
 import StrategyRoomShowcase from "@/components/what-we-offer/strategy/StrategyRoomShowcase";
+import NextPillarBanner from "@/components/what-we-offer/NextPillarBanner";
 import StrategyConvergenceClosing from "@/components/what-we-offer/strategy/StrategyConvergenceClosing";
 import "@/app/what-we-offer/offer.css";
 
@@ -17,7 +18,7 @@ export default function StrategicPillarPage() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-[#081D2E] text-white">
+    <main className="min-h-screen bg-background text-foreground">
       {/* Global Navbar */}
       <Navbar onOpenContact={() => setIsContactOpen(true)} />
 
@@ -39,7 +40,10 @@ export default function StrategicPillarPage() {
       {/* 05: The Strategy Room — Large Editorial Women-Only Imagery with Coordinate Overlays */}
       <StrategyRoomShowcase />
 
-      {/* 06: Closing — Converging Paths into One Route & CTAs */}
+      {/* 06: Inter-Pillar Navigation Strip */}
+      <NextPillarBanner currentPillar="strategy" />
+
+      {/* 07: Closing — Converging Paths into One Route & CTAs */}
       <StrategyConvergenceClosing onOpenContact={() => setIsContactOpen(true)} />
 
       {/* Global Footer & Contact Modal */}

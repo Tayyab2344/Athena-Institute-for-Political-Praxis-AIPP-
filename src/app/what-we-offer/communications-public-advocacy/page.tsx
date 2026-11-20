@@ -11,6 +11,7 @@ import CommunicationJourney from "@/components/what-we-offer/communications/Comm
 import PublicSpeakingStage from "@/components/what-we-offer/communications/PublicSpeakingStage";
 import CommunicationsCapabilitiesRows from "@/components/what-we-offer/communications/CommunicationsCapabilitiesRows";
 import PublicVoiceContentWall from "@/components/what-we-offer/communications/PublicVoiceContentWall";
+import NextPillarBanner from "@/components/what-we-offer/NextPillarBanner";
 import CommunicationsClosing from "@/components/what-we-offer/communications/CommunicationsClosing";
 import "@/app/what-we-offer/offer.css";
 
@@ -43,7 +44,10 @@ export default function CommunicationsPillarPage() {
       {/* 06: Public Content — Real Commentary & Perspectives Wall */}
       <PublicVoiceContentWall />
 
-      {/* 07: Closing — Full-Width Image Stage with Dark Gradient & CTAs */}
+      {/* 07: Inter-Pillar Navigation Strip */}
+      <NextPillarBanner currentPillar="communications" />
+
+      {/* 08: Closing — Full-Width Image Stage with Dark Gradient & CTAs */}
       <CommunicationsClosing onOpenContact={() => setIsContactOpen(true)} />
 
       {/* Global Footer & Contact Modal */}

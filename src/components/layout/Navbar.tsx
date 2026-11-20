@@ -1,38 +1,40 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import Button from "@/components/ui/Button";
+import { ArrowUpRight, Menu, X, ChevronDown } from "lucide-react";
 import Container from "@/components/ui/Container";
-import OfferMegaMenu from "@/components/what-we-offer/OfferMegaMenu";
-import OfferMobileAccordion from "@/components/what-we-offer/OfferMobileAccordion";
 
 /* ─────────────────────────────────────────────────────────────
-   Navigation links — "What We Offer" is handled separately
-   for mega-menu / accordion treatment.
+   AIPP Institutional Navigation
+   - Exact Desktop Order:
+     AIPP Logo | About | What We Offer | Research | Programs | Get Involved | Inquire ↗
+   - Single prominent Inquire CTA linking to /contact
+   - Fully accessible mobile drawer with keyboard navigation
    ───────────────────────────────────────────────────────────── */
-const PLAIN_LINKS = [
+const NAV_ITEMS = [
   { name: "About", href: "/about" },
+  { name: "What We Offer", href: "/what-we-offer" },
   { name: "Research", href: "/research" },
-  { name: "Programs", href: "/#programs" },
-  { name: "Insights", href: "/#insights" },
-  { name: "Get Involved", href: "/#get-involved" },
+  { name: "Programs", href: "/programs" },
+  { name: "Get Involved", href: "/get-involved" },
 ];
 
 interface NavbarProps {
-  onOpenContact: () => void;
+  onOpenContact?: () => void;
 }
 
 export default function Navbar({ onOpenContact }: NavbarProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -55,110 +57,116 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
     };
   }, [mobileMenuOpen]);
 
-  /* Close mega menu & mobile menu on route change */
+  /* Close mobile menu on route change */
   useEffect(() => {
-    setMegaMenuOpen(false);
-    setMobileMenuOpen(false);
+    const frame = requestAnimationFrame(() => {
+      setMobileMenuOpen(false);
+    });
+    return () => cancelAnimationFrame(frame);
   }, [pathname]);
 
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
-  const closeMegaMenu = useCallback(() => setMegaMenuOpen(false), []);
-
-  const isOfferActive = pathname.startsWith("/what-we-offer");
 
   return (
     <header
-      className={`nav-enter fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,padding,box-shadow] duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-border bg-background/95 py-3.5 sm:py-4 shadow-sm backdrop-blur-md"
-          : "border-transparent bg-transparent py-4 sm:py-6"
+          ? "border-b border-[#D9DEE2]/80 bg-white/95 py-3 shadow-xs backdrop-blur-md"
+          : "border-b border-transparent bg-white/80 py-4 sm:py-5 backdrop-blur-xs"
       }`}
     >
       <Container wide className="flex items-center justify-between">
-        {/* ═══ Logo ═══ */}
+        {/* ═══ Official AIPP Logo ═══ */}
         <Link
           href="/"
           onClick={closeMobileMenu}
-          className="group flex items-center gap-2.5 sm:gap-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="group flex items-center gap-3 text-[#081D2E] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#B09C4B] rounded-sm"
+          aria-label="AIPP - Athena Institute for Political Praxis Home"
         >
-          <span className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-primary font-serif text-xs sm:text-sm font-bold text-background transition-transform duration-300 group-hover:scale-105">
-            A
-          </span>
+          <div className="relative h-9 w-9 sm:h-10 sm:w-10 shrink-0 overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105 shadow-2xs">
+            <Image
+              src="/logo.png"
+              alt="AIPP Official Logo"
+              fill
+              sizes="40px"
+              priority
+              className="object-contain"
+            />
+          </div>
           <span className="flex flex-col">
-            <span className="font-serif text-lg sm:text-xl font-bold text-primary leading-tight">
+            <span
+              className="text-xl font-bold tracking-tight text-[#0D2C49] leading-none"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
               AIPP
             </span>
-            <span className="type-caption -mt-0.5 text-[0.625rem] sm:text-[0.6875rem]">
-              Political Praxis
+            <span
+              className="text-[0.6875rem] font-medium tracking-wider text-[#64717C] pt-0.5"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Athena Institute for Political Praxis
             </span>
           </span>
         </Link>
 
-        {/* ═══ Desktop Navigation ═══ */}
-        <nav
-          className="hidden items-center gap-7 lg:flex"
-          aria-label="Primary navigation"
-        >
-          {/* Plain links */}
-          {PLAIN_LINKS.slice(0, 1).map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="group relative py-1 type-label text-foreground/75 transition-colors hover:text-primary"
-            >
-              {link.name}
-              <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-            </Link>
-          ))}
-
-          {/* What We Offer — mega-menu trigger */}
-          <div
-            className="relative"
-            onMouseEnter={() => setMegaMenuOpen(true)}
+        {/* ═══ Desktop Navigation & Single Inquire CTA ═══ */}
+        {/* Exact Desktop Order: AIPP Logo | About | What We Offer | Research | Programs | Get Involved | Inquire ↗ */}
+        <div className="hidden lg:flex items-center gap-7 xl:gap-8">
+          <nav
+            className="flex items-center gap-7 xl:gap-8"
+            aria-label="Main Navigation"
           >
-            <button
-              type="button"
-              className={`group relative py-1 type-label transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                isOfferActive ? "text-primary font-semibold" : "text-foreground/75"
-              }`}
-              onClick={() => setMegaMenuOpen((prev) => !prev)}
-              aria-expanded={megaMenuOpen}
-              aria-haspopup="true"
-            >
-              What We Offer
-              <span
-                className={`absolute inset-x-0 bottom-0 h-px origin-left bg-primary transition-transform duration-300 ${
-                  isOfferActive || megaMenuOpen ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                }`}
-              />
-            </button>
-          </div>
+            {NAV_ITEMS.map((item) => {
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : item.href.startsWith("/#")
+                  ? false
+                  : pathname.startsWith(item.href);
 
-          {/* Remaining plain links */}
-          {PLAIN_LINKS.slice(1).map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="group relative py-1 type-label text-foreground/75 transition-colors hover:text-primary"
-            >
-              {link.name}
-              <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-            </Link>
-          ))}
-        </nav>
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`group relative py-1 text-[0.9375rem] font-medium transition-colors duration-200 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#B09C4B] rounded-xs ${
+                    isActive
+                      ? "text-[#0D2C49] font-semibold"
+                      : "text-[#243748] hover:text-[#0D2C49]"
+                  }`}
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  <span>{item.name}</span>
+                  <span
+                    className={`absolute inset-x-0 -bottom-1 h-0.5 bg-[#B09C4B] rounded-full transition-transform duration-250 origin-left ease-out ${
+                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
+          </nav>
 
-        {/* ═══ Desktop Contact Button ═══ */}
-        <div className="hidden lg:flex">
-          <Button variant="outline" size="sm" onClick={onOpenContact}>
-            Contact us <ArrowUpRight className="h-3.5 w-3.5" />
-          </Button>
+          {/* Single prominent Inquire CTA button linking directly to Contact Us (/contact) */}
+          <Link
+            href="/contact"
+            className={`group inline-flex items-center gap-2 rounded-full px-5 py-2 text-[0.9375rem] font-semibold transition-all duration-200 active:scale-[0.98] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#B09C4B] shadow-xs hover:shadow-sm ${
+              pathname === "/contact"
+                ? "bg-[#081D2E] text-white ring-2 ring-[#B09C4B]/60"
+                : "bg-[#0D2C49] text-white hover:bg-[#081D2E]"
+            }`}
+            style={{ fontFamily: "var(--font-sans)" }}
+            aria-label="Inquire with AIPP - Contact Page"
+          >
+            <span>Inquire</span>
+            <ArrowUpRight className="h-4 w-4 text-white transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
         </div>
 
-        {/* ═══ Mobile Menu Toggle ═══ */}
+        {/* ═══ Mobile Hamburger Toggle (44px min tap target) ═══ */}
         <button
           type="button"
           onClick={() => setMobileMenuOpen((open) => !open)}
-          className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full p-2 text-primary transition-colors hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
+          className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full p-2 text-[#0D2C49] hover:bg-[#F7F7F7] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#B09C4B] lg:hidden"
           aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={mobileMenuOpen}
         >
@@ -166,58 +174,52 @@ export default function Navbar({ onOpenContact }: NavbarProps) {
         </button>
       </Container>
 
-      {/* ═══ Desktop Mega Menu ═══ */}
-      <OfferMegaMenu isOpen={megaMenuOpen} onClose={closeMegaMenu} />
-
-      {/* ═══ Mobile Menu ═══ */}
-      {mobileMenuOpen ? (
-        <div className="absolute inset-x-0 top-full max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-border bg-background px-4 sm:px-6 py-6 sm:py-8 shadow-[var(--shadow-soft)] lg:hidden touch-scroll">
+      {/* ═══ Accessible Mobile Navigation Drawer ═══ */}
+      {mobileMenuOpen && (
+        <div className="absolute inset-x-0 top-full max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[#D9DEE2] bg-white px-6 py-8 shadow-lg lg:hidden">
           <nav
-            className="aipp-container flex flex-col gap-3 sm:gap-4"
-            aria-label="Mobile navigation"
+            className="flex flex-col gap-1"
+            aria-label="Mobile Navigation Menu"
           >
-            {/* About */}
-            <Link
-              href="/about"
-              onClick={closeMobileMenu}
-              className="flex min-h-[44px] items-center justify-between border-b border-border py-3 font-serif text-xl sm:text-2xl text-foreground transition-colors hover:text-primary"
-            >
-              <span>About</span>
-              <ArrowUpRight className="h-5 w-5 text-primary/60" />
-            </Link>
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  className={`flex min-h-[48px] items-center justify-between border-b border-[#F7F7F7] py-3 text-lg font-medium transition-all ${
+                    isActive
+                      ? "text-[#0D2C49] font-semibold pl-1"
+                      : "text-[#081D2E] hover:text-[#0D2C49] hover:pl-1"
+                  }`}
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  <span>{item.name}</span>
+                  <ArrowUpRight className="h-4 w-4 text-[#B09C4B]" />
+                </Link>
+              );
+            })}
 
-            {/* What We Offer — Accordion */}
-            <div className="border-b border-border pb-1">
-              <OfferMobileAccordion onNavigate={closeMobileMenu} />
-            </div>
-
-            {/* Remaining links */}
-            {PLAIN_LINKS.slice(1).map((link) => (
+            {/* Single prominent Inquire CTA button navigating to /contact */}
+            <div className="pt-6">
               <Link
-                key={link.name}
-                href={link.href}
+                href="/contact"
                 onClick={closeMobileMenu}
-                className="flex min-h-[44px] items-center justify-between border-b border-border py-3 font-serif text-xl sm:text-2xl text-foreground transition-colors hover:text-primary"
+                className={`flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full py-3 text-base font-semibold shadow-xs transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#B09C4B] ${
+                  pathname === "/contact"
+                    ? "bg-[#081D2E] text-white ring-2 ring-[#B09C4B]/60"
+                    : "bg-[#0D2C49] text-white hover:bg-[#081D2E]"
+                }`}
+                style={{ fontFamily: "var(--font-sans)" }}
               >
-                <span>{link.name}</span>
-                <ArrowUpRight className="h-5 w-5 text-primary/60" />
+                <span>Inquire</span>
+                <ArrowUpRight className="h-4 w-4" />
               </Link>
-            ))}
-
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => {
-                closeMobileMenu();
-                onOpenContact();
-              }}
-              className="mt-3 w-full min-h-[48px]"
-            >
-              Contact us <ArrowUpRight className="h-4 w-4" />
-            </Button>
+            </div>
           </nav>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

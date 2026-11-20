@@ -103,19 +103,19 @@ export default function InteractiveScenarioSandbox() {
   return (
     <section
       id="interactive-scenario"
-      className="py-20 lg:py-28 bg-[#0D2C49] text-white border-b border-slate-800 relative"
+      className="py-12 sm:py-16 lg:py-20 bg-white text-slate-900 border-b border-[var(--color-border)] relative"
       aria-label="Interactive Strategy Scenario"
     >
       <Container>
         {/* Header */}
-        <div className="max-w-2xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-3">
+        <div className="max-w-2xl mb-10">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-2">
             SIMULATION SANDBOX
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-white font-normal leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl text-[var(--hero-navy)] font-normal leading-tight">
             The Interactive Scenario: Decision & Consequence.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-300 font-sans font-light">
+          <p className="mt-3 text-base sm:text-lg text-slate-600 font-sans font-light">
             A conceptual demonstration of how AIPP simulations immerse diplomatic leaders in high-stakes trade-offs before physical commitments are made.
           </p>
         </div>
@@ -129,10 +129,10 @@ export default function InteractiveScenarioSandbox() {
                 setActiveTrackIndex(idx);
                 setSelectedBranchId("a");
               }}
-              className={`px-4 py-2.5 font-mono text-xs uppercase tracking-wider rounded-sm transition-all ${
+              className={`px-5 py-2.5 font-mono text-xs uppercase tracking-wider rounded-full transition-all ${
                 activeTrackIndex === idx
-                  ? "bg-[var(--hero-gold)] text-[var(--hero-navy)] font-bold shadow-md"
-                  : "bg-slate-800/80 text-slate-300 hover:bg-slate-700"
+                  ? "bg-[var(--hero-navy)] text-white font-bold shadow-xs"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
               }`}
             >
               {t.title}
@@ -141,13 +141,13 @@ export default function InteractiveScenarioSandbox() {
         </div>
 
         {/* Central Dilemma Box */}
-        <div className="p-6 bg-[#081D2E] border border-slate-700 rounded-sm mb-8">
-          <div className="flex items-center gap-2 text-xs font-mono text-[var(--hero-gold)] uppercase tracking-wider mb-2">
+        <div className="p-6 sm:p-8 bg-[#FAF9F5] border border-slate-200/90 border-l-4 border-l-[var(--hero-gold)] rounded-r-sm mb-8 shadow-xs">
+          <div className="flex items-center gap-2 text-xs font-mono text-[var(--hero-gold)] font-bold uppercase tracking-wider mb-2">
             <GitFork className="h-4 w-4" />
             <span>CENTRAL STRATEGIC DILEMMA:</span>
           </div>
-          <p className="font-serif text-xl sm:text-2xl text-white leading-relaxed">
-            "{currentTrack.dilemma}"
+          <p className="font-serif text-xl sm:text-2xl text-[var(--hero-navy)] leading-relaxed">
+            &ldquo;{currentTrack.dilemma}&rdquo;
           </p>
         </div>
 
@@ -159,27 +159,27 @@ export default function InteractiveScenarioSandbox() {
               <button
                 key={b.id}
                 onClick={() => setSelectedBranchId(b.id)}
-                className={`p-5 text-left border rounded-sm transition-all duration-300 relative ${
+                className={`p-5 text-left border rounded-lg transition-all duration-300 relative ${
                   isSelected
-                    ? "bg-[#11385D] border-[var(--hero-gold)] shadow-xl"
-                    : "bg-[#0A2238] border-slate-800 hover:border-slate-600 text-slate-300"
+                    ? "bg-white border-2 border-[var(--hero-navy)] shadow-md text-[var(--hero-navy)]"
+                    : "bg-[#FCFBF8] border-slate-200 hover:border-slate-400 hover:bg-white text-slate-700"
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <span
                     className={`font-mono text-xs font-bold uppercase tracking-wider ${
-                      isSelected ? "text-[var(--hero-gold)]" : "text-slate-400"
+                      isSelected ? "text-[var(--hero-gold)]" : "text-slate-500"
                     }`}
                   >
                     {b.name}
                   </span>
                   <span
                     className={`w-2 h-2 rounded-full ${
-                      isSelected ? "bg-[var(--hero-gold)]" : "bg-slate-600"
+                      isSelected ? "bg-[var(--hero-gold)]" : "bg-slate-300"
                     }`}
                   />
                 </div>
-                <h4 className="font-serif text-lg font-medium text-white leading-snug">
+                <h4 className="font-serif text-lg font-medium text-[var(--hero-navy)] leading-snug">
                   {b.title}
                 </h4>
               </button>
@@ -188,62 +188,62 @@ export default function InteractiveScenarioSandbox() {
         </div>
 
         {/* Consequence Matrix Breakdown */}
-        <div className="p-8 sm:p-10 bg-[#081D2E] border border-[var(--hero-gold)]/40 rounded-sm shadow-2xl relative">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-slate-700 gap-4">
+        <div className="p-6 sm:p-10 bg-[#F8F9FA] border border-slate-200 rounded-sm shadow-xs relative">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-slate-200 gap-4">
             <div>
-              <span className="font-mono text-xs text-[var(--hero-gold)] uppercase tracking-widest block">
+              <span className="font-mono text-xs text-[var(--hero-gold)] uppercase tracking-widest block font-semibold">
                 CONSEQUENCE EVALUATION // {activeBranch.name}
               </span>
-              <h3 className="font-serif text-2xl text-white font-normal mt-1">
+              <h3 className="font-serif text-2xl text-[var(--hero-navy)] font-normal mt-1">
                 {activeBranch.title}
               </h3>
             </div>
-            <div className="px-3.5 py-1.5 bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs rounded-sm shrink-0">
+            <div className="px-3.5 py-1.5 bg-emerald-50 border border-emerald-300 text-emerald-800 font-mono text-xs font-semibold rounded-full shrink-0">
               {activeBranch.stabilityIndex}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm font-sans font-light">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm font-sans font-light">
             {/* Consideration */}
-            <div className="p-4 bg-[#0A233C] rounded-sm border border-slate-800">
-              <div className="flex items-center gap-2 text-xs font-mono text-[var(--hero-gold)] uppercase tracking-wider mb-2">
+            <div className="p-5 bg-white rounded-sm border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-2 text-xs font-mono text-[var(--hero-gold)] font-bold uppercase tracking-wider mb-2">
                 <CheckCircle className="h-4 w-4" />
                 <span>Strategic Consideration</span>
               </div>
-              <p className="text-slate-200 leading-relaxed">{activeBranch.consideration}</p>
+              <p className="text-slate-700 leading-relaxed text-sm sm:text-base">{activeBranch.consideration}</p>
             </div>
 
             {/* Possible Consequence */}
-            <div className="p-4 bg-[#0A233C] rounded-sm border border-slate-800">
-              <div className="flex items-center gap-2 text-xs font-mono text-amber-300 uppercase tracking-wider mb-2">
+            <div className="p-5 bg-white rounded-sm border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-2 text-xs font-mono text-amber-800 font-bold uppercase tracking-wider mb-2">
                 <Layers className="h-4 w-4" />
                 <span>Projected Consequence</span>
               </div>
-              <p className="text-slate-200 leading-relaxed">{activeBranch.consequence}</p>
+              <p className="text-slate-700 leading-relaxed text-sm sm:text-base">{activeBranch.consequence}</p>
             </div>
 
             {/* Stakeholder Effect */}
-            <div className="p-4 bg-[#0A233C] rounded-sm border border-slate-800">
-              <div className="flex items-center gap-2 text-xs font-mono text-sky-300 uppercase tracking-wider mb-2">
+            <div className="p-5 bg-white rounded-sm border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-2 text-xs font-mono text-sky-800 font-bold uppercase tracking-wider mb-2">
                 <Users className="h-4 w-4" />
                 <span>Stakeholder & Coalition Impact</span>
               </div>
-              <p className="text-slate-200 leading-relaxed">{activeBranch.stakeholderEffect}</p>
+              <p className="text-slate-700 leading-relaxed text-sm sm:text-base">{activeBranch.stakeholderEffect}</p>
             </div>
 
             {/* Trade-off */}
-            <div className="p-4 bg-[#0A233C] rounded-sm border border-slate-800">
-              <div className="flex items-center gap-2 text-xs font-mono text-rose-300 uppercase tracking-wider mb-2">
+            <div className="p-5 bg-white rounded-sm border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-2 text-xs font-mono text-rose-800 font-bold uppercase tracking-wider mb-2">
                 <Scale className="h-4 w-4" />
                 <span>Critical Trade-Off & Risk</span>
               </div>
-              <p className="text-slate-200 leading-relaxed">{activeBranch.tradeOff}</p>
+              <p className="text-slate-700 leading-relaxed text-sm sm:text-base">{activeBranch.tradeOff}</p>
             </div>
           </div>
 
-          <div className="mt-8 pt-4 border-t border-slate-800 flex items-center justify-between text-[0.6875rem] font-mono text-slate-400">
+          <div className="mt-8 pt-4 border-t border-slate-200 flex items-center justify-between text-[0.6875rem] font-mono text-slate-500">
             <span>METHODOLOGY: MULTI-AGENT STOCHASTIC SIMULATION</span>
-            <span className="text-[var(--hero-gold)]">AIPP STRATEGY ROOM ENGINE</span>
+            <span className="text-[var(--hero-navy)] font-semibold">AIPP STRATEGY ROOM ENGINE</span>
           </div>
         </div>
       </Container>

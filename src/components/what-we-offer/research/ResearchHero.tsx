@@ -1,211 +1,112 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Bookmark, FileSpreadsheet, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 
+/* ─────────────────────────────────────────────────────────────
+   Pillar 1: Research & Policy Innovation - Hero Section
+   - Editorial, scholarly authority
+   - Large typography (64-80px desktop, 42-52px mobile)
+   - Verified local imagery (/ideas-research.jpg)
+   ───────────────────────────────────────────────────────────── */
+
 export default function ResearchHero() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 to 1
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2; // -1 to 1
-    setMousePos({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePos({ x: 0, y: 0 });
-  };
-
   return (
     <section
-      className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24 bg-[#FBFBFA] border-b border-[var(--color-border)] research-grid-bg"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      aria-label="Research and Policy Innovation Hero"
+      className="relative w-full bg-white text-[#081D2E] pt-24 sm:pt-28 pb-12 sm:pb-16 overflow-hidden border-b border-[#D9DEE2]/60"
+      aria-label="Research & Policy Innovation Hero"
     >
-      {/* Delicate background coordinate markings */}
-      <div className="absolute top-6 right-10 hidden xl:flex items-center gap-6 font-mono text-[0.625rem] text-slate-400 tracking-widest pointer-events-none">
-        <span>ARCHIVE REF: AIPP-2026-RPI</span>
-        <span>COORD: 46.2044°N, 6.1432°E [GENEVA]</span>
-        <span>SECURITY: CLASSIFIED DRAFT LIFTED</span>
-      </div>
-
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Editorial Typography (~45%) */}
-          <div className="lg:col-span-5 flex flex-col justify-center z-10">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[var(--hero-gold)]" />
-              <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)]">
-                01 / RESEARCH & POLICY INNOVATION
+      <Container wide>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Column: Typography & Intentional Action (7 cols) */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            
+            {/* Eyebrow Marker */}
+            <div className="hero-animate-eyebrow flex items-center gap-3 mb-4 sm:mb-6">
+              <span className="h-px w-6 bg-[#B09C4B]" />
+              <span
+                className="text-xs sm:text-[0.8125rem] font-semibold tracking-wider text-[#0D2C49]"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                Pillar 01 · Empirical Investigation
               </span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-normal text-[var(--hero-navy)] leading-[1.08] tracking-tight">
-              Research That Moves Policy Forward.
+            {/* Powerful Headline: 64-80px Desktop, 42-52px Mobile */}
+            <h1
+              className="hero-animate-heading text-[2.625rem] sm:text-[3.25rem] md:text-[3.75rem] lg:text-[4.25rem] font-normal leading-[1.06] tracking-tight text-[#0D2C49] text-balance mb-6"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Research that moves policy forward.
             </h1>
 
-            <p className="mt-5 text-sm sm:text-base leading-relaxed text-[var(--hero-muted)] font-sans font-light max-w-lg">
-              AIPP develops empirical research and doctrinal policy perspectives that examine complex multilateral issues, generate rigorous evidence, and equip women diplomats with unassailable authority.
+            {/* Supporting Description: 18-20px */}
+            <p
+              className="hero-animate-body text-lg sm:text-[1.1875rem] leading-relaxed text-[#243748] font-normal max-w-2xl mb-8"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              AIPP develops empirical research and doctrinal policy perspectives that examine complex multilateral issues, generate rigorous evidence, and equip women diplomats with unassailable authority in treaty negotiations.
             </p>
 
-            {/* Quick Metadata Bar */}
-            <div className="mt-6 pt-6 border-t border-[var(--color-border)] grid grid-cols-3 gap-3 font-mono text-[0.6875rem] text-[var(--hero-navy)]">
-              <div>
-                <span className="block text-[var(--hero-gold)] font-bold text-xs">100%</span>
-                <span className="text-slate-500">Peer-Vetted</span>
-              </div>
-              <div>
-                <span className="block text-[var(--hero-gold)] font-bold text-xs">40+</span>
-                <span className="text-slate-500">Conflict Zones</span>
-              </div>
-              <div>
-                <span className="block text-[var(--hero-gold)] font-bold text-xs">UNSCR 1325</span>
-                <span className="text-slate-500">Praxis Compliant</span>
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            {/* Dual CTAs */}
+            <div className="hero-animate-cta flex flex-wrap items-center gap-4">
               <a
-                href="#interactive-document"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-[var(--hero-navy)] text-white text-xs font-semibold uppercase tracking-[0.14em] transition-all hover:bg-[var(--hero-gold)] hover:shadow-md"
+                href="#methodology"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#0D2C49] px-6 py-3 text-base font-semibold text-white shadow-xs transition-all duration-200 hover:bg-[#081D2E] active:scale-[0.99] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#B09C4B]"
+                style={{ fontFamily: "var(--font-sans)" }}
               >
-                <span>Examine Policy Brief</span>
-                <ArrowRight className="h-3.5 w-3.5" />
+                <span>Explore Methodology</span>
+                <ArrowDown className="h-4 w-4 text-[#B09C4B] transition-transform duration-200 group-hover:translate-y-0.5" />
               </a>
+
               <Link
                 href="/research"
-                className="inline-flex items-center gap-2 px-6 py-3.5 border border-[var(--color-border)] text-[var(--hero-navy)] bg-white text-xs font-semibold uppercase tracking-[0.14em] transition-all hover:border-[var(--hero-navy)]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border border-[#D9DEE2] bg-white px-6 py-3 text-base font-semibold text-[#081D2E] transition-all duration-200 hover:border-[#0D2C49] hover:bg-[#F7F7F7] active:scale-[0.99] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#B09C4B]"
+                style={{ fontFamily: "var(--font-sans)" }}
               >
                 <span>Publications Archive</span>
+                <ArrowUpRight className="h-4 w-4 text-[#64717C] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
           </div>
 
-          {/* Right Column: Layered "Research Desk" Editorial Composition (~55%) */}
-          <div className="lg:col-span-7 relative h-[480px] sm:h-[540px] lg:h-[600px] w-full flex items-center justify-center">
-            {/* 1. Underlying Researcher Image Base */}
-            <div
-              className="absolute right-2 sm:right-6 top-6 bottom-6 w-[78%] sm:w-[70%] rounded-sm overflow-hidden border border-[var(--color-border)] shadow-xl transition-transform duration-700 ease-out"
-              style={{
-                transform: `translate(${mousePos.x * -6}px, ${mousePos.y * -6}px)`,
-              }}
-            >
-              <Image
-                src="/ideas-research.jpg"
-                alt="Senior woman researcher analyzing foreign policy documents in an institutional library"
-                fill
-                className="object-cover filter contrast-[1.03] brightness-[0.98]"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#081D2E]/80 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white text-xs">
-                <span className="font-mono text-[0.625rem] tracking-wider text-[var(--hero-gold)] block uppercase">
-                  Dr. Amara Sterling — Lead Policy Fellow
-                </span>
-                <span className="font-serif text-sm opacity-90">
-                  Multilateral Treaty Verification Taskforce
-                </span>
-              </div>
-            </div>
-
-            {/* 2. Physical Layered Policy Paper Brief (Front Left) */}
-            <div
-              className="absolute left-0 sm:left-4 top-12 sm:top-16 w-[88%] sm:w-[72%] p-6 sm:p-7 paper-layer rounded-sm transition-transform duration-500 ease-out z-20"
-              style={{
-                transform: `translate(${mousePos.x * 8}px, ${mousePos.y * 8}px) rotate(-1deg)`,
-              }}
-            >
-              {/* Paper Header & Editorial Stamp */}
-              <div className="flex items-start justify-between border-b border-slate-200 pb-3 mb-4">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="h-3.5 w-3.5 text-[var(--hero-gold)]" />
-                    <span className="font-mono text-[0.625rem] font-bold text-[var(--hero-navy)] tracking-wider uppercase">
-                      AIPP WORKING PAPER NO. 28
-                    </span>
+          {/* Right Column: Editorial Photograph (5 cols) */}
+          <div className="hero-animate-image lg:col-span-5 relative">
+            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+              
+              <div className="relative overflow-hidden rounded-xs border border-[#D9DEE2] bg-[#F7F7F7] p-2 shadow-sm">
+                <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] w-full overflow-hidden bg-[#0D2C49]">
+                  <Image
+                    src="/ideas-research.jpg"
+                    alt="Senior woman researcher analyzing foreign policy documents in an institutional setting"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 540px"
+                    className="object-cover object-top transition-transform duration-700 ease-out hover:scale-105"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#081D2E]/90 via-[#081D2E]/40 to-transparent p-5 pt-14">
+                    <p
+                      className="text-xs uppercase tracking-widest text-[#B09C4B] font-semibold"
+                      style={{ fontFamily: "var(--font-sans)" }}
+                    >
+                      Empirical Security Studies
+                    </p>
+                    <p
+                      className="text-sm sm:text-base text-white/95 font-medium mt-1 leading-snug"
+                      style={{ fontFamily: "var(--font-serif)" }}
+                    >
+                      Independent data-driven investigation informing international governance.
+                    </p>
                   </div>
-                  <span className="font-mono text-[0.5625rem] text-slate-400 block mt-0.5">
-                    GENEVA DISPATCH / DIPLOMATIC PRAXIS
-                  </span>
-                </div>
-                <span className="editorial-stamp">
-                  <ShieldCheck className="h-2.5 w-2.5" />
-                  EMBARGO LIFTED
-                </span>
-              </div>
-
-              {/* Title on paper */}
-              <h3 className="font-serif text-base sm:text-lg text-[var(--hero-navy)] font-semibold leading-snug">
-                Gender Representation as a Structural Predictor of Ceasefire Sustainability
-              </h3>
-
-              {/* Highlighted text passage */}
-              <div className="mt-3.5 text-xs text-slate-700 leading-relaxed font-sans">
-                <span>Empirical assessment across 40 post-conflict zones demonstrates that </span>
-                <mark className="text-highlight-gold font-medium text-slate-900">
-                  direct female signatories increase multilateral treaty longevity by 35%
-                </mark>
-                <span> over a 15-year observation threshold. </span>
-                <sup className="font-mono text-[var(--hero-gold)] font-bold text-[0.625rem] ml-0.5">[1]</sup>
-              </div>
-
-              {/* Handwritten-style marginal annotation */}
-              <div
-                className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs transition-transform duration-500"
-                style={{
-                  transform: `translate(${mousePos.x * 12}px, ${mousePos.y * 12}px)`,
-                }}
-              >
-                <span className="handwritten-annotation text-xs sm:text-sm">
-                  * "Cross-reference Annex III (Track-I vs Track-II mediation data)"
-                </span>
-                <span className="font-mono text-[0.5625rem] text-slate-400">doi:10.1080/aipp.2026.04</span>
-              </div>
-            </div>
-
-            {/* 3. Small Empirical Data Card (Bottom Right Floating) */}
-            <div
-              className="absolute right-0 sm:right-2 bottom-4 sm:bottom-8 w-60 sm:w-68 p-4 bg-white/95 backdrop-blur-md border border-[var(--hero-gold)]/40 shadow-xl rounded-sm transition-transform duration-600 ease-out z-30 hidden sm:block"
-              style={{
-                transform: `translate(${mousePos.x * -10}px, ${mousePos.y * -10}px)`,
-              }}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="font-mono text-[0.5625rem] font-bold uppercase tracking-widest text-[var(--hero-gold)]">
-                  EVIDENTIARY METRICS
-                </span>
-                <FileSpreadsheet className="h-3.5 w-3.5 text-[var(--hero-navy)]" />
-              </div>
-              <div className="space-y-1.5 font-sans">
-                <div className="flex justify-between text-[0.6875rem]">
-                  <span className="text-slate-500">Female Chief Negotiators</span>
-                  <span className="font-mono font-bold text-[var(--hero-navy)]">+42% durability</span>
-                </div>
-                <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-[var(--hero-gold)] h-full w-[78%]" />
-                </div>
-                <div className="flex justify-between text-[0.5625rem] text-slate-400 font-mono pt-1">
-                  <span>SAMPLE: N=142 TREATIES</span>
-                  <span>CONFIDENCE: 95%</span>
                 </div>
               </div>
-            </div>
 
-            {/* Floating gold citation pin */}
-            <div
-              className="absolute top-8 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[var(--hero-gold)]/10 border border-[var(--hero-gold)] flex items-center justify-center text-[var(--hero-gold)] shadow-md z-30 transition-transform duration-700"
-              style={{
-                transform: `translate(${mousePos.x * 14}px, ${mousePos.y * 14}px)`,
-              }}
-            >
-              <Bookmark className="h-3.5 w-3.5" />
             </div>
           </div>
+
         </div>
       </Container>
     </section>

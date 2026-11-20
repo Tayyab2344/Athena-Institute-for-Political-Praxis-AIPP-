@@ -34,7 +34,7 @@ export default function ResearchDetailPage({ params }: { params: Promise<{ slug:
 
   const copyCitation = () => {
     if (!publication) return;
-    const authorNames = publication.authors?.map((a: any) => a.name).join(", ") || publication.author || "";
+    const authorNames = publication.authors?.map((a: { name: string }) => a.name).join(", ") || publication.author || "";
     const text = `${authorNames} (${publication.year || 2026}). "${publication.title}". Athena Institute for Political Praxis (AIPP). DOI: ${publication.doi || "10.1080/aipp.2026"}.`;
     navigator.clipboard.writeText(text);
     setCopiedCitation(true);
@@ -110,7 +110,7 @@ export default function ResearchDetailPage({ params }: { params: Promise<{ slug:
               <div>
                 <span className="text-[#5C6470] block text-[10px] uppercase font-semibold">Author(s)</span>
                 <span className="text-[#0D1B2A] font-semibold text-sm">
-                  {publication.authors?.map((a: any) => a.name).join(", ") || publication.author}
+                  {publication.authors?.map((a: { name: string }) => a.name).join(", ") || publication.author}
                 </span>
               </div>
               {publication.doi && (

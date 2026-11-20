@@ -10,7 +10,7 @@ interface ResearchEndingProps {
 
 export default function ResearchEnding({ onOpenContact }: ResearchEndingProps) {
   return (
-    <section className="py-24 sm:py-32 bg-[#0D2C49] text-white relative overflow-hidden" aria-label="Research Conclusion">
+    <section className="py-14 sm:py-20 lg:py-24 bg-[#0D2C49] text-white relative overflow-hidden" aria-label="Research Conclusion">
       {/* Visual composition: Large research document fading into dark navy background */}
       <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none select-none">
         <div className="w-[850px] h-[500px] border border-white/40 p-12 bg-white/5 backdrop-blur-sm transform rotate-[-2deg] rounded-sm">

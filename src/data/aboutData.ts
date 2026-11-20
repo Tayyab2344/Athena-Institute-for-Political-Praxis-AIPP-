@@ -6,6 +6,13 @@ export const ABOUT_HERO = {
   imageAlt: "Women gathered around a table in conversation",
 };
 
+export const FOUNDER = {
+  name: "Tayyaba Atiq",
+  role: "Founder",
+  organization: "Athena Institute for Political Praxis (AIPP)",
+  description: "Founder of the Athena Institute for Political Praxis, leading the organization's mission to elevate women in diplomatic affairs, statecraft, empirical research, and multilateral decision-making.",
+};
+
 export const PURPOSE_AREAS = [
   {
     number: "01",
@@ -37,21 +44,8 @@ export const APPROACH_STEPS = [
 
 export const LEADERSHIP = [
   {
-    name: "Ambassador Miriam Chen",
-    role: "Chair, Diplomatic Praxis",
-    description: "A former multilateral negotiator focused on inclusive peacebuilding and institutional reform.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=85&w=900",
-  },
-  {
-    name: "Dr. Amara Sterling",
-    role: "Director, Research & Policy",
-    description: "A political scientist studying representation, security, and the conditions for durable cooperation.",
-    image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=85&w=900",
-  },
-  {
-    name: "Sophia Al-Mansoor",
-    role: "Director, Technology & Diplomacy",
-    description: "A policy strategist working at the intersection of emerging technology, ethics, and global governance.",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=85&w=900",
+    name: "Tayyaba Atiq",
+    role: "Founder",
+    description: "Founder of the Athena Institute for Political Praxis, leading the organization's vision to elevate women in diplomatic affairs, statecraft, empirical research, and multilateral decision-making.",
   },
 ];

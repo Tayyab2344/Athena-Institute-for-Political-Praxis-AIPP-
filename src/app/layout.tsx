@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans, Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import PageTransition from "@/components/ui/PageTransition";
+import InitialLoader from "@/components/ui/InitialLoader";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -64,6 +65,18 @@ export const metadata: Metadata = {
     description: "Elevating women leaders in diplomacy, statecraft, and multilateral decision-making.",
     images: ["https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=1200"],
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/logo.png", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/logo.png" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -74,6 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${jakarta.variable} ${cormorant.variable} ${manrope.variable} scroll-smooth`}>
       <body className="bg-background text-foreground antialiased min-h-screen flex flex-col font-sans">
+        <InitialLoader />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>

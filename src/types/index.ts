@@ -1,7 +1,8 @@
 export interface Publication {
   id: string;
   title: string;
-  category?: any;
+  category?: { id?: string; name: string; slug?: string } | string;
+  categorySlug?: string;
   author?: string;
   role?: string;
   date?: string;
@@ -25,7 +26,7 @@ export interface Publication {
   pdfFileName?: string | null;
   pdfFileSize?: number | null;
   pdfMimeType?: string | null;
-  journalIssue?: any;
+  journalIssue?: { id?: string; volume?: number; issue?: number; title?: string } | null;
   authors?: Array<{ id?: string; name: string; slug?: string; photoUrl?: string }>;
   tags?: Array<{ id?: string; name: string; slug?: string }>;
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Container from "@/components/ui/Container";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { HelpCircle, Search, LineChart, Compass, Lightbulb, FileCheck2, ArrowRight } from "lucide-react";
 
 interface WorkflowStep {
@@ -97,7 +98,7 @@ export default function ResearchWorkflow() {
   const IconComponent = current.icon;
 
   return (
-    <section className="py-20 lg:py-28 bg-white border-b border-[var(--color-border)] relative overflow-hidden" aria-label="Research Workflow">
+    <section className="py-12 sm:py-16 lg:py-20 bg-white border-b border-[var(--color-border)] relative overflow-hidden" aria-label="Research Workflow">
       {/* Background watermarked label */}
       <div className="absolute right-6 top-10 font-serif text-[7rem] sm:text-[10rem] font-bold text-slate-50 select-none pointer-events-none -z-0">
         METHOD
@@ -105,20 +106,20 @@ export default function ResearchWorkflow() {
 
       <Container>
         {/* Section Header */}
-        <div className="max-w-2xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-3">
+        <ScrollReveal variant="fade-up" className="max-w-2xl mb-10">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-2">
             METHODOLOGICAL RIGOUR
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[var(--hero-navy)] font-normal leading-tight">
             From Question to Insight.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[var(--hero-muted)] font-sans font-light">
+          <p className="mt-3 text-base sm:text-lg text-[var(--hero-muted)] font-sans font-light">
             Research at AIPP is not an academic abstraction. It is an intentional 6-stage physical and analytical workflow that transforms unanswered dilemmas into foreign policy doctrine.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Horizontal Editorial Stage Stepper */}
-        <div className="border border-[var(--color-border)] bg-[#FDFDFD] shadow-sm mb-8 overflow-x-auto no-scrollbar">
+        <ScrollReveal variant="fade-up" delay={80} className="border border-[var(--color-border)] bg-[#FDFDFD] shadow-sm mb-8 overflow-x-auto no-scrollbar">
           <div className="flex min-w-[700px]">
             {STAGES.map((s, idx) => {
               const isActive = activeStage === idx;
@@ -163,7 +164,7 @@ export default function ResearchWorkflow() {
               );
             })}
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Physical / Editorial Layer Display for Active Stage */}
         <div className="paper-layer p-8 sm:p-12 border border-[var(--color-border)] rounded-sm relative overflow-hidden transition-all duration-300">
@@ -227,7 +228,7 @@ export default function ResearchWorkflow() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">DISPATCH:</span>
-                  <span>GENEVA HQ</span>
+                  <span>RESEARCH DIVISION</span>
                 </div>
               </div>
 
@@ -236,7 +237,7 @@ export default function ResearchWorkflow() {
                   RESEARCHER FIELD NOTE:
                 </span>
                 <p className="font-serif italic text-sm text-slate-800 leading-relaxed">
-                  "{current.marginalNote}"
+                  &ldquo;{current.marginalNote}&rdquo;
                 </p>
               </div>
 

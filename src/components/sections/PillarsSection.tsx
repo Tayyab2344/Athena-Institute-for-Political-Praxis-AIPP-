@@ -26,7 +26,7 @@ const OFFERINGS: OfferingItem[] = [
     description:
       "AIPP investigates issues, develops knowledge and contributes rigorous research that informs critical conversations around women, diplomacy, policy and public affairs.",
     ctaText: "Explore Research",
-    ctaHref: "/research",
+    ctaHref: "/what-we-offer/research-policy-innovation",
     image: "/ideas-research.jpg",
     imageAlt:
       "Woman policy researcher examining strategic documents and legal briefs in institutional archive",
@@ -62,29 +62,32 @@ const OFFERINGS: OfferingItem[] = [
 export default function PillarsSection() {
   return (
     <section
-      id="pillars"
-      className="relative w-full bg-[#081D2E] text-white py-16 sm:py-24 lg:py-36 scroll-mt-20 [clip-path:inset(0)]"
+      id="what-we-offer"
+      className="relative w-full bg-[#081D2E] text-white py-20 sm:py-28 lg:py-36 scroll-mt-20 overflow-hidden"
       aria-label="What We Offer - Core Pillars"
     >
+      {/* Anchor bridge for #pillars */}
+      <div id="pillars" className="sr-only" aria-hidden="true" />
+
       {/* Architectural Border Differentiation Divider at Top */}
       <div className="absolute inset-x-0 top-0 z-30 pointer-events-none">
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-hero-gold/40 to-transparent mt-[1px]" />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[#B09C4B]/40 to-transparent mt-[1px]" />
         <div className="flex justify-center -translate-y-1/2">
           <div className="inline-flex items-center gap-2.5 px-4 py-1 rounded-full bg-[#081D2E] border border-white/20 shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
-            <span className="h-1.5 w-1.5 rounded-full bg-hero-gold animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#B09C4B] animate-pulse" />
             <span
-              className="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-hero-gold"
+              className="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-[#B09C4B]"
               style={{ fontFamily: "var(--font-hero-sans)" }}
             >
-              03 / WHAT WE OFFER
+              02 / WHAT WE OFFER
             </span>
           </div>
         </div>
       </div>
 
-      {/* 1. Completely Static Viewport Background Photograph - Clipped strictly to this section */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Background Photograph - Smooth absolute positioning */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="relative h-full w-full">
           <Image
             src="/offer-women-summit.jpg"
@@ -92,16 +95,16 @@ export default function PillarsSection() {
             fill
             sizes="100vw"
             priority={false}
-            className="object-cover object-[center_35%] brightness-[0.90] contrast-[1.04]"
+            className="object-cover object-[center_35%] brightness-[0.75] contrast-[1.05]"
           />
 
-          {/* 2. Translucent Navy Tint Overlay (Keeps image clearly visible while providing text contrast) */}
-          <div className="absolute inset-0 bg-[#081D2E]/55" />
+          {/* Translucent Navy Tint Overlay */}
+          <div className="absolute inset-0 bg-[#081D2E]/70" />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 85% 65% at 50% 35%, rgba(8, 29, 46, 0.20) 0%, rgba(8, 29, 46, 0.65) 100%)",
+                "radial-gradient(ellipse 85% 65% at 50% 35%, rgba(8, 29, 46, 0.40) 0%, rgba(8, 29, 46, 0.85) 100%)",
             }}
           />
 

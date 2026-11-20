@@ -11,6 +11,9 @@ interface ContactModalProps {
 
 export default function ContactModal({ isOpen, onClose, defaultPathway = "General Inquiry" }: ContactModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [referenceNumber, setReferenceNumber] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,9 +39,47 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorMessage("");
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setErrorMessage("Please complete all required fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          organization: formData.organization.trim() || undefined,
+          subject: formData.pathway,
+          message: formData.message.trim(),
+          sourceForm: "CONTACT_MODAL",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to submit inquiry. Please try again.");
+      }
+
+      setReferenceNumber(data.referenceId || "");
+      setSubmitted(true);
+    } catch (err: unknown) {
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : "An unexpected error occurred. Please contact us directly at contact@aipp-praxis.org."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -79,6 +120,11 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h4 className="type-h3 text-primary">Thank You for Reaching Out</h4>
+            {referenceNumber && (
+              <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-xs font-semibold">
+                Ref: {referenceNumber}
+              </span>
+            )}
             <p className="type-body-small max-w-sm text-foreground-muted">
               Your inquiry has been logged with the AIPP External Affairs Taskforce. Our team will review your message promptly.
             </p>
@@ -91,6 +137,11 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 overflow-y-auto p-4 sm:p-6 md:p-8">
+            {errorMessage && (
+              <div className="p-3 rounded-xl bg-red-50 text-red-700 text-xs border border-red-200">
+                {errorMessage}
+              </div>
+            )}
             <div>
               <label className="type-label mb-1.5 block">
                 Full Name
@@ -167,9 +218,10 @@ export default function ContactModal({ isOpen, onClose, defaultPathway = "Genera
             <div className="pt-2 flex justify-end">
               <button
                 type="submit"
-                className="flex w-full min-h-[44px] items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-background transition-colors hover:bg-primary-hover sm:w-auto"
+                disabled={isSubmitting}
+                className="flex w-full min-h-[44px] items-center justify-center gap-2 rounded-full bg-primary px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-background transition-colors hover:bg-primary-hover sm:w-auto disabled:opacity-50"
               >
-                <span>Submit Inquiry</span>
+                <span>{isSubmitting ? "Submitting..." : "Submit Inquiry"}</span>
                 <Send className="w-3.5 h-3.5" />
               </button>
             </div>

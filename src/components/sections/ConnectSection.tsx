@@ -23,7 +23,9 @@ export default function ConnectSection() {
   const [submittedStatus, setSubmittedStatus] = useState<"idle" | "prepared">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [referenceId, setReferenceId] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
 
@@ -33,11 +35,36 @@ export default function ConnectSection() {
     }
 
     setIsSubmitting(true);
-    // Simulate brief processing for realistic UX
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.inquiryType,
+          message: formData.message.trim(),
+          sourceForm: "HOMEPAGE_CONNECT",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Unable to submit your inquiry. Please try again.");
+      }
+
+      setReferenceId(data.referenceId || "");
       setSubmittedStatus("prepared");
-    }, 600);
+    } catch (err: unknown) {
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : "An unexpected error occurred. Please contact us directly at contact@aipp-praxis.org."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleOpenMailto = () => {
@@ -78,7 +105,7 @@ export default function ConnectSection() {
             className="text-[0.6875rem] font-bold uppercase tracking-[0.24em] text-[#B09C4B]"
             style={{ fontFamily: "var(--font-hero-sans)" }}
           >
-            08 / Connect With AIPP
+            07 / Connect With AIPP
           </span>
         </div>
       </div>
@@ -187,6 +214,13 @@ export default function ConnectSection() {
                       Thank you, <span className="text-white font-medium">{formData.name}</span>. Your statement regarding{" "}
                       <span className="text-[#B09C4B] font-medium">&ldquo;{formData.inquiryType}&rdquo;</span> has been recorded.
                     </p>
+                    {referenceId && (
+                      <div className="pt-1">
+                        <span className="inline-block font-mono text-xs text-[#B09C4B] bg-[#B09C4B]/10 px-3 py-1 rounded-full border border-[#B09C4B]/30">
+                          Reference: {referenceId}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="p-4 rounded-xl border border-white/10 bg-white/5 text-left text-xs space-y-2 max-w-md mx-auto text-white/80">

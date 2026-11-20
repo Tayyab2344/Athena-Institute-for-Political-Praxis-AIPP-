@@ -22,7 +22,7 @@ export default function VoicesSection() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [selectedInsightForModal, setSelectedInsightForModal] = useState<Insight | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,13 +34,17 @@ export default function VoicesSection() {
   const total = perspectives.length;
   const active = perspectives[activeIdx] || perspectives[0];
 
-  /* ── Check for prefers-reduced-motion ── */
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mq.matches);
+    const frame = requestAnimationFrame(() => {
+      setPrefersReducedMotion(mq.matches);
+    });
     const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    return () => {
+      cancelAnimationFrame(frame);
+      mq.removeEventListener("change", handler);
+    };
   }, []);
 
   /* ── IntersectionObserver for entrance reveal ── */
@@ -97,7 +101,7 @@ export default function VoicesSection() {
     <section
       id="perspectives"
       ref={sectionRef}
-      className="relative w-full bg-[#FAF9F6] text-[#081D2E] scroll-mt-20 overflow-hidden border-t border-[#E5E0D8]"
+      className="relative w-full bg-[#FFFFFF] text-[#081D2E] scroll-mt-20 overflow-hidden border-t border-[#D9DEE2]"
       aria-label="Voices & Perspectives"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -113,7 +117,7 @@ export default function VoicesSection() {
       </div>
 
       {/* ═══ Section Eyebrow Bar ═══ */}
-      <div className="relative z-20 pt-8 pb-4 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto">
+      <div className="relative z-20 pt-16 sm:pt-20 pb-4 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-[#B09C4B] flex-shrink-0" />
@@ -121,7 +125,7 @@ export default function VoicesSection() {
               className="text-[0.6875rem] font-bold uppercase tracking-[0.24em] text-[#B09C4B]"
               style={{ fontFamily: "var(--font-hero-sans)" }}
             >
-              06 / Voices &amp; Perspectives
+              05 / Voices &amp; Perspectives
             </span>
           </div>
 

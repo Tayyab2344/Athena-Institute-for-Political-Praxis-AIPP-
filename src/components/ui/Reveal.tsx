@@ -21,14 +21,14 @@ export function Motion({ children, className, delay = 0, preset = "fadeIn", ...p
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion) {
-      setVisible(true);
-      return;
+      const frame = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(frame);
     }
 
     const rect = element.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-      setVisible(true);
-      return;
+      const frame = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(frame);
     }
 
     const observer = new IntersectionObserver(
@@ -111,3 +111,5 @@ export function Parallax({ children, className, ...props }: HTMLAttributes<HTMLD
 export function PageTransition({ children }: { children: ReactNode }) {
   return <div className="page-transition">{children}</div>;
 }
+
+export { ScrollReveal, ScrollStagger, useInView } from "./ScrollReveal";

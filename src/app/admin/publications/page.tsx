@@ -26,7 +26,7 @@ export default function AdminPublicationsPage() {
   const fetchPublications = async () => {
     setLoading(true);
     try {
-      let url = `/api/publications?admin=true&limit=50`;
+      let url = `/api/publications?limit=50`;
       if (search) url += `&search=${encodeURIComponent(search)}`;
       if (typeFilter !== "ALL") url += `&type=${typeFilter}`;
       if (statusFilter !== "ALL") url += `&status=${statusFilter}`;
@@ -44,7 +44,10 @@ export default function AdminPublicationsPage() {
   };
 
   useEffect(() => {
-    fetchPublications();
+    const frame = requestAnimationFrame(() => {
+      fetchPublications();
+    });
+    return () => cancelAnimationFrame(frame);
   }, [search, typeFilter, statusFilter]);
 
   const handleDelete = async (id: string, title: string) => {

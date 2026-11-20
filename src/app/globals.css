@@ -4,40 +4,40 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0d1b2a;
+  --foreground: #081D2E;
   --color-background: #ffffff;
-  --color-background-muted: #f7f6f2;
-  --color-foreground: #0d1b2a;
-  --color-foreground-muted: #5c6470;
-  --color-primary: #0a192f;
-  --color-primary-hover: #172e54;
+  --color-background-muted: #F7F7F7;
+  --color-foreground: #081D2E;
+  --color-foreground-muted: #243748;
+  --color-primary: #0D2C49;
+  --color-primary-hover: #081D2E;
   --color-primary-soft: #ebf1f8;
-  --color-accent: #958772;
-  --color-border: rgba(10, 25, 47, 0.10);
+  --color-accent: #B09C4B;
+  --color-border: #D9DEE2;
   --color-border-dark: rgba(255, 255, 255, 0.14);
   --color-surface: #ffffff;
-  --color-surface-dark: #06101e;
-  --aipp-ivory: var(--color-background);
-  --aipp-ivory-dark: #f2f0eb;
-  --aipp-wine: var(--color-primary);
-  --aipp-wine-light: var(--color-primary-hover);
-  --aipp-wine-muted: #1e355b;
-  --aipp-rose: var(--color-accent);
-  --aipp-sand: var(--color-background-muted);
-  --aipp-sand-dark: #e5e2da;
-  --aipp-charcoal: var(--color-foreground);
-  --aipp-slate: var(--color-foreground-muted);
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --color-surface-dark: #081D2E;
+  --aipp-ivory: #ffffff;
+  --aipp-ivory-dark: #F7F7F7;
+  --aipp-wine: #0D2C49;
+  --aipp-wine-light: #081D2E;
+  --aipp-wine-muted: #243748;
+  --aipp-rose: #B09C4B;
+  --aipp-sand: #F7F7F7;
+  --aipp-sand-dark: #D9DEE2;
+  --aipp-charcoal: #081D2E;
+  --aipp-slate: #243748;
+  --font-serif: var(--font-hero-serif), 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--font-hero-sans), 'Manrope', system-ui, sans-serif;
   --radius-control: 999px;
   --radius-panel: 1.25rem;
-  --shadow-soft: 0 18px 50px rgba(29, 26, 25, 0.08);
-  --shadow-deep: 0 26px 80px rgba(29, 26, 25, 0.16);
+  --shadow-soft: 0 18px 50px rgba(8, 29, 46, 0.08);
+  --shadow-deep: 0 26px 80px rgba(8, 29, 46, 0.16);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 180ms;
   --duration-base: 420ms;
   --duration-slow: 720ms;
-  /* Hero-scoped tokens */
+  /* Core brand tokens */
   --hero-navy: #0D2C49;
   --hero-navy-dark: #081D2E;
   --hero-slate: #243748;
@@ -73,7 +73,7 @@
   --color-aipp-slate: var(--aipp-slate);
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
-  /* Hero-scoped Tailwind theme colors */
+  /* Hero-scoped & Brand Tailwind theme colors */
   --color-hero-navy: var(--hero-navy);
   --color-hero-navy-dark: var(--hero-navy-dark);
   --color-hero-slate: var(--hero-slate);
@@ -109,28 +109,28 @@ body {
 }
 
 .type-display {
-  font-size: 3.5rem;
-  line-height: 1.04;
+  font-size: clamp(2.625rem, 5.5vw + 0.5rem, 5rem);
+  line-height: 1.06;
 }
 
 .type-h1 {
-  font-size: 2.75rem;
-  line-height: 1.08;
+  font-size: clamp(2.125rem, 3.2vw + 0.5rem, 3.5rem);
+  line-height: 1.1;
 }
 
 .type-h2 {
-  font-size: 2.25rem;
-  line-height: 1.12;
+  font-size: clamp(1.75rem, 2vw + 0.5rem, 2.5rem);
+  line-height: 1.15;
 }
 
 .type-h3 {
-  font-size: 1.6rem;
-  line-height: 1.18;
+  font-size: clamp(1.5rem, 1.5vw + 0.4rem, 1.875rem);
+  line-height: 1.25;
 }
 
 .type-h4 {
-  font-size: 1.25rem;
-  line-height: 1.25;
+  font-size: clamp(1.25rem, 1vw + 0.3rem, 1.5rem);
+  line-height: 1.3;
 }
 
 .type-body-large,
@@ -143,29 +143,29 @@ body {
 }
 
 .type-body-large {
-  font-size: 1.125rem;
-  line-height: 1.75;
-  font-weight: 300;
+  font-size: clamp(1.0625rem, 0.4vw + 0.95rem, 1.25rem);
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 .type-body {
-  font-size: 0.9375rem;
-  line-height: 1.75;
+  font-size: clamp(1rem, 0.25vw + 0.9rem, 1.125rem);
+  line-height: 1.65;
   font-weight: 400;
 }
 
 .type-body-small {
-  font-size: 0.8125rem;
-  line-height: 1.65;
+  font-size: clamp(0.9375rem, 0.2vw + 0.85rem, 1rem);
+  line-height: 1.6;
   font-weight: 400;
 }
 
 .type-caption,
 .type-label {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   line-height: 1.4;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   font-weight: 600;
 }
 
@@ -556,8 +556,8 @@ body {
   .type-h2 { font-size: 2.5rem; }
   .aipp-container { width: min(100% - 4rem, 80rem); }
   .aipp-container-wide { width: min(100% - 4rem, 90rem); }
-  .aipp-section { padding-block: 5rem; }
-  .aipp-section-compact { padding-block: 3.5rem; }
+  .aipp-section { padding-block: 3.5rem; }
+  .aipp-section-compact { padding-block: 2.5rem; }
 }
 
 @media (min-width: 768px) {
@@ -569,8 +569,8 @@ body {
   .type-display { font-size: 5.25rem; }
   .type-h1 { font-size: 4rem; }
   .type-h2 { font-size: 3rem; }
-  .aipp-section { padding-block: 7rem; }
-  .aipp-section-compact { padding-block: 4.5rem; }
+  .aipp-section { padding-block: 4.5rem; }
+  .aipp-section-compact { padding-block: 3.5rem; }
 }
 
 @media (min-width: 1280px) {
@@ -580,11 +580,185 @@ body {
 @media (min-width: 1440px) {
   .aipp-container { width: min(100% - 6rem, 84rem); }
   .aipp-container-wide { width: min(100% - 6rem, 92rem); }
-  .aipp-section { padding-block: 8.5rem; }
+  .aipp-section { padding-block: 5rem; }
 }
 
 @media (min-width: 1920px) {
   .aipp-container-wide { width: min(100% - 8rem, 100rem); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AIPP Institutional Motion & Animation System
+   - Subtle, premium, non-distracting easing: cubic-bezier(0.16, 1, 0.3, 1)
+   - Performant (opacity & transform only, zero layout thrashing)
+   - Full reduced-motion compliance
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --ease-aipp: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-hover: 220ms;
+  --duration-reveal: 600ms;
+  --duration-page: 500ms;
+}
+
+/* ═══ Page-to-Page Navigation Transitions ═══ */
+@keyframes aipp-page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes aipp-page-progress {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  50% {
+    transform: scaleX(0.7);
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.aipp-page-transition {
+  animation: aipp-page-enter var(--duration-page) var(--ease-aipp) both;
+  will-change: opacity, transform;
+}
+
+/* ═══ Scroll Reveal System ═══ */
+/* Base hidden states */
+[data-reveal] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: var(--duration-reveal);
+  transition-timing-function: var(--ease-aipp);
+  will-change: opacity, transform;
+}
+
+[data-reveal].reveal-fade-up {
+  transform: translateY(20px);
+}
+
+[data-reveal].reveal-fade {
+  transform: none;
+}
+
+[data-reveal].reveal-scale {
+  transform: scale(0.98);
+}
+
+[data-reveal].reveal-image {
+  transform: scale(1.02);
+  transition-duration: 700ms;
+}
+
+/* Active revealed states */
+[data-reveal="true"],
+[data-reveal="true"].reveal-fade-up,
+[data-reveal="true"].reveal-fade,
+[data-reveal="true"].reveal-scale,
+[data-reveal="true"].reveal-image {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Staggered container */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition-property: opacity, transform;
+  transition-duration: 550ms;
+  transition-timing-function: var(--ease-aipp);
+  will-change: opacity, transform;
+}
+
+.reveal-stagger[data-reveal="true"] > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger[data-reveal="true"] > :nth-child(1) { transition-delay: 60ms; }
+.reveal-stagger[data-reveal="true"] > :nth-child(2) { transition-delay: 130ms; }
+.reveal-stagger[data-reveal="true"] > :nth-child(3) { transition-delay: 200ms; }
+.reveal-stagger[data-reveal="true"] > :nth-child(4) { transition-delay: 270ms; }
+.reveal-stagger[data-reveal="true"] > :nth-child(5) { transition-delay: 340ms; }
+.reveal-stagger[data-reveal="true"] > :nth-child(6) { transition-delay: 410ms; }
+.reveal-stagger[data-reveal="true"] > :nth-child(7) { transition-delay: 480ms; }
+.reveal-stagger[data-reveal="true"] > :nth-child(8) { transition-delay: 550ms; }
+
+/* ═══ Hero Entrance Sequences (1.0 to 1.4s total) ═══ */
+@keyframes aipp-hero-eyebrow {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aipp-hero-heading {
+  0% { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aipp-hero-body {
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aipp-hero-cta {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aipp-hero-image {
+  0% { opacity: 0; transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.hero-animate-eyebrow {
+  animation: aipp-hero-eyebrow 500ms var(--ease-aipp) 50ms both;
+}
+
+.hero-animate-heading {
+  animation: aipp-hero-heading 650ms var(--ease-aipp) 150ms both;
+}
+
+.hero-animate-body {
+  animation: aipp-hero-body 600ms var(--ease-aipp) 280ms both;
+}
+
+.hero-animate-cta {
+  animation: aipp-hero-cta 550ms var(--ease-aipp) 420ms both;
+}
+
+.hero-animate-image {
+  animation: aipp-hero-image 800ms var(--ease-aipp) 250ms both;
+}
+
+/* ═══ Subtle Interaction Utilities ═══ */
+.aipp-hover-arrow {
+  transition: transform var(--duration-hover) var(--ease-aipp);
+}
+.group:hover .aipp-hover-arrow {
+  transform: translate(2px, -2px);
+}
+
+.aipp-card-lift {
+  transition: transform var(--duration-hover) var(--ease-aipp), box-shadow var(--duration-hover) var(--ease-aipp), border-color var(--duration-hover) var(--ease-aipp);
+}
+.aipp-card-lift:hover {
+  transform: translateY(-2px);
+}
+
+.aipp-image-zoom {
+  transition: transform 500ms var(--ease-aipp);
+}
+.aipp-image-zoom:hover {
+  transform: scale(1.02);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -605,6 +779,28 @@ body {
   .animate-perspective-progress {
     animation: none !important;
     width: 100% !important;
+  }
+  .aipp-page-transition,
+  .hero-animate-eyebrow,
+  .hero-animate-heading,
+  .hero-animate-body,
+  .hero-animate-cta,
+  .hero-animate-image {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-reveal],
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .aipp-hover-arrow,
+  .aipp-card-lift,
+  .aipp-image-zoom {
+    transition: none !important;
+    transform: none !important;
   }
 }
 

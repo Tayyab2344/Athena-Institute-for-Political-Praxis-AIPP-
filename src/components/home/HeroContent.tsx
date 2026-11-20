@@ -81,51 +81,51 @@ export default function HeroContent({ entered, scroll }: HeroContentProps) {
 
       {/* Description */}
       <p
-        className="hero-entrance-fade hero-body max-w-md text-sm sm:text-[0.9375rem]"
+        className="hero-entrance-fade hero-body max-w-md text-sm sm:text-[0.9375rem] text-[#64717C] leading-relaxed"
         data-entered={entered}
         style={{ animationDelay: "620ms" }}
       >
-        AIPP advances women&apos;s leadership and participation through
-        independent research, strategic action and public diplomacy.
+        A non-partisan international policy institute elevating women in diplomacy,
+        empirical research, strategic crisis simulation, and public statecraft.
       </p>
 
       {/* CTAs */}
       <div className="flex flex-wrap items-center gap-3.5 pt-1">
         <a
-          href="#about"
-          className="hero-entrance-fade group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-hero-navy px-6 py-3 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white shadow-md transition-all duration-300 hover:bg-hero-navy-dark hover:shadow-lg hover:-translate-y-0.5"
+          href="#what-we-offer"
+          className="hero-entrance-fade group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-[#0D2C49] px-6 py-3 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white shadow-md transition-all duration-300 hover:bg-[#081D2E] hover:shadow-lg hover:-translate-y-0.5"
           data-entered={entered}
           style={{
             animationDelay: "720ms",
             fontFamily: "var(--font-hero-sans)",
           }}
         >
-          <span className="relative z-10">Explore Our Work</span>
+          <span className="relative z-10">Explore What We Offer</span>
           <ArrowUpRight className="relative z-10 h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
         </a>
-        <Link
-          href="/#get-involved"
-          className="hero-entrance-fade group relative inline-flex items-center gap-2 py-3 px-2 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-hero-navy transition-colors duration-300 hover:text-hero-gold"
+        <a
+          href="#about"
+          className="hero-entrance-fade group relative inline-flex items-center gap-2 py-3 px-3 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#0D2C49] transition-colors duration-300 hover:text-[#B09C4B]"
           data-entered={entered}
           style={{
             animationDelay: "800ms",
             fontFamily: "var(--font-hero-sans)",
           }}
         >
-          Get Involved
-          <span className="absolute -bottom-0.5 left-2 right-2 h-px bg-hero-gold scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100" />
-        </Link>
+          <span>About AIPP</span>
+          <span className="absolute -bottom-0.5 left-3 right-3 h-px bg-[#B09C4B] scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100" />
+        </a>
       </div>
 
-      {/* Trust pill */}
+      {/* Institutional Focus Pill */}
       <div
-        className="hero-entrance-fade inline-flex items-center gap-2 rounded-full border border-hero-border/80 bg-white/70 px-3 py-1 text-[10px] font-medium tracking-wide text-hero-slate backdrop-blur-xs shadow-xs"
+        className="hero-entrance-fade inline-flex items-center gap-2 rounded-full border border-[#D9DEE2] bg-white/80 px-3.5 py-1.5 text-[10px] font-medium tracking-wide text-[#243748] backdrop-blur-xs shadow-xs"
         data-entered={entered}
         style={{ animationDelay: "880ms" }}
       >
-        <span className="h-1.5 w-1.5 rounded-full bg-hero-gold animate-pulse" />
-        <span>70+ International Delegations & Multilateral Forums</span>
+        <span className="h-1.5 w-1.5 rounded-full bg-[#B09C4B] animate-pulse" />
+        <span>Diplomacy · Empirical Research · Strategic Simulation · Public Advocacy</span>
       </div>
     </div>
   );

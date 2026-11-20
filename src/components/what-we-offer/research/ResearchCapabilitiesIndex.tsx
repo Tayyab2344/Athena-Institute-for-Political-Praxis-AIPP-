@@ -83,7 +83,7 @@ export default function ResearchCapabilitiesIndex() {
   const ActiveIcon = active.icon;
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FBFBFA] border-b border-[var(--color-border)] relative" aria-label="Research Capabilities">
+    <section className="py-12 sm:py-16 lg:py-20 bg-white border-b border-[var(--color-border)] relative" aria-label="Research Capabilities">
       <Container>
         {/* Header */}
         <div className="max-w-2xl mb-12">

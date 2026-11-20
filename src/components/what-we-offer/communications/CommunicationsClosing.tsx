@@ -13,7 +13,7 @@ export default function CommunicationsClosing({
   onOpenContact,
 }: CommunicationsClosingProps) {
   return (
-    <section className="relative py-28 sm:py-36 bg-[#081D2E] text-white overflow-hidden" aria-label="Communications Conclusion">
+    <section className="relative py-14 sm:py-20 lg:py-24 bg-[#081D2E] text-white overflow-hidden" aria-label="Communications Conclusion">
       {/* Background full-width image of woman speaker / public forum */}
       <div className="absolute inset-0">
         <Image

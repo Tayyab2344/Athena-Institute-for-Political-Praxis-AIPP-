@@ -58,63 +58,63 @@ export default function StrategyHero() {
   const activeBranch = BRANCHES.find((b) => b.id === selectedBranchId) || BRANCHES[0];
 
   return (
-    <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24 bg-[#081D2E] text-white border-b border-slate-800 strategy-canvas" aria-label="Strategy and Simulation Hero">
-      {/* Background strategy grid */}
-      <div className="absolute inset-0 research-dark-grid opacity-30 pointer-events-none" />
+    <section className="relative overflow-hidden pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20 bg-[#FAF9F5] text-slate-900 border-b border-[var(--color-border)]" aria-label="Strategy and Simulation Hero">
+      {/* Background delicate grid */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none bg-[radial-gradient(#CBD5E1_1px,transparent_1px)] [background-size:24px_24px]" />
 
       {/* Top Coordinate Bar */}
-      <div className="absolute top-6 left-10 hidden xl:flex items-center gap-6 font-mono text-[0.625rem] text-slate-400 tracking-widest pointer-events-none">
-        <span>SIMULATION PROTOCOL: AIPP-WARGAME-VI</span>
-        <span>STATUS: LIVE DECISION TREE</span>
-        <span>SECURITY: TRACK-I WAR ROOM</span>
+      <div className="absolute top-6 left-10 hidden xl:flex items-center gap-6 font-mono text-[0.625rem] text-slate-500 tracking-widest pointer-events-none">
+        <span>SIMULATION PROTOCOL: AIPP-WARGAME</span>
+        <span>STATUS: ACTIVE DECISION MATRIX</span>
+        <span>DISCIPLINE: DIPLOMATIC STATECRAFT</span>
       </div>
 
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Editorial Typography (~40%) */}
           <div className="lg:col-span-5 flex flex-col justify-center z-10">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[var(--hero-gold)] animate-ping" />
+            <div className="hero-animate-eyebrow inline-flex items-center gap-2 mb-3">
+              <span className="w-2 h-2 rounded-full bg-[var(--hero-gold)]" />
               <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)]">
-                02 / STRATEGIC ACTION & SIMULATION
+                PILLAR 02 / STRATEGIC ACTION & SIMULATION
               </span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-normal leading-[1.08] text-white tracking-tight">
+            <h1 className="hero-animate-heading font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-normal leading-[1.08] text-[var(--hero-navy)] tracking-tight">
               Prepare for Complexity Before It Arrives.
             </h1>
 
-            <p className="mt-5 text-sm sm:text-base leading-relaxed text-slate-300 font-sans font-light max-w-lg">
+            <p className="hero-animate-body mt-4 text-base sm:text-lg leading-relaxed text-slate-600 font-sans font-light max-w-lg">
               Complex multilateral environments demand more than static whitepapers. They require leaders to explore branching scenarios, test assumptions under pressure, and master statecraft decision-making under uncertainty.
             </p>
 
             {/* Strategic Attributes */}
-            <div className="mt-6 pt-6 border-t border-slate-800 grid grid-cols-3 gap-3 font-mono text-[0.6875rem]">
+            <div className="hero-animate-body mt-6 pt-6 border-t border-slate-200 grid grid-cols-3 gap-3 font-mono text-[0.6875rem]">
               <div>
-                <span className="block text-[var(--hero-gold)] font-bold text-xs">WARGAMING</span>
-                <span className="text-slate-400">Crisis Labs</span>
+                <span className="block text-[var(--hero-navy)] font-bold text-xs">WARGAMING</span>
+                <span className="text-slate-500">Crisis Labs</span>
               </div>
               <div>
-                <span className="block text-[var(--hero-gold)] font-bold text-xs">DECISION</span>
-                <span className="text-slate-400">Branch Trees</span>
+                <span className="block text-[var(--hero-navy)] font-bold text-xs">DECISION</span>
+                <span className="text-slate-500">Branch Trees</span>
               </div>
               <div>
-                <span className="block text-[var(--hero-gold)] font-bold text-xs">STATECRAFT</span>
-                <span className="text-slate-400">Diplomatic Stress</span>
+                <span className="block text-[var(--hero-navy)] font-bold text-xs">STATECRAFT</span>
+                <span className="text-slate-500">Diplomatic Stress</span>
               </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="hero-animate-cta mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#interactive-scenario"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-[var(--hero-gold)] text-[var(--hero-navy)] text-xs font-semibold uppercase tracking-[0.14em] transition-all hover:bg-white hover:shadow-lg font-sans"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[var(--hero-navy)] text-white text-xs font-semibold uppercase tracking-[0.14em] transition-all hover:bg-[var(--hero-gold)] hover:text-[var(--hero-navy)] hover:shadow-md font-sans"
               >
                 <span>Launch Interactive Scenario</span>
-                <ArrowRight className="h-3.5 w-3.5" />
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
               </a>
               <a
                 href="#capabilities-index"
-                className="inline-flex items-center gap-2 px-6 py-3.5 border border-slate-700 text-slate-200 bg-slate-900/60 text-xs font-semibold uppercase tracking-[0.14em] transition-all hover:border-slate-500 font-sans"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-slate-300 text-[var(--hero-navy)] bg-white text-xs font-semibold uppercase tracking-[0.14em] transition-all hover:border-[var(--hero-navy)] hover:bg-slate-50 font-sans shadow-xs"
               >
                 <span>Explore Simulations</span>
               </a>
@@ -122,26 +122,26 @@ export default function StrategyHero() {
           </div>
 
           {/* Right Column: Interactive Decision Map (~60%) */}
-          <div className="lg:col-span-7 bg-[#051320]/80 border border-slate-800 rounded-sm p-6 sm:p-8 backdrop-blur-md shadow-2xl relative">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-5">
-              <div className="flex items-center gap-2 font-mono text-xs text-[var(--hero-gold)]">
-                <GitBranch className="h-4 w-4" />
+          <div className="hero-animate-image lg:col-span-7 bg-white border border-slate-200 rounded-sm p-6 sm:p-8 shadow-sm relative">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-5">
+              <div className="flex items-center gap-2 font-mono text-xs text-[var(--hero-navy)]">
+                <GitBranch className="h-4 w-4 text-[var(--hero-gold)]" />
                 <span className="font-bold tracking-wider uppercase">INTERACTIVE DECISION MAP</span>
               </div>
-              <span className="font-mono text-[0.625rem] text-slate-400">
+              <span className="font-mono text-[0.625rem] text-slate-500">
                 ACTIVE SCENARIO // MARITIME ACCESS CRISIS
               </span>
             </div>
 
             {/* SVG Decision Map Visualization */}
-            <div className="relative w-full h-[280px] sm:h-[300px] bg-[#07192A]/90 rounded-sm border border-slate-800/80 p-2 overflow-hidden">
+            <div className="relative w-full h-[280px] sm:h-[300px] bg-[#F8F9FA] rounded-sm border border-slate-200 p-2 overflow-hidden">
               <svg className="w-full h-full" viewBox="0 0 540 300" fill="none">
                 {/* Central Origin Node: Strategic Challenge */}
                 <rect x="20" y="125" width="130" height="50" rx="2" fill="#0D2C49" stroke="#B09C4B" strokeWidth="1.5" />
                 <text x="85" y="145" fontSize="8" fontFamily="monospace" fontWeight="bold" textAnchor="middle" fill="#B09C4B">
                   STRATEGIC CHALLENGE
                 </text>
-                <text x="85" y="160" fontSize="7" fontFamily="sans-serif" textAnchor="middle" fill="#CBD5E1">
+                <text x="85" y="160" fontSize="7" fontFamily="sans-serif" textAnchor="middle" fill="#FFFFFF">
                   Corridor Deadlock
                 </text>
 
@@ -152,7 +152,7 @@ export default function StrategyHero() {
                     <g key={b.id} onClick={() => setSelectedBranchId(b.id)} className="cursor-pointer group">
                       <path
                         d={`M 150 150 C 210 150, 230 ${b.vectorY}, 300 ${b.vectorY}`}
-                        stroke={isSelected ? "#B09C4B" : "#243748"}
+                        stroke={isSelected ? "#B09C4B" : "#CBD5E1"}
                         strokeWidth={isSelected ? "2.5" : "1.2"}
                         strokeDasharray={isSelected ? "none" : "4 4"}
                         className="transition-all duration-300"
@@ -163,8 +163,8 @@ export default function StrategyHero() {
                         cx="300"
                         cy={b.vectorY}
                         r={isSelected ? "7" : "5"}
-                        fill={isSelected ? "#B09C4B" : "#0D2C49"}
-                        stroke={isSelected ? "#FFFFFF" : "#64717C"}
+                        fill={isSelected ? "#B09C4B" : "#E2E8F0"}
+                        stroke={isSelected ? "#0D2C49" : "#94A3B8"}
                         strokeWidth="1.5"
                         className="transition-all duration-300"
                       />
@@ -176,10 +176,10 @@ export default function StrategyHero() {
                         width="190"
                         height="32"
                         rx="2"
-                        fill={isSelected ? "#0F3356" : "#0A2035"}
-                        stroke={isSelected ? "#B09C4B" : "#1E3A56"}
-                        strokeWidth="1"
-                        className="transition-all duration-300"
+                        fill={isSelected ? "#FFFFFF" : "#F8FAFC"}
+                        stroke={isSelected ? "#B09C4B" : "#E2E8F0"}
+                        strokeWidth={isSelected ? "1.5" : "1"}
+                        className="transition-all duration-300 shadow-xs"
                       />
                       <text
                         x="332"
@@ -187,7 +187,7 @@ export default function StrategyHero() {
                         fontSize="8"
                         fontFamily="monospace"
                         fontWeight="bold"
-                        fill={isSelected ? "#B09C4B" : "#94A3B8"}
+                        fill={isSelected ? "#0D2C49" : "#64748B"}
                       >
                         {b.name}: {b.risk}
                       </text>
@@ -196,7 +196,7 @@ export default function StrategyHero() {
                         y={b.vectorY + 8}
                         fontSize="7"
                         fontFamily="sans-serif"
-                        fill={isSelected ? "#FFFFFF" : "#64717C"}
+                        fill={isSelected ? "#334155" : "#94A3B8"}
                       >
                         {b.label.slice(0, 32)}...
                       </text>
@@ -207,40 +207,40 @@ export default function StrategyHero() {
             </div>
 
             {/* Tactical Live Breakdown of Active Branch */}
-            <div className="mt-5 p-4 bg-[#0A2238] border border-slate-700/80 rounded-sm font-sans text-xs">
-              <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-700">
-                <span className="font-mono text-[0.6875rem] font-bold text-[var(--hero-gold)] uppercase tracking-wider">
-                  ACTIVE PATH: {activeBranch.name} // {activeBranch.label}
+            <div className="mt-5 p-4 bg-[#FCFBF8] border border-slate-200 rounded-sm font-sans text-xs">
+              <div className="flex items-center justify-between pb-2 mb-3 border-b border-slate-200">
+                <span className="font-mono text-[0.6875rem] font-bold text-[var(--hero-navy)] uppercase tracking-wider">
+                  ACTIVE PATH: {activeBranch.name} {"//"} {activeBranch.label}
                 </span>
-                <span className="font-mono text-[0.625rem] text-emerald-400">
-                  CONFIRMATION STATUS: MODEL RUNNING
+                <span className="font-mono text-[0.625rem] text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  STATUS: VERIFIED
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-300">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-700">
                 <div>
-                  <span className="font-mono text-[0.625rem] text-slate-400 block uppercase">
+                  <span className="font-mono text-[0.625rem] text-slate-500 block uppercase">
                     STRATEGIC OPPORTUNITY:
                   </span>
-                  <p className="mt-0.5 text-xs text-white">{activeBranch.opportunity}</p>
+                  <p className="mt-0.5 text-xs text-slate-900 font-medium">{activeBranch.opportunity}</p>
                 </div>
                 <div>
-                  <span className="font-mono text-[0.625rem] text-slate-400 block uppercase">
+                  <span className="font-mono text-[0.625rem] text-slate-500 block uppercase">
                     KEY TRADE-OFF:
                   </span>
-                  <p className="mt-0.5 text-xs text-amber-200">{activeBranch.tradeoff}</p>
+                  <p className="mt-0.5 text-xs text-amber-800">{activeBranch.tradeoff}</p>
                 </div>
                 <div>
-                  <span className="font-mono text-[0.625rem] text-slate-400 block uppercase">
+                  <span className="font-mono text-[0.625rem] text-slate-500 block uppercase">
                     PRIMARY STAKEHOLDER:
                   </span>
-                  <p className="mt-0.5 text-xs text-slate-300">{activeBranch.stakeholder}</p>
+                  <p className="mt-0.5 text-xs text-slate-700">{activeBranch.stakeholder}</p>
                 </div>
                 <div>
-                  <span className="font-mono text-[0.625rem] text-slate-400 block uppercase">
+                  <span className="font-mono text-[0.625rem] text-slate-500 block uppercase">
                     PROJECTED OUTCOME:
                   </span>
-                  <p className="mt-0.5 text-xs text-emerald-300">{activeBranch.outcome}</p>
+                  <p className="mt-0.5 text-xs text-emerald-800 font-medium">{activeBranch.outcome}</p>
                 </div>
               </div>
             </div>

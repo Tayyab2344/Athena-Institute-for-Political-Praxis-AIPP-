@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Container from "@/components/ui/Container";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function PublicSpeakingStage() {
   const editorialTags = [
@@ -12,23 +13,23 @@ export default function PublicSpeakingStage() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FAF9F6] border-b border-[var(--color-border)]" aria-label="Public Speaking Immersive Stage">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#FAF9F6] border-b border-[var(--color-border)]" aria-label="Public Speaking Immersive Stage">
       <Container>
         {/* Section Header */}
-        <div className="max-w-2xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-3">
+        <ScrollReveal variant="fade-up" className="max-w-2xl mb-10">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-2">
             THE ROSTRUM OF STATECRAFT
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[var(--hero-navy)] font-normal leading-tight">
             The Public Speaking Visual.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[var(--hero-muted)] font-sans font-light">
+          <p className="mt-3 text-base sm:text-lg text-[var(--hero-muted)] font-sans font-light">
             When women leaders step forward to address international assemblies, they do not simply speak — they reshape normative consensus.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Large Immersive Editorial Image Stage */}
-        <div className="relative w-full h-[480px] sm:h-[580px] lg:h-[680px] rounded-sm overflow-hidden border border-[var(--color-border)] shadow-2xl">
+        <ScrollReveal variant="image" delay={100} className="relative w-full h-[440px] sm:h-[540px] lg:h-[620px] rounded-sm overflow-hidden border border-[var(--color-border)] shadow-2xl">
           <Image
             src="/offer-women-summit.jpg"
             alt="Woman diplomat speaking before a distinguished international assembly"
@@ -60,10 +61,10 @@ export default function PublicSpeakingStage() {
               “Power in the international arena belongs to those who define the terms of public conversation.”
             </blockquote>
             <span className="font-mono text-xs text-[var(--hero-gold)] block mt-3 uppercase tracking-widest">
-              Ambassadorial Plenary · Geneva Assembly
+              Ambassadorial Plenary · Multilateral Dialogue
             </span>
           </div>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );

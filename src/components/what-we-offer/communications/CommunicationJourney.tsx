@@ -50,7 +50,7 @@ const JOURNEY_STAGES: JourneyStage[] = [
     title: "DIALOGUE",
     tagline: "Entering the International Arena",
     description:
-      "Convening closed-door roundtables and public symposia in Geneva, Brussels, and Vienna where diplomats and civil society directly debate the proposed doctrine.",
+      "Convening closed-door roundtables and public symposia across multilateral diplomatic forums where delegates and civil society directly debate the proposed doctrine.",
     realWorldExample: "Ambassadorial Colloquium with 18 permanent missions.",
     marker: "SUMMIT // TRACK-1.5 ENGAGEMENT",
     icon: Users,
@@ -83,17 +83,17 @@ export default function CommunicationJourney() {
   const CurrentIcon = current.icon;
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FBFBFA] border-b border-[var(--color-border)] relative" aria-label="Communication Journey from Idea to Influence">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#FBFBFA] border-b border-[var(--color-border)] relative" aria-label="Communication Journey from Idea to Influence">
       <Container>
         {/* Header */}
-        <div className="max-w-2xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-3">
+        <div className="max-w-2xl mb-10">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-2">
             STRATEGIC PROPAGATION
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[var(--hero-navy)] font-normal leading-tight">
             The Communication Journey: From Idea to Influence.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[var(--hero-muted)] font-sans font-light">
+          <p className="mt-3 text-base sm:text-lg text-[var(--hero-muted)] font-sans font-light">
             A comprehensive visual progression showing how a single policy thesis travels from private inquiry into binding international treaty consensus.
           </p>
         </div>

@@ -76,17 +76,17 @@ export default function CommunicationsCapabilitiesRows() {
   const active = CAPABILITIES[hoveredIdx];
 
   return (
-    <section className="py-20 lg:py-28 bg-white border-b border-[var(--color-border)]" aria-label="Communications Capabilities Rows">
+    <section className="py-12 sm:py-16 lg:py-20 bg-white border-b border-[var(--color-border)]" aria-label="Communications Capabilities Rows">
       <Container>
         {/* Header */}
-        <div className="max-w-2xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-3">
+        <div className="max-w-2xl mb-10">
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hero-gold)] block mb-2">
             COMMUNICATION SUITE
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl text-[var(--hero-navy)] font-normal leading-tight">
             Communications Capabilities Rows.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[var(--hero-muted)] font-sans font-light">
+          <p className="mt-3 text-base sm:text-lg text-[var(--hero-muted)] font-sans font-light">
             Every capability is designed to bridge private institutional research into public global momentum.
           </p>
         </div>
